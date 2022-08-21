@@ -1,0 +1,49 @@
+package lc.lc1;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/*
+* 组合
+*
+* 给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。你可以按 任何顺序 返回答案。
+示例 1：
+输入：n = 4, k = 2
+输出：
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+示例 2：
+输入：n = 1, k = 1
+输出：[[1]]
+*
+* 标签：回溯与剪枝
+n 表示范围为 1...n，balance 表示剩余空间，start 表示开始位置，list 为回溯列表
+判断 balance == 0，如果为 0 则代表 list 中已经存入 k 个数，拷贝 list 存入结果 ans 中如果不为 0，从 start 位置开始递归调用，
+* 现将当前位置数据加入 list 中，并进入下一层，等待返回后将本层加入的数据移除，本质就是树的构造过程,其中循环结束条件默认为最大值到 n
+* */
+public class _77 {
+    private List<List<Integer>> ans = new ArrayList<>();
+
+    public List<List<Integer>> combine(int n, int k) {
+        getCombine(n, k, 1, new ArrayList<>());
+        return ans;
+    }
+
+    public void getCombine(int n, int k, int start, List<Integer> list) {
+        if (k == 0) {
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+        for (int i = start; i <= n - k + 1; i++) {
+            list.add(i);
+            getCombine(n, k - 1, i + 1, list);
+            list.remove(list.size() - 1);
+        }
+    }
+}
