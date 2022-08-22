@@ -14,9 +14,10 @@ public class _26 {
     }
 
     public ListNode Merge(ListNode list1, ListNode list2) {
-        ListNode list = null;
+        ListNode list = null; //构造结果链表
+        //如果list1和list2都是空，返回空
         if (list1 == null && list2 == null) return null;
-        if (list1 == null)
+        if (list1 == null) //list1为空返回list2，list2为空返回list1
             return list2;
         if (list2 == null)
             return list1;

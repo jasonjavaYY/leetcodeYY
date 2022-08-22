@@ -14,25 +14,29 @@ package jzoffer;
 * */
 public class _18 {
     public ListNode deleteNode(ListNode head, ListNode tobeDelete) {
-        if (head == null || tobeDelete == null)
+        if (head == null || tobeDelete == null) //如果头结点或者待删除节点为空，返回空
             return null;
         if (tobeDelete.next != null) {
-            // 要删除的节点不是尾节点
+            // 如果要删除的节点不是尾节点，就获取待删除节点下一节点
             ListNode next = tobeDelete.next;
+            //将next节点值赋给待删除节点，待删除的next指向next.next，就能跳过next
             tobeDelete.val = next.val;
             tobeDelete.next = next.next;
+            //将next的next指向空，就删除了next节点
             next.next = null;
-        } else {
+        } else { //如果待删除节点是尾节点
             if (head == tobeDelete)
-                // 只有一个节点
+                // 如果待删除节点也是头结点，说明只有一个节点，删除该节点即可
                 head = null;
             else {
+                //否则删除尾节点，从头结点不断往后找，直到找到cur.next是tobeDelete，将cur.next = null
                 ListNode cur = head;
                 while (cur.next != tobeDelete)
                     cur = cur.next;
                 cur.next = null;
             }
         }
+        //最后返回原链表
         return head;
     }
 

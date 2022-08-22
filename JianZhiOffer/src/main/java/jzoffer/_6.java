@@ -10,14 +10,16 @@ package jzoffer;
 * */
 public class _6 {
     public TreeLinkNode GetNext(TreeLinkNode pNode) {
-        if (pNode.right != null) {
+        if (pNode.right != null) {//如果右子树不为空
+            //获取右节点，然后不断找这个节点的左节点，直至为null，返回
             TreeLinkNode node = pNode.right;
             while (node.left != null)
                 node = node.left;
             return node;
-        } else {
-            while (pNode.next != null) {
+        } else {//如果右子树为空
+            while (pNode.next != null) { //不断想上找next不为空的节点
                 TreeLinkNode parent = pNode.next;
+                //如果该节点的left是pNode就返回，否则继续找next
                 if (parent.left == pNode)
                     return parent;
                 pNode = pNode.next;

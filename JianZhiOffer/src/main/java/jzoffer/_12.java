@@ -20,25 +20,31 @@ package jzoffer;
  * */
 public class _12 {
     public int minNumberInRotateArray(int[] nums) {
-        if (nums.length == 0)
+        if (nums.length == 0) //如果数组为空，返回0
             return 0;
-        int l = 0, h = nums.length - 1;
-        while (l < h) {
-            int m = l + (h - l) / 2;
+        int l = 0, h = nums.length - 1; //左右边界为数组边界
+        while (l < h) { //二分查找
+            int m = l + (h - l) / 2; //计算中间下标
+            //如果左中右三点都相等，返回l到h的最小值
             if (nums[l] == nums[m] && nums[m] == nums[h])
                 return minNumber(nums, l, h);
+            //如果m值≤右边值，更新h为m
             else if (nums[m] <= nums[h])
                 h = m;
+            //否则更新l为m+1
             else
                 l = m + 1;
         }
         return nums[l];
     }
 
+    //ok  返回nums从l到h范围最小值，因为旋转升序数组一次，l到h或者升序，或者只有一个降序节点
     private int minNumber(int[] nums, int l, int h) {
         for (int i = l; i < h; i++)
+            //如果i比i+1大，说明降序节点就在这，后面的数都比i+1大，返回i+1数
             if (nums[i] > nums[i + 1])
                 return nums[i + 1];
+            //否则返回最左侧数
         return nums[l];
     }
 }

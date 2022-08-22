@@ -51,7 +51,9 @@ public class _14 {
 
     //ok  该方法根据二维数组的值计算出行列坐标数位之和的二维数组，该数组一定是对称的
     private void initDigitSum() {
+        //构造一维坐标和数组，数组长度是行列中的较大值
         int[] digitSumOne = new int[Math.max(rows, cols)];
+        //计算一维坐标和数组各元素值
         for (int i = 0; i < digitSumOne.length; i++) {
             int n = i;
             while (n > 0) {
@@ -59,6 +61,7 @@ public class _14 {
                 n /= 10;
             }
         }
+        //构造二维坐标和数组，元素ij是一维i+一维j的值
         this.digitSum = new int[rows][cols];
         for (int i = 0; i < this.rows; i++)
             for (int j = 0; j < this.cols; j++)

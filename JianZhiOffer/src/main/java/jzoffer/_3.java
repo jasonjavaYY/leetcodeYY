@@ -12,20 +12,20 @@ package jzoffer;
 * */
 public class _3 {
     public String replaceSpace(StringBuffer str) {
-        int P1 = str.length() - 1;
-        for (int i = 0; i <= P1; i++)
+        int P1 = str.length() - 1; //p1指向尾部
+        for (int i = 0; i <= P1; i++) //遍历字符串，遇到空格就增加两个空位，因为空格替换成三个字符
             if (str.charAt(i) == ' ')
                 str.append("  ");
 
-        int P2 = str.length() - 1;
+        int P2 = str.length() - 1; //让p2指向增长后的字符串尾部
         while (P1 >= 0 && P2 > P1) {
-            char c = str.charAt(P1--);
-            if (c == ' ') {
+            char c = str.charAt(P1--); //P1从后向前遍历，获取字符
+            if (c == ' ') { //如果是空格，就在p2指向处增加0，2，%三个字符
                 str.setCharAt(P2--, '0');
                 str.setCharAt(P2--, '2');
                 str.setCharAt(P2--, '%');
             } else {
-                str.setCharAt(P2--, c);
+                str.setCharAt(P2--, c); //否则将字符放到p2处，p2--
             }
         }
         return str.toString();

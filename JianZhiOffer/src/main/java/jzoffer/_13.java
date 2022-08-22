@@ -23,17 +23,19 @@ public class _13 {
         System.out.println(hasPath(array, 3, 4, str));
     }
 
+    //ok  next二维数组代表可以移动的方式
     private final static int[][] next = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
     private static int rows;
     private static int cols;
 
     //array为原数组 rows和cols为行列数  str为要找的目标字符串
     public static boolean hasPath(char[] array, int rows, int cols, char[] str) {
-        if (rows == 0 || cols == 0) return false;
+        if (rows == 0 || cols == 0) return false; //如果行或列为0，返回false
         _13.rows = rows;
         _13.cols = cols;
-        boolean[][] marked = new boolean[rows][cols];
+        boolean[][] marked = new boolean[rows][cols]; //构造标记数组，用于回溯
         char[][] matrix = buildMatrix(array);
+        //两层循环，如果回溯寻找制定字符串成功，返回true，找到最后也没找到就返回false
         for (int i = 0; i < rows; i++)
             for (int j = 0; j < cols; j++)
                 if (backtracking(matrix, str, marked, 0, i, j))
@@ -43,7 +45,7 @@ public class _13 {
 
     private static boolean backtracking(char[][] matrix, char[] str, boolean[][] marked, int pathLen, int r, int c) {
         if (pathLen == str.length) return true;  //如果pathLen已经等于str.length，代表全部字符都找到了，返回true
-        //这一行能通过表明目标字符串的第pathLen个字符找到了
+        //这一行能通过表明目标字符串的第pathLen个字符找到了，如果r、c越界或者当前搜索的矩阵元素不等于待寻找字符或者当前元素标记过了，返回false
         if (r < 0 || r >= rows || c < 0 || c >= cols || matrix[r][c] != str[pathLen] || marked[r][c]) {
             return false;
         }
@@ -57,6 +59,7 @@ public class _13 {
         return false;
     }
 
+    //将一维数组构造成二维矩阵
     private static char[][] buildMatrix(char[] array) {
         char[][] matrix = new char[rows][cols];
         for (int r = 0, idx = 0; r < rows; r++)

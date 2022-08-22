@@ -16,7 +16,7 @@ package jzoffer;
 * */
 public class _24 {
     public ListNode EntryNodeOfLoop(ListNode pHead) {
-        //空链表或者只有一个节点的链表不能成环，直接返回
+        //空链表或者只有一个节点的链表不能成环，直接返回空
         if (pHead == null || pHead.next == null)
             return null;
         //设置快慢两个指针

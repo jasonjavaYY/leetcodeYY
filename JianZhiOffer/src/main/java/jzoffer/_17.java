@@ -13,27 +13,29 @@ public class _17 {
         print1ToMaxOfNDigits(2);
     }
     public static void print1ToMaxOfNDigits(int n) {
-        if (n <= 0)
+        if (n <= 0) //如果n为负或0，直接返回
             return;
-        char[] number = new char[n];
-        print1ToMaxOfNDigits(number, 0);
+        char[] number = new char[n]; //构造n位的空字符数组
+        print1ToMaxOfNDigits(number, 0); //初始digit为0
     }
 
     private static void print1ToMaxOfNDigits(char[] number, int digit) {
-        if (digit == number.length) {
+        if (digit == number.length) { //递归退出判断，如果digit等于字符数组长度，就打印并返回
             printNumber(number);
             return;
-        }
+        } //否则遍历给number数组每一位赋值，从0递增到9
         for (int i = 0; i < 10; i++) {
             number[digit] = (char) (i + '0');
-            print1ToMaxOfNDigits(number, digit + 1);
+            print1ToMaxOfNDigits(number, digit + 1); //递归number数组的下一位
         }
     }
 
     private static void printNumber(char[] number) {
+        //将某个字符数组打印出来，先跳过前面的0
         int index = 0;
         while (index < number.length && number[index] == '0')
             index++;
+        //依次打印每个字符，最后打印换行
         while (index < number.length)
             System.out.print(number[index++]);
         System.out.println();

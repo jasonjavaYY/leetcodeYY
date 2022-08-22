@@ -10,12 +10,13 @@ import java.util.Stack;
  * */
 public class _4 {
     public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
-        Stack<Integer> stack = new Stack<>();
-        while (listNode != null) {
+        Stack<Integer> stack = new Stack<>(); //构造一个栈
+        while (listNode != null) { //将链表值依次放入栈
             stack.add(listNode.val);
             listNode = listNode.next;
         }
         ArrayList<Integer> ret = new ArrayList<>();
+        //依次弹栈元素就是反向链表顺序
         while (!stack.isEmpty())
             ret.add(stack.pop());
         return ret;

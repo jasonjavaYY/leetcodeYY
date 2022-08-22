@@ -25,6 +25,7 @@ public class _22 {
         }
     }
 
+    //ok 如果数值对2取余为0就返回true，即是偶数
     private boolean isEven(int x) {
         return x % 2 == 0;
     }

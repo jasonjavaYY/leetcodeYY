@@ -12,15 +12,17 @@ package jzoffer;
 * */
 public class _1 {
     public boolean duplicate(int[] nums, int length, int[] duplication) {
-        if (nums == null || length <= 0)
+        if (nums == null || length <= 0) //如果数组为空，返回false
             return false;
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) { //遍历数组
             while (nums[i] != i) {
+                //如果nums[i] == nums[nums[i]] 说明找到了重复元素，
                 if (nums[i] == nums[nums[i]]) {
+                    //将重复数字放入duplication，返回true
                     duplication[0] = nums[i];
                     return true;
                 }
-                swap(nums, i, nums[i]);
+                swap(nums, i, nums[i]); //将num[i]放在第i位置
             }
         }
         return false;

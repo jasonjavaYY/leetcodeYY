@@ -20,16 +20,17 @@ return 36 (10 = 3 + 3 + 4)
 * */
 public class _15 {
     public int integerBreak(int n) {
-        if (n < 2)
+        if (n < 2) //如果绳子长度小于2没法剪断，返回0
             return 0;
-        if (n == 2)
+        if (n == 2) //长度2的绳子只能剪成2个1，乘积为1
             return 1;
-        if (n == 3)
+        if (n == 3) //长度3的绳子只能剪成1和2，乘积为2
             return 2;
-        int timesOf3 = n / 3;
-        if (n - timesOf3 * 3 == 1)
+        int timesOf3 = n / 3; //计算能获取多少段3
+        if (n - timesOf3 * 3 == 1) //如果全是3最后剩下1，就少一个3，变成2和2
             timesOf3--;
-        int timesOf2 = (n - timesOf3 * 3) / 2;
+        int timesOf2 = (n - timesOf3 * 3) / 2; //计算有多少个2
+        //计算总乘积，3的timesOf3次方*2的timesOf2次方
         return (int) (Math.pow(3, timesOf3)) * (int) (Math.pow(2, timesOf2));
     }
 }

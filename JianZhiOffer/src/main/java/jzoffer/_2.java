@@ -13,18 +13,19 @@ package jzoffer;
 * */
 public class _2 {
     public boolean Find(int target, int[][] matrix) {
+        //如果数组为空，返回false
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0)
             return false;
         int rows = matrix.length, cols = matrix[0].length;
         int r = 0, c = cols - 1; // 从右上角开始
         while (r <= rows - 1 && c >= 0) {
-            if (target == matrix[r][c])
+            if (target == matrix[r][c]) //如果找到了目标，返回true
                 return true;
-            else if (target > matrix[r][c])
+            else if (target > matrix[r][c]) //如果当前值小于目标值，行++
                 r++;
-            else
+            else   //如果当前值大于目标值，列--
                 c--;
         }
-        return false;
+        return false; //如果最后找不到返回false
     }
 }

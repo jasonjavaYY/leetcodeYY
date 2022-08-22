@@ -14,15 +14,16 @@ package jzoffer;
 * */
 public class _9 {
     public int RectCover(int n) {
-        if (n <= 2)
+        if (n <= 2) //n小于等于2，只有n种
             return n;
         int pre2 = 1, pre1 = 2;
         int result = 0;
+        //n>2时，result = pre2 + pre1；pre2 = pre1；pre1 = result
         for (int i = 3; i <= n; i++) {
             result = pre2 + pre1;
             pre2 = pre1;
             pre1 = result;
         }
-        return result;
+        return result; //最后返回result
     }
 }

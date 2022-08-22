@@ -18,6 +18,7 @@ f(n) = 2*f(n-1)
 * */
 public class _11 {
     public int JumpFloorII(int target) {
+        //返回2的n-1次方
         return (int) Math.pow(2, target - 1);
     }
 }

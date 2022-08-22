@@ -14,7 +14,7 @@ package jzoffer;
  * */
 public class _10 {
     public int JumpFloor(int n) {
-        if (n <= 2)
+        if (n <= 2) //和前一道题完全一样
             return n;
         int pre2 = 1, pre1 = 2;
         int result = 1;
