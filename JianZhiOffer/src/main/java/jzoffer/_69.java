@@ -15,6 +15,7 @@ package jzoffer;
 public class _69 {
     public int Sum_Solution(int n) {
         int sum = n;
+        //n如果大于0就执行后面的(sum += Sum_Solution(n - 1))，这部分肯定>0
         boolean b = (n > 0) && ((sum += Sum_Solution(n - 1)) > 0);
         return sum;
     }

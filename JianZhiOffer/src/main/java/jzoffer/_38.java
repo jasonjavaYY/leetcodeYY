@@ -20,7 +20,7 @@ public class _38 {
         }
     }
     public RandomListNode Clone(RandomListNode pHead) {
-        if (pHead == null)
+        if (pHead == null) //如果原链表为空，返回空
             return null;
         // 在原链表每个节点后面插入相同新节点
         RandomListNode cur = pHead;

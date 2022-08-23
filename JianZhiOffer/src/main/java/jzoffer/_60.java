@@ -17,16 +17,16 @@ import java.util.Arrays;
 public class _60 {
     public ArrayList<Integer> FindNumbersWithSum(int[] array, int sum) {
         int i = 0, j = array.length - 1;
-        while (i < j) {
-            int cur = array[i] + array[j];
+        while (i < j) { //双指针分别指向首尾
+            int cur = array[i] + array[j]; //计算当前两个指针指向数字的和
             //找到了直接返回，因为两个数字和固定时，两个数字差越大，乘积越小
             if (cur == sum)
                 return new ArrayList<>(Arrays.asList(array[i], array[j]));
-            if (cur < sum)
+            if (cur < sum) //如果当前和小于sum，要移动左指针
                 i++;
-            else
+            else  //否则移动右指针
                 j--;
-        }
+        } //最后都没找到就返回空数组
         return new ArrayList<>();
     }
 }

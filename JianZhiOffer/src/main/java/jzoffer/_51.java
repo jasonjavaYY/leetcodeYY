@@ -36,7 +36,7 @@ public class _51 {
                 maxLen = Math.max(maxLen, curLen);
                 curLen = curI - preI;
             }
-            preIndexs[c] = curI;
+            preIndexs[c] = curI; //更新字符c上一次出现的位置
         }
         maxLen = Math.max(maxLen, curLen);
         return maxLen;

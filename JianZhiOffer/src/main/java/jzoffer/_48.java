@@ -18,7 +18,7 @@ public class _48 {
         if (numbers == null || numbers.length == 0)
             return "";
         int n = numbers.length; //数组长度
-        String[] nums = new String[n]; //构造字符串数组
+        String[] nums = new String[n]; //构造字符数组
         //遍历数组，将数组转变成字符串
         for (int i = 0; i < n; i++)
             nums[i] = numbers[i] + "";

@@ -15,16 +15,16 @@ public class _39 {
     }
 
     private void inOrder(TreeNode node) {
-        if (node == null)
+        if (node == null) //如树为空，直接返回
             return;
-        inOrder(node.left);
-        node.left = pre;
-        if (pre != null)
+        inOrder(node.left); //否则递归左节点
+        node.left = pre; //节点的左节点比它小，放在pre
+        if (pre != null) //将node设置为pre的右节点
             pre.right = node;
-        pre = node;
-        if (head == null)
+        pre = node; //更新pre指向node
+        if (head == null) //初始化头结点
             head = node;
-        inOrder(node.right);
+        inOrder(node.right); //递归右节点
     }
 
     static class TreeNode {

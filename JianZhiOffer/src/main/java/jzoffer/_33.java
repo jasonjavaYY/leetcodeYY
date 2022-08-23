@@ -15,15 +15,16 @@ import java.util.Queue;
 * */
 public class _33 {
     public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        ArrayList<Integer> ret = new ArrayList<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            int cnt = queue.size();
-            while (cnt-- > 0) {
+        Queue<TreeNode> queue = new LinkedList<>(); //辅助队列
+        ArrayList<Integer> ret = new ArrayList<>(); //存放结果的数组
+        queue.add(root); //先把根节点加入队列
+        while (!queue.isEmpty()) { //循环，当队列不为空时
+            int cnt = queue.size(); //计算队列大小
+            while (cnt-- > 0) { //队列元素每次弹出一个
                 TreeNode t = queue.poll();
                 if (t == null)
                     continue;
+                //如果弹出元素不为空，将值放在结果数组，将左右节点入队列
                 ret.add(t.val);
                 queue.add(t.left);
                 queue.add(t.right);

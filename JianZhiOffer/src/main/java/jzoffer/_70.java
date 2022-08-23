@@ -10,6 +10,7 @@ package jzoffer;
 * */
 public class _70 {
     public int Add(int a, int b) {
+        //如果b是0，返回a，否则递归a^b和(a & b) << 1
         return b == 0 ? a : Add(a ^ b, (a & b) << 1);
     }
 }

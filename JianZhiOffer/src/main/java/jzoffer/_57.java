@@ -6,6 +6,7 @@ package jzoffer;
 * */
 public class _57 {
     public int TreeDepth(TreeNode root) {
+        //如果树为空，返回0，否则就是左右子树深度最大值+1
         return root == null ? 0 : 1 + Math.max(TreeDepth(root.left), TreeDepth(root.right));
     }
 

@@ -11,7 +11,7 @@ public class _40 {
         //如果是空，直接返回#
         if (root == null)
             return "#";
-        //否则返回值用空格分割
+        //否则返回值用空格分割，按照根左右顺序
         return root.val + " " + Serialize(root.left) + " " + Serialize(root.right);
     }
 
@@ -27,7 +27,7 @@ public class _40 {
             return null;
         //找到节点之间的分隔符位置
         int index = deserializeStr.indexOf(" ");
-        //从deserializeStr中拿出node值
+        //从deserializeStr中拿出node值，如果index是-1就代表整个deserializeStr是节点值
         String node = index == -1 ? deserializeStr : deserializeStr.substring(0, index);
         //更新取出当前node之后的deserializeStr
         deserializeStr = index == -1 ? "" : deserializeStr.substring(index + 1);

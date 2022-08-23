@@ -13,14 +13,15 @@ import java.util.PriorityQueue;
 * */
 public class _43 {
     public ArrayList<Integer> GetLeastNumbers_Solution(int[] nums, int k) {
-        if (k > nums.length || k <= 0)
+        if (k > nums.length || k <= 0) //如果k大于数组长度或者k<=0，返回空数组
             return new ArrayList<>();
+        //否则构造大顶堆，o2-o1就是大顶堆
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>((o1, o2) -> o2 - o1);
-        for (int num : nums) {
+        for (int num : nums) { //遍历数组，将元素放入大顶堆，如果size超过k就移除堆顶元素(最大元素)
             maxHeap.add(num);
             if (maxHeap.size() > k)
                 maxHeap.poll();
         }
-        return new ArrayList<>(maxHeap);
+        return new ArrayList<>(maxHeap); //最后返回大顶堆内的k个元素
     }
 }

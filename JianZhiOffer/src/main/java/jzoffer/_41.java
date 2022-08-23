@@ -14,11 +14,11 @@ public class _41 {
     private ArrayList<String> ret = new ArrayList<>(); //用来存放最终结果字符串
 
     public ArrayList<String> Permutation(String str) {
-        if (str.length() == 0)
+        if (str.length() == 0) //如果字符串长度为0，直接返回空数组
             return ret;
-        char[] chars = str.toCharArray();
-        Arrays.sort(chars); //先保证输入字符串按字典序排序
-        backtracking(chars, new boolean[chars.length], new StringBuilder());
+        char[] chars = str.toCharArray(); //字符串转换为字符数组
+        Arrays.sort(chars); //字符数组排序
+        backtracking(chars, new boolean[chars.length], new StringBuilder()); //回溯排序后的字符数组
         return ret;
     }
 

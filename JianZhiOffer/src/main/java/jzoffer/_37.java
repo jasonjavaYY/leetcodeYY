@@ -25,7 +25,7 @@ public class _37 {
 
     }
 
-    private static ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
+    private static ArrayList<ArrayList<Integer>> ret = new ArrayList<>(); //存放结果数组
 
     public static ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
         backtracking(root, target, new ArrayList<Integer>());

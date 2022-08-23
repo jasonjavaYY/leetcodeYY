@@ -14,12 +14,12 @@ public class _56 {
     }
 
     private void inOrder(TreeNode root, int k) {
-        if (root == null || cnt >= k)
+        if (root == null || cnt >= k) //如果根为空或者cnt到了k就返回
             return;
         //左根右顺序遍历，每遍历一个节点，就cnt++
         inOrder(root.left, k);
         cnt++;
-        if (cnt == k)
+        if (cnt == k) //找到第k个节点，就把该节点赋值给ret
             ret = root;
         inOrder(root.right, k);
     }

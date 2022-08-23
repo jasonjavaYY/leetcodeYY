@@ -11,9 +11,9 @@ import java.util.ArrayList;
 * */
 public class _61 {
     public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
-        ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
-        int start = 1, end = 2;
-        int curSum = 3;
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<>(); //存放结果
+        int start = 1, end = 2;  //起始和结束值
+        int curSum = 3; //当前的连续数和
         //循环，end是结束元素，start是起始元素
         while (end < sum) {
             //如果当前连续序列和大于预期，就减掉一个起始值，把起始值右移一位

@@ -11,10 +11,11 @@ package jzoffer;
 * */
 public class _67 {
     public int LastRemaining_Solution(int n, int m) {
-        if (n == 0)     /* 特殊输入的处理 */
+        if (n == 0)     //如果0个数，返回-1
             return -1;
-        if (n == 1)     /* 递归返回条件 */
+        if (n == 1)     //如果1个数，返回下标位0
             return 0;
+        //否则递归n-1和m，结果再+m再对n取余
         return (LastRemaining_Solution(n - 1, m) + m) % n;
     }
 }

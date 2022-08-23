@@ -12,19 +12,19 @@ import java.util.PriorityQueue;
 * */
 public class _64 {
     public ArrayList<Integer> maxInWindows(int[] num, int size) {
-        ArrayList<Integer> ret = new ArrayList<>();
+        ArrayList<Integer> ret = new ArrayList<>();  //存放结果数组
         //如果滑动窗口超出数组长度或者小于等于1，直接返回原数组
         if (size > num.length || size < 1)
             return ret;
-        //构建一个大顶堆
-        PriorityQueue<Integer> heap = new PriorityQueue<>((o1, o2) -> o2 - o1);  /* 大顶堆 */
+        //构建一个大顶堆 o2-o1是大顶堆
+        PriorityQueue<Integer> heap = new PriorityQueue<>((o1, o2) -> o2 - o1);
         //将最开始的size个数放入堆，取出堆顶元素放入结果集
         for (int i = 0; i < size; i++)
             heap.add(num[i]);
         ret.add(heap.peek());
         //以此平移窗口，每次向右移动一位，更新大顶堆元素，将堆顶元素放入结果集
-        for (int i = 0, j = i + size; j < num.length; i++, j++) {            /* 维护一个大小为 size 的大顶堆 */
-            heap.remove(num[i]);
+        for (int i = 0, j = i + size; j < num.length; i++, j++) {
+            heap.remove(num[i]); //滑动窗口，移除i元素，加入j元素，将大顶堆堆顶元素放入结果集
             heap.add(num[j]);
             ret.add(heap.peek());
         }

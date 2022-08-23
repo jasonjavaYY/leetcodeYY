@@ -8,13 +8,13 @@ package jzoffer;
 * */
 public class _36 {
     public boolean VerifySquenceOfBST(int[] sequence) {
-        if (sequence == null || sequence.length == 0)
+        if (sequence == null || sequence.length == 0) //如果序列是空返回false
             return false;
         return verify(sequence, 0, sequence.length - 1);
     }
 
     private boolean verify(int[] sequence, int first, int last) {
-        //如果只有两个节点，一定是真
+        //如果只有一个节点，一定是真
         if (last - first <= 1)
             return true;
         //后序遍历最后一个节点一定是根

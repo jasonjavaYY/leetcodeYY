@@ -12,7 +12,7 @@ public class _31 {
     private Stack<Integer> minStack = new Stack<>();  //保证栈顶存放当前栈内最小的元素
 
     //关键是入栈，数据栈直接入栈，最小栈需要比较待入栈元素和当前栈顶元素谁更小，
-    // 放入那个小值，保证最小栈的栈顶元素一定是当前数据栈内容的最小值
+    // 放入小值，保证最小栈的栈顶元素一定是当前数据栈内容的最小值，最小栈里至多一个元素
     public void push(int node) {
         dataStack.push(node);
         minStack.push(minStack.isEmpty() ? node : Math.min(minStack.peek(), node));
