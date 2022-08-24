@@ -27,33 +27,33 @@ package lc.lc1;
 * */
 public class _33 {
     public int search(int[] nums, int target) {
-        int n = nums.length;
+        int n = nums.length; //如果数组为空，返回-1
         if (n == 0) {
             return -1;
-        }
+        }//如果数组只有1个元素，通过比较该值是否为target决定返回下标0还是-1
         if (n == 1) {
             return nums[0] == target ? 0 : -1;
-        }
+        } //初始化左右指针位置
         int l = 0, r = n - 1;
-        while (l <= r) {
-            int mid = (l + r) / 2;
-            if (nums[mid] == target) {
+        while (l <= r) { //二分循环
+            int mid = (l + r) / 2; //计算中间位置
+            if (nums[mid] == target) { //如果mid位置元素=target，返回mid下标
                 return mid;
-            }
-            if (nums[0] <= nums[mid]) {
+            } //如果0小于mid位置值，说明0到mid有序
+            if (nums[0] <= nums[mid]) { //如果target在0到mid范围，就要更新r为mid-1
                 if (nums[0] <= target && target < nums[mid]) {
                     r = mid - 1;
-                } else {
+                } else { //否则l是mid+1
                     l = mid + 1;
                 }
-            } else {
+            } else { //如果mid到n-1有序且target在这个范围内，就把l更新为mid+1
                 if (nums[mid] < target && target <= nums[n - 1]) {
                     l = mid + 1;
-                } else {
+                } else { //否则r更新为mid-1
                     r = mid - 1;
                 }
             }
         }
-        return -1;
+        return -1; //最后如果没找到就返回-1
     }
 }

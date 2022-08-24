@@ -23,16 +23,16 @@ package lc.lc1;
 public class _35 {
     public int searchInsert(int[] nums, int target) {
         int n = nums.length;
-        int left = 0, right = n - 1, ans = n;
-        while (left <= right) {
-            int mid = ((right - left) >> 1) + left;
-            if (target <= nums[mid]) {
+        int left = 0, right = n - 1, ans = n; //初始化左右下标
+        while (left <= right) { //二分循环
+            int mid = ((right - left) >> 1) + left; //计算mid，和(right + left) >> 1一样
+            if (target <= nums[mid]) { //如果mid值大于等于target，更新右边界且ans=mid
                 ans = mid;
                 right = mid - 1;
-            } else {
+            } else { //否则更新左边界
                 left = mid + 1;
             }
         }
-        return ans;
+        return ans; //返回找到的下标或者需要插入的下标
     }
 }

@@ -24,25 +24,31 @@ package lc.lc1;
 * */
 public class _34 {
     public int[] searchRange(int[] nums, int target) {
+        //找到第一个≥target下标
         int leftIdx = binarySearch(nums, target, true);
+        //找到第一个大于target下标再-1
         int rightIdx = binarySearch(nums, target, false) - 1;
+        //如果left下标≤right下标并且right不月结并且left和right位置值确实都是target，就返回left和right
         if (leftIdx <= rightIdx && rightIdx < nums.length && nums[leftIdx] == target && nums[rightIdx] == target) {
             return new int[]{leftIdx, rightIdx};
-        }
+        } //否则返回-1 -1
         return new int[]{-1, -1};
     }
 
+    //二分查找
     public int binarySearch(int[] nums, int target, boolean lower) {
-        int left = 0, right = nums.length - 1, ans = nums.length;
-        while (left <= right) {
-            int mid = (left + right) / 2;
+        //lower为true，则查找第一个大于等于target下标，否则找第一个大于target的下标
+        int left = 0, right = nums.length - 1, ans = nums.length; //初始化左右
+        while (left <= right) { //二分循环
+            int mid = (left + right) / 2; //计算mid
+            //如果mid值比target大或者lower是true且mid值等于target，要继续找
             if (nums[mid] > target || (lower && nums[mid] >= target)) {
-                right = mid - 1;
-                ans = mid;
-            } else {
+                right = mid - 1; //更新right为mid-1
+                ans = mid; //下标更新为mid
+            } else { //否则更新left为mid+1
                 left = mid + 1;
             }
         }
-        return ans;
+        return ans; //返回找到的下标
     }
 }

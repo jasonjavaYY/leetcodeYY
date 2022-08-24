@@ -30,21 +30,21 @@ import java.util.LinkedList;
 * */
 public class _32 {
     public int longestValidParentheses(String s) {
-        int maxans = 0;
-        Deque<Integer> stack = new LinkedList<Integer>();
-        stack.push(-1);
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
-                stack.push(i);
-            } else {
-                stack.pop();
-                if (stack.isEmpty()) {
+        int maxans = 0; //保存结果
+        Deque<Integer> stack = new LinkedList<Integer>(); //构造一个辅助栈
+        stack.push(-1); //栈先放入-1，所以正常匹配栈不应该为空
+        for (int i = 0; i < s.length(); i++) {//遍历字符串
+            if (s.charAt(i) == '(') { //如果字符串当前字符是左括号
+                stack.push(i); //将字符下标入栈
+            } else { //如果是右括号
+                stack.pop(); //弹栈
+                if (stack.isEmpty()) { //弹栈后如果栈为空，将下标再入栈
                     stack.push(i);
-                } else {
+                } else { //如果栈不为空，比较i-栈顶元素和当前最大值，更新最大值
                     maxans = Math.max(maxans, i - stack.peek());
                 }
             }
         }
-        return maxans;
+        return maxans; //最后返回最大值
     }
 }
