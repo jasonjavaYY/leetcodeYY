@@ -19,19 +19,19 @@ package lc.lc1;
 * */
 public class _28 {
     public int strStr(String ss, String pp) {
-        int n = ss.length(), m = pp.length();
-        char[] s = ss.toCharArray(), p = pp.toCharArray();
+        int n = ss.length(), m = pp.length(); //计算ss和pp的字符串长度
+        char[] s = ss.toCharArray(), p = pp.toCharArray(); //将字符串转换为字符数组
         // 枚举原串的「发起点」
-        for (int i = 0; i <= n - m; i++) {
-            // 从原串的「发起点」和匹配串的「首位」开始，尝试匹配
+        for (int i = 0; i <= n - m; i++) {//<=n-m。因为p有m个字符，如果s剩余字符少于m个肯定无法匹配
+            // 从原串「发起点」和匹配串「首位」开始尝试匹配
             int a = i, b = 0;
             while (b < m && s[a] == p[b]) {
                 a++;
                 b++;
             }
-            // 如果能够完全匹配，返回原串的「发起点」下标
+            // 如果能够完全匹配，返回原串「发起点」下标
             if (b == m) return i;
         }
-        return -1;
+        return -1;//无法匹配返回-1
     }
 }

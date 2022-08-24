@@ -25,22 +25,25 @@ import java.util.Arrays;
 * */
 public class _16 {
     public int threeSumClosest(int[] nums, int target) {
-        Arrays.sort(nums);
-        int ans = nums[0] + nums[1] + nums[2];
-        for (int i = 0; i < nums.length; i++) {
-            int start = i + 1, end = nums.length - 1;
-            while (start < end) {
-                int sum = nums[start] + nums[end] + nums[i];
+        //这里假定给的数组长度都是大于等于3的，否则要跟上一题一样进行边界判断
+        Arrays.sort(nums); //先排序
+        int ans = nums[0] + nums[1] + nums[2]; //先让前三个数的和作为结果
+        for (int i = 0; i < nums.length - 2; i++) {
+            //i从0开始向右找到nums.length - 2，不能越界，因为i后面还有两个数
+            int start = i + 1, end = nums.length - 1; //初始化start和end，再找两个数
+            while (start < end) { //循环退出条件
+                int sum = nums[start] + nums[end] + nums[i]; //求三个数和
+                //如果sum更接近target就更新
                 if (Math.abs(target - sum) < Math.abs(target - ans))
                     ans = sum;
-                if (sum > target)
+                if (sum > target) //如果sum太大就更新end
                     end--;
-                else if (sum < target)
+                else if (sum < target)//如果sum太小就更新start
                     start++;
                 else
-                    return ans;
+                    return ans; //否则sum=target，直接返回
             }
         }
-        return ans;
+        return ans; //最后返回ans
     }
 }

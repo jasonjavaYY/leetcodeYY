@@ -18,21 +18,24 @@ package lc.lc1;
 解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。不需要考虑数组中超出新长度后面的元素。
 *
 * 双指针解法
-本解法的思路与 【题解】26. 删除排序数组中的重复项 中的「双指针解法」类似。
 根据题意，我们可以将数组分成「前后」两段：前半段是有效部分，存储的是不等于 val 的元素。
 后半段是无效部分，存储的是等于 val 的元素。最终答案返回有效部分的结尾下标。
 * */
 public class _27 {
     public int removeElement(int[] nums, int val) {
         int j = nums.length - 1;
+        //j<=j，因为j在前移，j后面的数都等于val是无效的
         for (int i = 0; i <= j; i++) {
+            //如果i位置数=val，就把i和j位置的数交换，并且i位置不变重新判断一次，j前移一位
+            //因此要i--，因为每轮循环i会++
             if (nums[i] == val) {
                 swap(nums, i--, j--);
             }
         }
-        return j + 1;
+        return j + 1; //下标再+1才是元素个数
     }
 
+    //交换i和j位置元素
     void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
         nums[i] = nums[j];

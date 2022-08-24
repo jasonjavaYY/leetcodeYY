@@ -23,16 +23,19 @@ package lc.lc1;
 * */
 public class _26 {
     public int removeDuplicates(int[] nums) {
+        //如果原数组为空，返回新长度是0
         if (nums == null || nums.length == 0) return 0;
-        int p = 0;
+        //数组有序那么重复元素一定相邻。删除重复元素就是将不重复元素移到数组左侧
+        int p = 0; //构造两个指针
         int q = 1;
-        while (q < nums.length) {
+        while (q < nums.length) { //循环判断q不能越界
+            //如果值不相等，将q位置元素复制到p+1位置，p和q都++
             if (nums[p] != nums[q]) {
                 nums[p + 1] = nums[q];
                 p++;
-            }
+            } //如果p和q指向的数值相等，就后移q一位继续判断
             q++;
         }
-        return p + 1;
+        return p + 1; //最后返回p+1就是去重后的长度
     }
 }

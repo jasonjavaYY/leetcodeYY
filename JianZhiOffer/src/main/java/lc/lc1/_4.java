@@ -58,7 +58,7 @@ public class _4 {
              * 如果 pivot = pivot2，那么 nums2[0 .. k/2-1] 都不可能是第 k 小的元素。把这些元素全部 "删除"，剩下的作为新的 nums2 数组
              * 由于我们 "删除" 了一些元素（这些元素都比第 k 小的元素要小），因此需要修改 k 的值，减去删除的数的个数
              */
-            int length1 = nums1.length, length2 = nums2.length;
+            int length1 = nums1.length, length2 = nums2.length; //获取两个数组各自长度
             int index1 = 0, index2 = 0;
             int kthElement = 0;
             while (true) {

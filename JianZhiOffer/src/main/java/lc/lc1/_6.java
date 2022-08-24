@@ -1,4 +1,5 @@
 package lc.lc1;
+
 /*
 * Z 字形变换
 *
@@ -28,35 +29,33 @@ P     I
 * 填写完成后，逐行扫描矩阵中的非空字符，组成答案。
 * */
 public class _6 {
-    class Solution {
-        public String convert(String s, int numRows) {
-            int n = s.length(), r = numRows;
-            if (r == 1 || r >= n) { //如果只拍一行或者排的行数超过字符串长度，直接返回原字符串
-                return s;
-            }
-            int t = r * 2 - 2; //t=2r-2
-            int c = (n + t - 1) / t * (r - 1);  //c列
-            char[][] mat = new char[r][c];  //构造存放数组，r行c列
-            for (int i = 0, x = 0, y = 0; i < n; ++i) {
-                //遍历原字符数组
-                mat[x][y] = s.charAt(i);
-                if (i % t < r - 1) { //i mod t<r−1，则向下移动
-                    ++x; // 向下移动
-                } else {  //否则向右上移动
-                    --x;
-                    ++y; // 向右上移动
-                }
-            }
-            StringBuffer ans = new StringBuffer();
-            //遍历每一行，如果不是空字符，就拼接到ans
-            for (char[] row : mat) {
-                for (char ch : row) {
-                    if (ch != 0) {
-                        ans.append(ch);
-                    }
-                }
-            }
-            return ans.toString();
+    public String convert(String s, int numRows) {
+        int n = s.length(), r = numRows;
+        if (r == 1 || r >= n) { //如果只拍一行或者排的行数超过字符串长度，直接返回原字符串
+            return s;
         }
+        int t = r * 2 - 2; //t=2r-2
+        int c = (n + t - 1) / t * (r - 1);  //c列
+        char[][] mat = new char[r][c];  //构造存放数组，r行c列
+        for (int i = 0, x = 0, y = 0; i < n; ++i) {
+            //遍历原字符数组
+            mat[x][y] = s.charAt(i);
+            if (i % t < r - 1) { //i mod t<r−1，则向下移动
+                ++x; // 向下移动
+            } else {  //否则向右上移动
+                --x;
+                ++y; // 向右上移动
+            }
+        }
+        StringBuffer ans = new StringBuffer();
+        //遍历每一行，如果不是空字符，就拼接到ans
+        for (char[] row : mat) {
+            for (char ch : row) {
+                if (ch != 0) {
+                    ans.append(ch);
+                }
+            }
+        }
+        return ans.toString();
     }
 }

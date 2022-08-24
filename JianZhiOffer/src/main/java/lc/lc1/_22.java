@@ -6,7 +6,7 @@ import java.util.List;
 /*
 * 括号生成
 *
-* 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+* 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且有效的括号组合。
 示例 1：
 输入：n = 3
 输出：["((()))","(()())","(())()","()(())","()()()"]
@@ -26,23 +26,25 @@ public class _22 {
     ArrayList[] cache = new ArrayList[100];
 
     public List<String> generate(int n) {
-        if (cache[n] != null) {
+        if (cache[n] != null) { //如果缓存数组n位不为空，返回
             return cache[n];
         }
-        ArrayList<String> ans = new ArrayList<String>();
-        if (n == 0) {
+        ArrayList<String> ans = new ArrayList<String>(); //存放结果数组
+        if (n == 0) { //如果n=0，返回空字符串
             ans.add("");
         } else {
-            for (int c = 0; c < n; ++c) {
-                for (String left : generate(c)) {
+            for (int c = 0; c < n; ++c) { //c从0开始
+                for (String left : generate(c)) { //左半部分是generate(c)
+                    //右半部分是generate(n-1-c)
                     for (String right : generate(n - 1 - c)) {
+                        //再ans中拼接(left)right
                         ans.add("(" + left + ")" + right);
                     }
                 }
             }
         }
-        cache[n] = ans;
-        return ans;
+        cache[n] = ans; //将ans赋予cache[n]
+        return ans; //返回ans
     }
 
     public List<String> generateParenthesis(int n) {

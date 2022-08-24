@@ -30,10 +30,10 @@ import java.util.Map;
 * */
 public class _17 {
     public List<String> letterCombinations(String digits) {
-        List<String> combinations = new ArrayList<String>();
-        if (digits.length() == 0) {
+        List<String> combinations = new ArrayList<String>(); //记录字符串数组结果
+        if (digits.length() == 0) { //如果字符串数组为空，返回空结果集
             return combinations;
-        }
+        } //构造数字到字母映射表
         Map<Character, String> phoneMap = new HashMap<Character, String>() {{
             put('2', "abc");
             put('3', "def");
@@ -44,21 +44,22 @@ public class _17 {
             put('8', "tuv");
             put('9', "wxyz");
         }};
-        backtrack(combinations, phoneMap, digits, 0, new StringBuffer());
+        backtrack(combinations, phoneMap, digits, 0, new StringBuffer());//回溯
         return combinations;
     }
 
-    public void backtrack(List<String> combinations, Map<Character, String> phoneMap, String digits, int index, StringBuffer combination) {
-        if (index == digits.length()) {
+    public void backtrack(List<String> combinations, Map<Character, String> phoneMap,
+                          String digits, int index, StringBuffer combination) {
+        if (index == digits.length()) {//如果index等于传入字符串长度，表明找到了一个可能结果字符串，放入结果集
             combinations.add(combination.toString());
-        } else {
+        } else { //否则获取index位置数字
             char digit = digits.charAt(index);
-            String letters = phoneMap.get(digit);
-            int lettersCount = letters.length();
+            String letters = phoneMap.get(digit); //获取该数字对应字母
+            int lettersCount = letters.length(); //计算对应的字母个数
             for (int i = 0; i < lettersCount; i++) {
-                combination.append(letters.charAt(i));
-                backtrack(combinations, phoneMap, digits, index + 1, combination);
-                combination.deleteCharAt(index);
+                combination.append(letters.charAt(i));//针对每个字母，将该字母追加到结果字符串
+                backtrack(combinations, phoneMap, digits, index + 1, combination); //递归下一位
+                combination.deleteCharAt(index); //回溯的时候要删除结果的index位置字符
             }
         }
     }

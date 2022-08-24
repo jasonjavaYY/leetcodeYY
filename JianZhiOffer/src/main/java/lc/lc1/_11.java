@@ -1,4 +1,5 @@
 package lc.lc1;
+
 /*
 * 盛最多水的容器
 *
@@ -33,22 +34,19 @@ package lc.lc1;
 在我们移动指针的过程中，计算到的最多可以容纳的数量为 49，即为最终的答案。
 * */
 public class _11 {
-    public class Solution {
-        public int maxArea(int[] height) {
-            int l = 0, r = height.length - 1;  //确定左右指针
-            int ans = 0;
-            while (l < r) { //循环判断条件
-                //计算当前的面积
-                int area = Math.min(height[l], height[r]) * (r - l);
-                ans = Math.max(ans, area);  //更新最大面积
-                if (height[l] <= height[r]) { //移动小值那边的指针
-                    ++l;
-                }
-                else {
-                    --r;
-                }
+    public int maxArea(int[] height) {
+        int l = 0, r = height.length - 1;  //确定左右指针
+        int ans = 0;
+        while (l < r) { //循环判断条件
+            //计算当前的面积，左右高度最小值*边界差
+            int area = Math.min(height[l], height[r]) * (r - l);
+            ans = Math.max(ans, area);  //更新最大面积
+            if (height[l] <= height[r]) { //移动高度更小那边的指针
+                ++l;
+            } else {
+                --r;
             }
-            return ans;
         }
+        return ans;
     }
 }

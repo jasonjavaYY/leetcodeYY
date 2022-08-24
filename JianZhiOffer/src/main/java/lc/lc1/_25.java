@@ -22,43 +22,43 @@ k 是一个正整数，它的值小于或等于链表的长度。如果节点总
 * */
 public class _25 {
     public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode hair = new ListNode(0);
-        hair.next = head;
-        ListNode pre = hair;
+        ListNode hair = new ListNode(0); //构造虚拟节点
+        hair.next = head; //虚拟节点指向头
+        ListNode pre = hair; //pre指向虚拟节点
 
-        while (head != null) {
-            ListNode tail = pre;
-            // 查看剩余部分长度是否大于等于 k
+        while (head != null) { //遍历链表
+            ListNode tail = pre; //先让tail也指向pre
+            // 如果剩余部分长度小于 k，就不用翻转，直接返回hair的next也就是头
             for (int i = 0; i < k; ++i) {
                 tail = tail.next;
                 if (tail == null) {
                     return hair.next;
                 }
             }
-            ListNode nex = tail.next;
-            ListNode[] reverse = myReverse(head, tail);
-            head = reverse[0];
+            ListNode nex = tail.next; //保存之前尾节点的next
+            ListNode[] reverse = myReverse(head, tail); //翻转head到tail这部分链表
+            head = reverse[0]; //获取翻转后的头和尾
             tail = reverse[1];
             // 把子链表重新接回原链表
             pre.next = head;
             tail.next = nex;
-            pre = tail;
-            head = tail.next;
+            pre = tail;  //更新pre，因为下一次要反转tail.next开始的子链表，所以pre=tail
+            head = tail.next; //头更新为tail.next
         }
-
-        return hair.next;
+        return hair.next; //最后返回虚拟头的next
     }
 
+    //ok  翻转头到尾的链表
     public ListNode[] myReverse(ListNode head, ListNode tail) {
-        ListNode prev = tail.next;
-        ListNode p = head;
-        while (prev != tail) {
-            ListNode nex = p.next;
-            p.next = prev;
-            prev = p;
-            p = nex;
+        ListNode prev = tail.next; //tail的next指向prev
+        ListNode p = head; //记录当前节点p
+        while (prev != tail) { //循环判断prev不等于tail
+            ListNode nex = p.next;//取出p的next
+            p.next = prev; //p的next指向prev
+            prev = p;//prev等于p
+            p = nex;//p等于next
         }
-        return new ListNode[]{tail, head};
+        return new ListNode[]{tail, head}; //最后返回tail到head
     }
 
     class ListNode {

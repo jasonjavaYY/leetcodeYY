@@ -22,33 +22,34 @@ package lc.lc1;
 * */
 public class _29 {
     public long divide(int dividend, int divisor) {
-        if (dividend == 0) return 0;
-        if (divisor == 1) return dividend;
-        if (divisor == -1) {
-            if (dividend > Integer.MIN_VALUE) return -dividend;// 只要不是最小的那个整数，都是直接返回相反数就好啦
-            return Integer.MAX_VALUE;// 是最小的那个，那就返回最大的整数啦
+        if (dividend == 0) return 0; //如果被除数是0，返回0
+        if (divisor == 1) return dividend; //如果除数是1，返回被除数
+        if (divisor == -1) { //如果除数是-1，返回被除数相反数
+            if (dividend > Integer.MIN_VALUE) return -dividend;// 只要不是最小整数返回相反数
+            return Integer.MAX_VALUE;// 是最小的就返回最大整数
         }
-        long a = dividend;
+        long a = dividend; //将被除数和除数转换成长整型
         long b = divisor;
-        int sign = 1;
+        int sign = 1; //两个数相除后的符号位
         if ((a > 0 && b < 0) || (a < 0 && b > 0)) {
             sign = -1;
         }
-        a = a > 0 ? a : -a;
+        a = a > 0 ? a : -a; //将被除数和除数都转换成正数
         b = b > 0 ? b : -b;
-        long res = div(a, b);
+        long res = div(a, b); //执行a除以b得到结果
+        //如果符号位是正，就返回res，否则返回-res，记得进行最大值判断
         if (sign > 0) return res > Integer.MAX_VALUE ? Integer.MAX_VALUE : res;
         return -res;
     }
 
-    long div(long a, long b) {  // 似乎精髓和难点就在于下面这几句
-        if (a < b) return 0;
+    long div(long a, long b) {
+        if (a < b) return 0; //如果a小于b返回0，递归退出条件
         long count = 1;
         long tb = b; // 在后面的代码中不更新b
-        while ((tb + tb) <= a) {
+        while ((tb + tb) <= a) { //循环判断如果a大于等于b的两倍
             count = count + count; // 最小解翻倍
-            tb = tb + tb; // 当前测试的值也翻倍
-        }
+            tb = tb + tb; // 当前测试值也翻倍
+        } //跳出循环时tb已经足够大了，此时a不能超过tb两倍，结果+count并递归a-tb和b
         return count + div(a - tb, b);
     }
 }

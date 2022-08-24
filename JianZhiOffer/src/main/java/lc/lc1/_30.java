@@ -23,8 +23,7 @@ import java.util.Map;
 输入：s = "barfoofoobarthefoobarman", words = ["bar","foo","the"]
 输出：[6,9,12]
 *
-* 此题是「438. 找到字符串中所有字母异位词」的进阶版。不同的是第 438 题的元素是字母，而此题的元素是单词。
-* 可以用类似「438. 找到字符串中所有字母异位词的官方题解」的方法二的滑动窗口来解这题。
+* 滑动窗口。
 记 words 的长度为 m，words 中每个单词的长度为 n，s 的长度为 ls。首先需要将 s 划分为单词组，每个单词的大小均为 n （首尾除外）。
 * 这样的划分方法有 n 种，即先删去前 i （i=0∼n−1）个字母后，将剩下的字母进行划分，如果末尾有不到 n个字母也删去。
 * 对这 n种划分得到的单词数组分别使用滑动窗口对 words 进行类似于「字母异位词」的搜寻。
@@ -36,7 +35,8 @@ import java.util.Map;
 * */
 public class _30 {
     public List<Integer> findSubstring(String s, String[] words) {
-        List<Integer> res = new ArrayList<Integer>();
+        List<Integer> res = new ArrayList<Integer>(); //存放结果数组
+        //m是单词个数，n是每个单词长度，ls是字符串长度
         int m = words.length, n = words[0].length(), ls = s.length();
         for (int i = 0; i < n; i++) {
             if (i + m * n > ls) {

@@ -32,29 +32,28 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 * 例如XIV 可视作 X−I+V=10−1+5=14。
 * */
 public class _13 {
-    class Solution {
-        Map<Character, Integer> symbolValues = new HashMap<Character, Integer>() {{
-            put('I', 1);
-            put('V', 5);
-            put('X', 10);
-            put('L', 50);
-            put('C', 100);
-            put('D', 500);
-            put('M', 1000);
-        }};
+    Map<Character, Integer> symbolValues = new HashMap<Character, Integer>() {{
+        put('I', 1);
+        put('V', 5);
+        put('X', 10);
+        put('L', 50);
+        put('C', 100);
+        put('D', 500);
+        put('M', 1000);
+    }}; //映射表只需要记录1-5，因为4=IV也是由1和5组成的，只不过是5的符号-1的符号
 
-        public int romanToInt(String s) {
-            int ans = 0;
-            int n = s.length();
-            for (int i = 0; i < n; ++i) {
-                int value = symbolValues.get(s.charAt(i));
-                if (i < n - 1 && value < symbolValues.get(s.charAt(i + 1))) {
-                    ans -= value;
-                } else {
-                    ans += value;
-                }
+    public int romanToInt(String s) {
+        int ans = 0;
+        int n = s.length(); //获取传入字符串长度
+        for (int i = 0; i < n; ++i) { //逐步取出字符串中每位字符，一定是映射表中的一个
+            int value = symbolValues.get(s.charAt(i)); //计算字符对应的值
+            //如果第i位的值小于i+1(它后面一位)，说明要把i位的值减去，否则要加上
+            if (i < n - 1 && value < symbolValues.get(s.charAt(i + 1))) {
+                ans -= value;
+            } else {
+                ans += value;
             }
-            return ans;
         }
+        return ans; //最后返回结果
     }
 }

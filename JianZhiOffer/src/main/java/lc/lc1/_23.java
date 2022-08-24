@@ -31,43 +31,43 @@ public class _23 {
     }
 
     public ListNode merge(ListNode[] lists, int l, int r) {
-        if (l == r) {
+        if (l == r) { //如果l=r，直接返回对应链表
             return lists[l];
         }
-        if (l > r) {
+        if (l > r) { //如果l>r，返回空
             return null;
         }
-        int mid = (l + r) >> 1;
+        int mid = (l + r) >> 1; //否则求l和r的中间
+        //递归合并l到mid和mid+1到r，最后将两个链表合并
         return mergeTwoLists(merge(lists, l, mid), merge(lists, mid + 1, r));
     }
 
     public ListNode mergeTwoLists(ListNode a, ListNode b) {
-        if (a == null || b == null) {
+        if (a == null || b == null) { //如果a或者b有空的，就返回另一个
             return a != null ? a : b;
         }
-        ListNode head = new ListNode(0);
+        ListNode head = new ListNode(0); //构造合并后的链表头和尾，头是一个虚拟节点
         ListNode tail = head, aPtr = a, bPtr = b;
-        while (aPtr != null && bPtr != null) {
+        while (aPtr != null && bPtr != null) {//循环判断两个链表都不为空
+            //如果a的节点<b的节点值，就把a的节点从a中取出放入tail后面，a后移一个节点
             if (aPtr.val < bPtr.val) {
                 tail.next = aPtr;
                 aPtr = aPtr.next;
-            } else {
+            } else {//否则就把b的节点从b中取出放入tail后面，b后移一个节点
                 tail.next = bPtr;
                 bPtr = bPtr.next;
-            }
+            } //更新tail
             tail = tail.next;
-        }
+        }//最后把不为空的剩余链表节点都拼到tail后面
         tail.next = (aPtr != null ? aPtr : bPtr);
-        return head.next;
+        return head.next; //返回拼接后的链表，因为头指向虚拟节点，返回头的next
     }
 
     class ListNode {
         private int val;
-
         public ListNode(int value) {
             this.val = value;
         }
-
         ListNode next;
     }
 

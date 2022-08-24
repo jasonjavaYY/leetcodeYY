@@ -1,4 +1,5 @@
 package lc.lc1;
+
 /*
 * 整数转罗马数字
 *
@@ -24,24 +25,23 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 * 会得到正确结果 MCMXCIV。所以，我们将哈希表按照从大到小的顺序排列，然后遍历哈希表，直到表示完整个输入。
 * */
 public class _12 {
-    class Solution {
-        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        String[] symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+    int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}; //保存1-4-5-9到1000整数数值
+    String[] symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}; //保存对应罗马数值
 
-        public String intToRoman(int num) {
-            StringBuffer roman = new StringBuffer();
-            for (int i = 0; i < values.length; ++i) {
-                int value = values[i];
-                String symbol = symbols[i];
-                while (num >= value) {
-                    num -= value;
-                    roman.append(symbol);
-                }
-                if (num == 0) {
-                    break;
-                }
+    public String intToRoman(int num) {
+        StringBuffer roman = new StringBuffer(); //构造结果字符串
+        for (int i = 0; i < values.length; ++i) { //遍历values数组
+            int value = values[i];
+            String symbol = symbols[i];
+            //取出小于num的最大数，注意这里要用while，因为num-value之后可能还大于value
+            while (num >= value) {
+                num -= value;
+                roman.append(symbol);
             }
-            return roman.toString();
+            if (num == 0) {//num为0是退出条件
+                break;
+            }
         }
+        return roman.toString();
     }
 }
