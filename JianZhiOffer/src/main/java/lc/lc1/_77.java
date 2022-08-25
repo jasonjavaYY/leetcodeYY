@@ -28,22 +28,23 @@ n 表示范围为 1...n，balance 表示剩余空间，start 表示开始位置�
 * 现将当前位置数据加入 list 中，并进入下一层，等待返回后将本层加入的数据移除，本质就是树的构造过程,其中循环结束条件默认为最大值到 n
 * */
 public class _77 {
-    private List<List<Integer>> ans = new ArrayList<>();
+    private List<List<Integer>> ans = new ArrayList<>(); //存放答案
 
     public List<List<Integer>> combine(int n, int k) {
-        getCombine(n, k, 1, new ArrayList<>());
+        //因为是1到n，所以start从1开始
+        getCombine(n, k, 1, new ArrayList<>()); //list存放一种结果
         return ans;
     }
 
     public void getCombine(int n, int k, int start, List<Integer> list) {
-        if (k == 0) {
+        if (k == 0) { //如果k减到0，将结果放入ans并返回，因为下面是不断k-1
             ans.add(new ArrayList<>(list));
             return;
-        }
+        } //i从start开始到n-k+1，因为i后面至少要有k-1个元素，否则肯定找不到k个元素的组合
         for (int i = start; i <= n - k + 1; i++) {
-            list.add(i);
-            getCombine(n, k - 1, i + 1, list);
-            list.remove(list.size() - 1);
+            list.add(i); //将i加入list
+            getCombine(n, k - 1, i + 1, list); //继续找k-1和i+1
+            list.remove(list.size() - 1); //回退时移除最后一个元素
         }
     }
 }

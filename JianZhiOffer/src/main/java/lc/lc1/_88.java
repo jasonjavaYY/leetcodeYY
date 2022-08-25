@@ -20,7 +20,7 @@ package lc.lc1;
 * 方法二：双指针 将两个数组看作队列，每次从两个数组头部取出比较小的数字放到结果中。
 * */
 public class _88 {
-    //类似于jzoffer的_26
+    //类似于jzoffer的_26，同jzoffer的_26
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int p1 = 0, p2 = 0;
         int[] sorted = new int[m + n];

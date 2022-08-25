@@ -17,33 +17,22 @@ package lc.lc1;
 public class _75 {
     public void sortColors(int[] nums) {
         int len = nums.length;
-        if (len < 2) {
+        if (len < 2) { //如果0或1个元素，直接返回
             return;
         }
-
-        // all in [0, zero) = 0
-        // all in [zero, i) = 1
-        // all in [two, len - 1] = 2
-
-        // 循环终止条件是 i == two，那么循环可以继续的条件是 i < two
-        // 为了保证初始化的时候 [0, zero) 为空，设置 zero = 0，
-        // 所以下面遍历到 0 的时候，先交换，再加
-        int zero = 0;
-
-        // 为了保证初始化的时候 [two, len - 1] 为空，设置 two = len
-        // 所以下面遍历到 2 的时候，先减，再交换
+        //all in [0, zero) = 0，all in [zero, i) = 1，all in [two, len - 1] = 2
+        int zero = 0; //初始zero指向0，two指向末尾
         int two = len;
         int i = 0;
-        // 当 i == two 上面的三个子区间正好覆盖了全部数组
-        // 因此，循环可以继续的条件是 i < two
+        // 当i==two三个区间正好覆盖全部数组，因此循环继续的条件是i<two
         while (i < two) {
-            if (nums[i] == 0) {
+            if (nums[i] == 0) { //如果i位是0，就交换nums的i和zero位置并zero指针++
                 swap(nums, i, zero);
                 zero++;
                 i++;
-            } else if (nums[i] == 1) {
+            } else if (nums[i] == 1) { //如果i位是1不需要动，直接++
                 i++;
-            } else {
+            } else { //如果数字是2，two指针--，交换i和two位置元素
                 two--;
                 swap(nums, i, two);
             }

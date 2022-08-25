@@ -28,13 +28,13 @@ countAndSay(n) 是对 countAndSay(n-1) 的描述，然后转换成另一个数�
 * */
 public class _38 {
     public String countAndSay(int n) {
-        String str = "1";
-        for (int i = 2; i <= n; ++i) {
-            StringBuilder sb = new StringBuilder();
+        String str = "1"; //构造结果字符串，因为数字从1开始，n=1时返回字符串1
+        for (int i = 2; i <= n; ++i) { //n从2开始遍历
+            StringBuilder sb = new StringBuilder(); //构造拼接字符串
             int start = 0;
             int pos = 0;
 
-            while (pos < str.length()) {
+            while (pos < str.length()) { //pos记录当前已经判断到哪个位置
                 while (pos < str.length() && str.charAt(pos) == str.charAt(start)) {
                     pos++;
                 }
@@ -43,7 +43,6 @@ public class _38 {
             }
             str = sb.toString();
         }
-
         return str;
     }
 }

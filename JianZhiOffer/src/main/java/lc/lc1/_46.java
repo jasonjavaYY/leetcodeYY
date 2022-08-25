@@ -36,27 +36,26 @@ import java.util.List;
 * */
 public class _46 {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        List<Integer> output = new ArrayList<Integer>();
-        for (int num : nums) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>(); //存放结果数组，是一个双层数组
+        List<Integer> output = new ArrayList<Integer>(); //找到的一个全排列结果
+        for (int num : nums) { //先把num按顺序加入output
             output.add(num);
         }
-        int n = nums.length;
-        backtrack(n, output, res, 0);
+        int n = nums.length;  //n记录数组总长，回溯退出条件
+        backtrack(n, output, res, 0); //first代表当前找到第几位了
         return res;
     }
 
     public void backtrack(int n, List<Integer> output, List<List<Integer>> res, int first) {
-        // 所有数都填完了
-        if (first == n) {
+        if (first == n) { // 所有数都填完了，就把output加入res
             res.add(new ArrayList<Integer>(output));
         }
-        for (int i = first; i < n; i++) {
-            // 动态维护数组
+        for (int i = first; i < n; i++) { //否则从first开始找
+            // 交换first和i
             Collections.swap(output, first, i);
-            // 继续递归填下一个数
+            // 继续递归填first+1
             backtrack(n, output, res, first + 1);
-            // 撤销操作
+            // 撤销操作，再次交换first和i
             Collections.swap(output, first, i);
         }
     }

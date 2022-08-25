@@ -21,15 +21,16 @@ import java.util.*;
 * */
 public class _49 {
     public List<List<String>> groupAnagrams(String[] strs) {
-        Map<String, List<String>> map = new HashMap<String, List<String>>();
-        for (String str : strs) {
-            char[] array = str.toCharArray();
-            Arrays.sort(array);
-            String key = new String(array);
+        Map<String, List<String>> map = new HashMap<String, List<String>>(); //用map保存，key是排序之后的字符串，value是异位词
+        for (String str : strs) { //遍历字符串数组
+            char[] array = str.toCharArray(); //字符串转换成数组
+            Arrays.sort(array); //字符数组排序
+            String key = new String(array); //排序后的数组作为key
+            //从map中找这个key是否有value，没有就初始化一个list
             List<String> list = map.getOrDefault(key, new ArrayList<String>());
-            list.add(str);
-            map.put(key, list);
+            list.add(str); //将str放入list
+            map.put(key, list); //将list和key放入map
         }
-        return new ArrayList<List<String>>(map.values());
+        return new ArrayList<List<String>>(map.values()); //最后返回map的value这个双重数组
     }
 }

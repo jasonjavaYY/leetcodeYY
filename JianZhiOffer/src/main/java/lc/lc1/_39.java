@@ -7,7 +7,7 @@ import java.util.List;
 * 组合总和
 *
 * 给你一个无重复元素的整数数组 candidates 和一个目标整数 target ，找出candidates 中可以使数字和为目标数 target 的 所有不同组合 ，
-* 并以列表形式返回。你可以按 任意顺序 返回这些组合。candidates 中的 同一个数字可以无限制重复被选取 。如果至少一个数字的被选数量不同，则两种组合是不同的。 
+* 并以列表形式返回。你可以按 任意顺序 返回这些组合。candidates 中的同一个数字可以无限制重复被选取 。如果至少一个数字的被选数量不同，则两种组合是不同的。 
 示例 1：
 输入：candidates = [2,3,6,7], target = 7
 输出：[[2,2,3],[7]]
@@ -31,27 +31,27 @@ import java.util.List;
 * */
 public class _39 {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> ans = new ArrayList<List<Integer>>();
-        List<Integer> combine = new ArrayList<Integer>();
+        List<List<Integer>> ans = new ArrayList<List<Integer>>(); //构造记录答案数组，是一个双层数组
+        List<Integer> combine = new ArrayList<Integer>(); //用来表示结果数组中的每个子数组
         dfs(candidates, target, ans, combine, 0);
         return ans;
     }
 
     public void dfs(int[] candidates, int target, List<List<Integer>> ans, List<Integer> combine, int idx) {
-        if (idx == candidates.length) {
+        if (idx == candidates.length) { //如果下标达到数组长度，返回
             return;
         }
-        if (target == 0) {
+        if (target == 0) { //如果target=0表明找到了一组，将数字组合加入ans
             ans.add(new ArrayList<Integer>(combine));
             return;
         }
-        // 直接跳过
+        // 继续找id+1
         dfs(candidates, target, ans, combine, idx + 1);
-        // 选择当前数
-        if (target - candidates[idx] >= 0) {
-            combine.add(candidates[idx]);
+        // 如果当前数字总和还不到target
+        if (target - candidates[idx] >= 0) { //将当前数字加入combine
+            combine.add(candidates[idx]); //更新target继续找
             dfs(candidates, target - candidates[idx], ans, combine, idx);
-            combine.remove(combine.size() - 1);
+            combine.remove(combine.size() - 1); //回退时删除最后一个数字
         }
     }
 }

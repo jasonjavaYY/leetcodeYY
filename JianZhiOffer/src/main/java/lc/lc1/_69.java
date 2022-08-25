@@ -19,16 +19,16 @@ package lc.lc1;
  * */
 public class _69 {
     public int mySqrt(int x) {
-        int l = 0, r = x, ans = -1;
-        while (l <= r) {
-            int mid = l + (r - l) / 2;
-            if ((long) mid * mid <= x) {
+        int l = 0, r = x, ans = -1; //二分从0找到x
+        while (l <= r) { //二分循环判断条件
+            int mid = l + (r - l) / 2; //求mid
+            if ((long) mid * mid <= x) { //如果mid平方≤x，更新ans和l
                 ans = mid;
                 l = mid + 1;
-            } else {
+            } else { //否则更新r
                 r = mid - 1;
             }
         }
-        return ans;
+        return ans; //最后返回ans
     }
 }

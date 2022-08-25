@@ -15,19 +15,17 @@ public class _98 {
     long pre = Long.MIN_VALUE;
 
     public boolean isValidBST(TreeNode root) {
-        if (root == null) {
+        if (root == null) { //如果树为空，返回true
             return true;
-        }
-        // 访问左子树
+        }//递归判断左子树
         if (!isValidBST(root.left)) {
             return false;
-        }
-        // 访问当前节点：如果当前节点小于等于中序遍历的前一个节点，说明不满足BST，返回 false；否则继续遍历。
+        } //如果当前节点小于等于中序遍历的前一节点，返回false
         if (root.val <= pre) {
             return false;
-        }
+        }//更新前一个节点
         pre = root.val;
-        // 访问右子树
+        //递归判断右子树
         return isValidBST(root.right);
     }
     class TreeNode{

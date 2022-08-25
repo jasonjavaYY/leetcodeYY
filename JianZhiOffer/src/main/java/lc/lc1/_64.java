@@ -21,22 +21,23 @@ package lc.lc1;
 public class _64 {
     public int minPathSum(int[][] grid) {
         if (grid == null || grid.length == 0 || grid[0].length == 0) {
-            return 0;
+            return 0; //如果路径为空，返回0
         }
-        int rows = grid.length, columns = grid[0].length;
-        int[][] dp = new int[rows][columns];
-        dp[0][0] = grid[0][0];
-        for (int i = 1; i < rows; i++) {
+        int rows = grid.length, columns = grid[0].length; //获取行列数
+        int[][] dp = new int[rows][columns]; //构造dp数组
+        dp[0][0] = grid[0][0]; //初始化dp[0][0]就是[0][0]数字大小
+        for (int i = 1; i < rows; i++) { //初始化第0列的dp
             dp[i][0] = dp[i - 1][0] + grid[i][0];
-        }
+        }  //初始化第0行的dp
         for (int j = 1; j < columns; j++) {
             dp[0][j] = dp[0][j - 1] + grid[0][j];
         }
-        for (int i = 1; i < rows; i++) {
+        for (int i = 1; i < rows; i++) { //i从1到row，j从1到col
             for (int j = 1; j < columns; j++) {
+                //找到dp[i - 1][j]和dp[i][j - 1]较小值，再加grid[i][j]就是到[i][j]位置最短路径dp[i][j]
                 dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
             }
         }
-        return dp[rows - 1][columns - 1];
+        return dp[rows - 1][columns - 1]; //返回结果
     }
 }

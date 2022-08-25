@@ -27,24 +27,26 @@ import java.util.List;
 * */
 public class _56 {
     public int[][] merge(int[][] intervals) {
-        if (intervals.length == 0) {
+        if (intervals.length == 0) { //如果区间列表为空，返回0到2
             return new int[0][2];
         }
         Arrays.sort(intervals, new Comparator<int[]>() {
-            //return 参数1-参数2 就是升序
+            //return 参数1-参数2 就是升序  将区间列表按左端点升序
             public int compare(int[] interval1, int[] interval2) {
                 return interval1[0] - interval2[0];
             }
         });
-        List<int[]> merged = new ArrayList<int[]>();
-        for (int i = 0; i < intervals.length; ++i) {
+        List<int[]> merged = new ArrayList<int[]>(); //构造一个数组列表保存返回值
+        for (int i = 0; i < intervals.length; ++i) { //遍历传入数组
+            //获取第i个数组的左右端
             int L = intervals[i][0], R = intervals[i][1];
+            //如果合并数组为空或者merge最后一个数组的右端小于左端，代表不能合并，要新构建一个LR加入merge
             if (merged.size() == 0 || merged.get(merged.size() - 1)[1] < L) {
                 merged.add(new int[]{L, R});
-            } else {
+            } else {//否则说明能合并，把merge最后一个数组右端设置为R和自身中较大的数
                 merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], R);
             }
         }
-        return merged.toArray(new int[merged.size()][]);
+        return merged.toArray(new int[merged.size()][]); //返回merge
     }
 }

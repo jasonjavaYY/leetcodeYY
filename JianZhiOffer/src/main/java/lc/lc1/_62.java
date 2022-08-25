@@ -16,18 +16,20 @@ f(i,j)=f(i−1,j)+f(i,j−1)
 * */
 public class _62 {
     public int uniquePaths(int m, int n) {
-        int[][] f = new int[m][n];
-        for (int i = 0; i < m; ++i) {
+        //f(i,j) 表示从左上角走到 (i,j) 的路径数量
+        int[][] f = new int[m][n]; //构造m*n矩阵
+        for (int i = 0; i < m; ++i) { //最上面一行每个点都只有一种走法
             f[i][0] = 1;
         }
-        for (int j = 0; j < n; ++j) {
+        for (int j = 0; j < n; ++j) { //最左边一列也都只有一种走法
             f[0][j] = 1;
         }
         for (int i = 1; i < m; ++i) {
-            for (int j = 1; j < n; ++j) {
+            for (int j = 1; j < n; ++j) { //i从1到m，j从1到n遍历
+                //ij可能从[i - 1][j]也可能从[i][j - 1]到达，是二者之和
                 f[i][j] = f[i - 1][j] + f[i][j - 1];
             }
         }
-        return f[m - 1][n - 1];
+        return f[m - 1][n - 1]; //返回f[m - 1][n - 1]
     }
 }

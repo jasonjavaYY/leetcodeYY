@@ -21,16 +21,18 @@ public class _42 {
     public int trap(int[] height) {
         int ans = 0;
         int size = height.length;
-        for (int i = 1; i < size - 1; i++) {
+        for (int i = 1; i < size - 1; i++) { //从1遍历到size-1
             int max_left = 0, max_right = 0;
             for (int j = i; j >= 0; j--) { //Search the left part for max bar size
+                //j从i向左搜索找到左边最大高度
                 max_left = Math.max(max_left, height[j]);
             }
             for (int j = i; j < size; j++) { //Search the right part for max bar size
+                //j从i向右搜索找到右边最大高度
                 max_right = Math.max(max_right, height[j]);
-            }
+            } //左右最小值-当前高度不断加到ans里
             ans += Math.min(max_left, max_right) - height[i];
         }
-        return ans;
+        return ans; //返回ans
     }
 }

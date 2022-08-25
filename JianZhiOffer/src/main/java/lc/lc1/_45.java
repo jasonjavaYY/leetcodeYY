@@ -26,10 +26,13 @@ package lc.lc1;
 * */
 public class _45 {
     public int jump(int[] nums) {
+        //记录当前反向查找已经到达的位置
         int position = nums.length - 1;
         int steps = 0;
-        while (position > 0) {
+        while (position > 0) { //如果还没到第0个位置就循环找
+            //从第0个位置开始找能到达position且离position最远的位置
             for (int i = 0; i < position; i++) {
+                //如果找到了就把position = i，steps++，跳出内循环
                 if (i + nums[i] >= position) {
                     position = i;
                     steps++;
@@ -37,6 +40,6 @@ public class _45 {
                 }
             }
         }
-        return steps;
+        return steps; //最后返回step
     }
 }

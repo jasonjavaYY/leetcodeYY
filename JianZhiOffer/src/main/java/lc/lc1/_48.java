@@ -11,18 +11,20 @@ package lc.lc1;
 * */
 public class _48 {
     public void rotate(int[][] matrix) {
-        int n = matrix.length;
+        int n = matrix.length; //获取行数
         // 水平翻转
-        for (int i = 0; i < n / 2; ++i) {
-            for (int j = 0; j < n; ++j) {
+        for (int i = 0; i < n / 2; ++i) { //i从0到n/2行
+            for (int j = 0; j < n; ++j) { //列号从0到n，因为是n*n矩阵，行列数相等
+                //翻转i,j和n-i-1,j
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[n - i - 1][j];
                 matrix[n - i - 1][j] = temp;
             }
         }
         // 主对角线翻转
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < i; ++j) {
+        for (int i = 0; i < n; ++i) { //i从0到n
+            for (int j = 0; j < i; ++j) { //j从0到i
+                //ij翻转到ji
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[j][i];
                 matrix[j][i] = temp;

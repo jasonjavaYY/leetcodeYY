@@ -26,22 +26,22 @@ package lc.lc1;
 public class _41 {
     public int firstMissingPositive(int[] nums) {
         int n = nums.length;
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; ++i) { //所有不在1到n的数设置为n+1
             if (nums[i] <= 0) {
                 nums[i] = n + 1;
             }
         }
-        for (int i = 0; i < n; ++i) {
-            int num = Math.abs(nums[i]);
+        for (int i = 0; i < n; ++i) { //遍历获取数组的绝对值
+            int num = Math.abs(nums[i]); //将该位置数字标记为负数
             if (num <= n) {
                 nums[num - 1] = -Math.abs(nums[num - 1]);
             }
-        }
+        }//最后遍历，找到第一个正数位置，就是缺失的第一个正数
         for (int i = 0; i < n; ++i) {
             if (nums[i] > 0) {
                 return i + 1;
             }
         }
-        return n + 1;
+        return n + 1; //如果找不到，缺失的第一个正数就是n+1
     }
 }

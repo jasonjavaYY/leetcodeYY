@@ -26,22 +26,22 @@ pre：永远指向待反转区域的第一个节点 left 的前一个节点，�
 * */
 public class _92 {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        // 设置 dummyNode 是这一类问题的一般做法
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-        ListNode pre = dummyNode;
+        // 因为left可能是0即从头开始翻转，因此要建立哑节点
+        ListNode dummyNode = new ListNode(-1); //设置哑节点
+        dummyNode.next = head; //让哑节点next指向头
+        ListNode pre = dummyNode; //找到pre，即left的前一个节点
         for (int i = 0; i < left - 1; i++) {
             pre = pre.next;
         }
-        ListNode cur = pre.next;
-        ListNode next;
-        for (int i = 0; i < right - left; i++) {
-            next = cur.next;
-            cur.next = next.next;
-            next.next = pre.next;
-            pre.next = next;
+        ListNode cur = pre.next; //cur指向待翻转区第一个节点，cur不断后移
+        ListNode next; //next指向cur下一个节点
+        for (int i = 0; i < right - left; i++) {//需要翻转right-left次
+            next = cur.next; //curr 的下一个节点记录为 next
+            cur.next = next.next; //curr的next指向 next 的next
+            next.next = pre.next;//next 的next指向 pre 的next
+            pre.next = next;//pre 的next指向 next
         }
-        return dummyNode.next;
+        return dummyNode.next; //返回头节点，也就是哑节点的next
     }
 
     private class ListNode {

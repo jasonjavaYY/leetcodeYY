@@ -37,28 +37,29 @@ public class _47 {
     boolean[] vis;
 
     public List<List<Integer>> permuteUnique(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<List<Integer>>();
-        List<Integer> perm = new ArrayList<Integer>();
-        vis = new boolean[nums.length];
-        Arrays.sort(nums);
-        backtrack(nums, ans, 0, perm);
+        List<List<Integer>> ans = new ArrayList<List<Integer>>(); //保存结果，是双层数组
+        List<Integer> perm = new ArrayList<Integer>(); //存放一个结果
+        vis = new boolean[nums.length]; //用于标记某个数字是否用过
+        Arrays.sort(nums); //先排序
+        backtrack(nums, ans, 0, perm); //回溯
         return ans;
     }
 
     public void backtrack(int[] nums, List<List<Integer>> ans, int idx, List<Integer> perm) {
-        if (idx == nums.length) {
+        if (idx == nums.length) { //如果idx达到了数组长度，说明找到了一个组合，加入ans返回
             ans.add(new ArrayList<Integer>(perm));
             return;
         }
-        for (int i = 0; i < nums.length; ++i) {
+        for (int i = 0; i < nums.length; ++i) { //i从0到num的长度
+            //如果i用过了或者i和i-1相等且i-1没用过，就跳过
             if (vis[i] || (i > 0 && nums[i] == nums[i - 1] && !vis[i - 1])) {
                 continue;
             }
-            perm.add(nums[i]);
-            vis[i] = true;
-            backtrack(nums, ans, idx + 1, perm);
-            vis[i] = false;
-            perm.remove(idx);
+            perm.add(nums[i]); //将元素i加入perm
+            vis[i] = true; //更新i为已使用
+            backtrack(nums, ans, idx + 1, perm); //继续回溯idx+1
+            vis[i] = false; //回退时更新i为未使用
+            perm.remove(idx); //将idx元素从perm移除
         }
     }
 }

@@ -37,17 +37,17 @@ f_i = f_{i-2},其中 s[i−1]!=0 并且 10<s[i−1]+s[i]≤26
 * */
 public class _91 {
     public int numDecodings(String s) {
-        int n = s.length();
-        int[] f = new int[n + 1];
-        f[0] = 1;
-        for (int i = 1; i <= n; ++i) {
-            if (s.charAt(i - 1) != '0') {
+        int n = s.length(); //获取字符串长度
+        int[] f = new int[n + 1]; //构造f数组
+        f[0] = 1; //空字符串有1种，解码出空字符串
+        for (int i = 1; i <= n; ++i) {//i从1到n
+            if (s.charAt(i - 1) != '0') { //如果i-1字符不是0，f[i] += f[i - 1]
                 f[i] += f[i - 1];
-            }
+            } //i要>1并且i-2字符不是0并且i-2字符拼上i-1字符这个两位数≤26，f[i] += f[i - 2]
             if (i > 1 && s.charAt(i - 2) != '0' && ((s.charAt(i - 2) - '0') * 10 + (s.charAt(i - 1) - '0') <= 26)) {
                 f[i] += f[i - 2];
             }
         }
-        return f[n];
+        return f[n]; //返回f[n]
     }
 }

@@ -25,15 +25,16 @@ package lc.lc1;
 * */
 public class _58 {
     public int lengthOfLastWord(String s) {
-        int index = s.length() - 1;
-        while (s.charAt(index) == ' ') {
+        int index = s.length() - 1; //获取传入字符串长度
+        while (s.charAt(index) == ' ') { //从后往前，如果字符是空格，index--
             index--;
         }
         int wordLength = 0;
+        //从index开始往前，如果字符不是空格，就把单词长度+1，index--
         while (index >= 0 && s.charAt(index) != ' ') {
             wordLength++;
             index--;
         }
-        return wordLength;
+        return wordLength; //返回最后一个单词长度
     }
 }

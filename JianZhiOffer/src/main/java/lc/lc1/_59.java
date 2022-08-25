@@ -3,7 +3,7 @@ package lc.lc1;
 /*
 * 螺旋矩阵 II
 *
-* 给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。
+* 给你一个正整数 n ，生成一个包含 1 到 n^2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。
 *
 示例 1：
 输入：n = 3
@@ -29,33 +29,35 @@ package lc.lc1;
 public class _59 {
     //和jzoffer的_30操作相反
     public int[][] generateMatrix(int n) {
-        int num = 1;
-        int[][] matrix = new int[n][n];
+        int num = 1; //数字从1开始
+        int[][] matrix = new int[n][n]; //构造n*n矩阵
+        //确定上下左右边界值
         int left = 0, right = n - 1, top = 0, bottom = n - 1;
-        while (left <= right && top <= bottom) {
+        while (left <= right && top <= bottom) { //循环，左右和上下不能越界
+            //给最上面一行元素赋值
             for (int column = left; column <= right; column++) {
                 matrix[top][column] = num;
                 num++;
-            }
+            } //最右侧一列元素赋值
             for (int row = top + 1; row <= bottom; row++) {
                 matrix[row][right] = num;
                 num++;
-            }
+            } //最下一行元素和最左列要先判断不能越界，然后给最下一行元素赋值
             if (left < right && top < bottom) {
                 for (int column = right - 1; column > left; column--) {
                     matrix[bottom][column] = num;
                     num++;
-                }
+                } //最左一列元素赋值
                 for (int row = bottom; row > top; row--) {
                     matrix[row][left] = num;
                     num++;
                 }
-            }
+            } //左++，右边界--，上++，下--，向内一层
             left++;
             right--;
             top++;
             bottom--;
         }
-        return matrix;
+        return matrix; //返回最终的矩阵
     }
 }

@@ -31,7 +31,6 @@ import java.util.Map;
 * 我们就收缩窗口直到得到最小窗口。如何判断当前的窗口包含所有 t 所需的字符呢？我们可以用一个哈希表表示 t 中所有的字符以及它们的个数，
 * 用一个哈希表动态维护窗口中所有的字符以及它们的个数，如果这个动态表中包含 t 的哈希表中的所有字符，
 * 并且对应的个数都不小于 t 的哈希表中各个字符的个数，那么当前的窗口是「可行」的。
-
 * */
 public class _76 {
     Map<Character, Integer> ori = new HashMap<Character, Integer>();

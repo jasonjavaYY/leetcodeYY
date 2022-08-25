@@ -27,38 +27,36 @@ import java.util.List;
 * */
 public class _95 {
     public List<TreeNode> generateTrees(int n) {
-        if (n == 0) {
+        if (n == 0) { //如果n=0，返回空链表
             return new LinkedList<TreeNode>();
         }
         return generateTrees(1, n);
     }
 
     public List<TreeNode> generateTrees(int start, int end) {
-        List<TreeNode> allTrees = new LinkedList<TreeNode>();
-        if (start > end) {
+        List<TreeNode> allTrees = new LinkedList<TreeNode>(); //保存所有结果
+        if (start > end) { //如果start超过end，结果加入一个null返回
             allTrees.add(null);
             return allTrees;
         }
-
-        // 枚举可行根节点
+        // 枚举可行根节点，i从start到end
         for (int i = start; i <= end; i++) {
             // 获得所有可行的左子树集合
             List<TreeNode> leftTrees = generateTrees(start, i - 1);
-
             // 获得所有可行的右子树集合
             List<TreeNode> rightTrees = generateTrees(i + 1, end);
-
             // 从左子树集合中选出一棵左子树，从右子树集合中选出一棵右子树，拼接到根节点上
             for (TreeNode left : leftTrees) {
                 for (TreeNode right : rightTrees) {
+                    //遍历左右子树，构造节点，节点的left是左子树节点，right是右子树节点
                     TreeNode currTree = new TreeNode(i);
                     currTree.left = left;
                     currTree.right = right;
-                    allTrees.add(currTree);
+                    allTrees.add(currTree); //将当前节点加入结果集
                 }
             }
         }
-        return allTrees;
+        return allTrees; //返回结果集
     }
 
     class TreeNode {

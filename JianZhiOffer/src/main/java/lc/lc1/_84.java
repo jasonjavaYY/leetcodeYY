@@ -19,14 +19,13 @@ import java.util.Deque;
 public class _84 {
 
     public int largestRectangleArea(int[] heights) {
-        int len = heights.length;
-        if (len == 0) {
+        int len = heights.length; //计算一共多少矩形
+        if (len == 0) { //如果为空，返回0
             return 0;
         }
-        if (len == 1) {
+        if (len == 1) { //如果只有一个值，最大矩形就是该值
             return heights[0];
         }
-
         int res = 0;
         Deque<Integer> stack = new ArrayDeque<>(len);
         for (int i = 0; i < len; i++) {
@@ -43,8 +42,6 @@ public class _84 {
                 } else {
                     curWidth = i - stack.peekLast() - 1;
                 }
-
-                // System.out.println("curIndex = " + curIndex + " " + curHeight * curWidth);
                 res = Math.max(res, curHeight * curWidth);
             }
             stack.addLast(i);

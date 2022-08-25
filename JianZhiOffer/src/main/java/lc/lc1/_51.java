@@ -33,39 +33,42 @@ n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，
 * */
 public class _51 {
     public List<List<String>> solveNQueens(int n) {
-        List<List<String>> solutions = new ArrayList<List<String>>();
-        int[] queens = new int[n];
-        Arrays.fill(queens, -1);
-        Set<Integer> columns = new HashSet<Integer>();
+        List<List<String>> solutions = new ArrayList<List<String>>(); //保存结果，双层数组
+        int[] queens = new int[n]; //queens[i]代表第i行皇后防止的位置，因为每一行只一个皇后
+        Arrays.fill(queens, -1); //先把queens填充为-1
+        Set<Integer> columns = new HashSet<Integer>(); //列和对角线Set
         Set<Integer> diagonals1 = new HashSet<Integer>();
         Set<Integer> diagonals2 = new HashSet<Integer>();
+        //回溯，传入结果、queens、n、row、三个set
         backtrack(solutions, queens, n, 0, columns, diagonals1, diagonals2);
         return solutions;
     }
 
-    public void backtrack(List<List<String>> solutions, int[] queens, int n, int row, Set<Integer> columns, Set<Integer> diagonals1, Set<Integer> diagonals2) {
-        if (row == n) {
+    public void backtrack(List<List<String>> solutions, int[] queens, int n, int row, Set<Integer> columns,
+                          Set<Integer> diagonals1, Set<Integer> diagonals2) {
+        if (row == n) { //如果行号=n代表回溯结束，利用queens产生一种结果，将结果放入结果集
             List<String> board = generateBoard(queens, n);
             solutions.add(board);
-        } else {
+        } else { //否则i从0到n
             for (int i = 0; i < n; i++) {
-                if (columns.contains(i)) {
+                if (columns.contains(i)) { //如果列包含i就下一轮循环
                     continue;
-                }
-                int diagonal1 = row - i;
+                } //如果对角线包含i，也下一轮循环
+                int diagonal1 = row - i; //对角线1是row-i
                 if (diagonals1.contains(diagonal1)) {
                     continue;
                 }
-                int diagonal2 = row + i;
+                int diagonal2 = row + i;//对角线2是row+i
                 if (diagonals2.contains(diagonal2)) {
                     continue;
                 }
-                queens[row] = i;
-                columns.add(i);
+                queens[row] = i; //通过了上面，就把queens[row] = i
+                columns.add(i);  //更新列和对角线set
                 diagonals1.add(diagonal1);
                 diagonals2.add(diagonal2);
+                //继续回溯row+1行
                 backtrack(solutions, queens, n, row + 1, columns, diagonals1, diagonals2);
-                queens[row] = -1;
+                queens[row] = -1; //回退时将queens[row] = -1，列和对角线中移除对应值
                 columns.remove(i);
                 diagonals1.remove(diagonal1);
                 diagonals2.remove(diagonal2);
@@ -73,13 +76,15 @@ public class _51 {
         }
     }
 
+    //根据queens和n产生字符串代表二维矩阵
+    // board = [".Q..","...Q","Q...","..Q."]
     public List<String> generateBoard(int[] queens, int n) {
         List<String> board = new ArrayList<String>();
         for (int i = 0; i < n; i++) {
-            char[] row = new char[n];
-            Arrays.fill(row, '.');
-            row[queens[i]] = 'Q';
-            board.add(new String(row));
+            char[] row = new char[n]; //每一行是大小n的字符数组
+            Arrays.fill(row, '.'); //先都填充为.
+            row[queens[i]] = 'Q'; //该行的queens[i]位置设置为皇后Q
+            board.add(new String(row)); //将每一行的字符串加入board
         }
         return board;
     }

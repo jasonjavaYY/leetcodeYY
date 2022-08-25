@@ -13,22 +13,21 @@ package lc.lc1;
 * */
 public class _63 {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        int n = obstacleGrid.length, m = obstacleGrid[0].length;
-        int[] f = new int[m];
-
+        int n = obstacleGrid.length, m = obstacleGrid[0].length; //n行m列
+        int[] f = new int[m]; //用一维数组f代表到当前行某列的位置的最多种路径
+        //初始化f[0]，如果obstacleGrid[0][0]不是障碍，f[0]就是1
         f[0] = obstacleGrid[0][0] == 0 ? 1 : 0;
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < m; ++j) {
-                if (obstacleGrid[i][j] == 1) {
+        for (int i = 0; i < n; ++i) { //i从0到n
+            for (int j = 0; j < m; ++j) { //j从0到m
+                if (obstacleGrid[i][j] == 1) { //如果遇到障碍，f[j] = 0，继续
                     f[j] = 0;
                     continue;
-                }
+                } //第0行的f[j]都是1，因此j从第一行开始迭代，没有障碍f[j] += f[j - 1]
                 if (j - 1 >= 0 && obstacleGrid[i][j - 1] == 0) {
                     f[j] += f[j - 1];
                 }
             }
         }
-
-        return f[m - 1];
+        return f[m - 1]; //返回最后一行遍历完的f[m - 1]
     }
 }

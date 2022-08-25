@@ -30,20 +30,22 @@ import java.util.List;
 * 我们可以按照这个 0/1 序列在原集合当中取数。当我们枚举完所有 2^n个 mask，我们也就能构造出所有的子集。
 * */
 public class _78 {
-    List<Integer> t = new ArrayList<Integer>();
-    List<List<Integer>> ans = new ArrayList<List<Integer>>();
+    List<Integer> t = new ArrayList<Integer>(); //t存放每种可能的结果
+    List<List<Integer>> ans = new ArrayList<List<Integer>>(); //存最终结果集
 
     public List<List<Integer>> subsets(int[] nums) {
-        int n = nums.length;
+        int n = nums.length; //计算输入数组长度n
+        //mask从0到2^n
         for (int mask = 0; mask < (1 << n); ++mask) {
-            t.clear();
-            for (int i = 0; i < n; ++i) {
+            t.clear(); //先清空
+            for (int i = 0; i < n; ++i) { //i从0到n
+                //mask和2^i与不为0，就把nums[i]加入t
                 if ((mask & (1 << i)) != 0) {
                     t.add(nums[i]);
                 }
-            }
+            } //内层循环每次找一个t，将t放入ans中
             ans.add(new ArrayList<Integer>(t));
         }
-        return ans;
+        return ans; //返回ans
     }
 }

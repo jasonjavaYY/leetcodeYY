@@ -14,12 +14,12 @@ G(n)=f(1)+f(2)+f(3)+f(4)+...+f(n),当 i 为根节点时，其左子树节点个�
 public class _96 {
     public int numTrees(int n) {
         int[] dp = new int[n + 1];
-        dp[0] = 1;
-        dp[1] = 1;
-
+        dp[0] = 1; //0个节点的树有一种，空树
+        dp[1] = 1; //1个节点的树有一种
+        //i从2到n-1，j从1到i+1，dp[i]+=dp[j - 1]*dp[i - j]
         for (int i = 2; i < n + 1; i++)
             for (int j = 1; j < i + 1; j++)
                 dp[i] += dp[j - 1] * dp[i - j];
-        return dp[n];
+        return dp[n]; //返回dp[n]
     }
 }

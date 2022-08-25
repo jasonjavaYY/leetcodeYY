@@ -13,25 +13,27 @@ package lc.lc1;
 public class _74 {
     public boolean searchMatrix(int[][] matrix, int target) {
         int rowIndex = binarySearchFirstColumn(matrix, target);
-        if (rowIndex < 0) {
+        if (rowIndex < 0) { //如果行号小于0，说明左上角元素都比target大，返回false
             return false;
         }
-        return binarySearchRow(matrix[rowIndex], target);
+        return binarySearchRow(matrix[rowIndex], target); //否则再二分查找这一行
     }
-
+    //二分查找第一列元素小于等于target的最大值
     public int binarySearchFirstColumn(int[][] matrix, int target) {
+        //低和高边界分别是0和m-1，因为有m行，所以一列有m个元素，就是matrix.length-1
         int low = -1, high = matrix.length - 1;
-        while (low < high) {
-            int mid = (high - low + 1) / 2 + low;
+        while (low < high) { //二分循环
+            int mid = (high - low + 1) / 2 + low; //计算mid
+            //因为找第一列，所以matrix[mid][0]
             if (matrix[mid][0] <= target) {
-                low = mid;
-            } else {
+                low = mid; //如果mid[0]小于等于target，更新low
+            } else { //否则更新high
                 high = mid - 1;
             }
         }
-        return low;
+        return low; //返回找到的行号
     }
-
+    //标准的二分查找
     public boolean binarySearchRow(int[] row, int target) {
         int low = 0, high = row.length - 1;
         while (low <= high) {

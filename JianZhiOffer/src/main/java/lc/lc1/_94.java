@@ -24,12 +24,12 @@ public class _94 {
     }
 
     public void inorder(TreeNode root, List<Integer> res) {
-        if (root == null) {
+        if (root == null) { //如果树为空返回
             return;
         }
-        inorder(root.left, res);
-        res.add(root.val);
-        inorder(root.right, res);
+        inorder(root.left, res); //递归左节点
+        res.add(root.val); //值放入res
+        inorder(root.right, res); //递归右节点
     }
 
     class TreeNode {
