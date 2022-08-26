@@ -44,16 +44,20 @@ f[0][0]=c[0][0]
 * */
 public class _120 {
     public int minimumTotal(List<List<Integer>> triangle) {
-        int n = triangle.size();
+        int n = triangle.size(); //计算有多少层
+        //f[i][j] 表示从顶部走到位置(i,j)最小路径和
         int[][] f = new int[n][n];
+        //f[0][0] 是位置(0，0)的值
         f[0][0] = triangle.get(0).get(0);
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < n; ++i) {//i从1到n，j从1到n
+            //f[i][0]=f[i−1][0]+c[i][0]，即在第 i 行最左侧时只能从 i−1 行最左侧移动过来
             f[i][0] = f[i - 1][0] + triangle.get(i).get(0);
             for (int j = 1; j < i; ++j) {
+                //上一步只能在位置 (i−1,j−1) 或(i−1,j)。在这两个位置中选择小的来转移
                 f[i][j] = Math.min(f[i - 1][j - 1], f[i - 1][j]) + triangle.get(i).get(j);
-            }
+            }//f[i][i]=f[i−1][i−1] + c[i][i]，即第 i 行最右侧只能从 i−1 行最右侧移动过来
             f[i][i] = f[i - 1][i - 1] + triangle.get(i).get(i);
-        }
+        }//答案是f[n−1][0] 到f[n−1][n−1] 中的最小值
         int minTotal = f[n - 1][0];
         for (int i = 1; i < n; ++i) {
             minTotal = Math.min(minTotal, f[n - 1][i]);

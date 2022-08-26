@@ -39,18 +39,24 @@ dp[i][j]=max(min(dp[i+1][j],dp[i][j+1])−dungeon(i,j),1)
 * */
 public class _174 {
     public int calculateMinimumHP(int[][] dungeon) {
+        //n行m列
         int n = dungeon.length, m = dungeon[0].length;
+        //
+        //从右下往左上动态规划，dp[i][j]表示从坐标(i,j)到终点所需最小生命值
         int[][] dp = new int[n + 1][m + 1];
-        for (int i = 0; i <= n; ++i) {
+        for (int i = 0; i <= n; ++i) {//最开始都设置为MAX
             Arrays.fill(dp[i], Integer.MAX_VALUE);
-        }
+        }//和右下角相邻的两个点值是1，只需保证到这两个点时至少有1点生命
         dp[n][m - 1] = dp[n - 1][m] = 1;
         for (int i = n - 1; i >= 0; --i) {
-            for (int j = m - 1; j >= 0; --j) {
+            for (int j = m - 1; j >= 0; --j) {//i从n-1到0，j从m-1到0
+                //先获取i,j能到的两个点i+1,j和i,j+1的最小生命
                 int minn = Math.min(dp[i + 1][j], dp[i][j + 1]);
+                //用上面的最小生命减去i,j损耗的生命就是i,j点所需的生命，
+                //如果是负值或0代表该点无论多少生命都能通关，但生命最少为1，所以要和1比较取较大值
                 dp[i][j] = Math.max(minn - dungeon[i][j], 1);
             }
         }
-        return dp[0][0];
+        return dp[0][0];//返回dp[0][0]
     }
 }

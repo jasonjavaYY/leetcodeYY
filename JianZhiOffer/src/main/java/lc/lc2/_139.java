@@ -34,17 +34,21 @@ dp[i]=dp[j] && check(s[j..i−1])
 * */
 public class _139 {
     public boolean wordBreak(String s, List<String> wordDict) {
-        Set<String> wordDictSet = new HashSet(wordDict);
+        Set<String> wordDictSet = new HashSet(wordDict); //单词列表去重
+        //dp[i]表示s前 i 个字符s[0..i−1] 是否能被拆分成若干个字典中的单词
         boolean[] dp = new boolean[s.length() + 1];
-        dp[0] = true;
-        for (int i = 1; i <= s.length(); i++) {
-            for (int j = 0; j < i; j++) {
+        dp[0] = true; //空字符串可以被拆分成单词表里的词
+        for (int i = 1; i <= s.length(); i++) {//遍历s的每个字符
+            //dp[i]=dp[j] && check(s[j..i−1])
+            //check(s[j..i−1]) 表示s[j..i−1] 是否出现在字典中
+            for (int j = 0; j < i; j++) { //因此j从0到i
+                //如果dp[i]=dp[j] && check(s[j..i−1])为真，dp[i]就是true，继续找下一个i
                 if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
                     dp[i] = true;
                     break;
                 }
             }
         }
-        return dp[s.length()];
+        return dp[s.length()]; //返回dp[s.length()]
     }
 }

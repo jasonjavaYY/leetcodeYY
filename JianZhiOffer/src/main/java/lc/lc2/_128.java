@@ -24,26 +24,23 @@ import java.util.Set;
 public class _128 {
     public int longestConsecutive(int[] nums) {
         Set<Integer> num_set = new HashSet<Integer>();
-        for (int num : nums) {
+        for (int num : nums) { //先去重
             num_set.add(num);
         }
 
-        int longestStreak = 0;
-
-        for (int num : num_set) {
-            if (!num_set.contains(num - 1)) {
-                int currentNum = num;
-                int currentStreak = 1;
-
+        int longestStreak = 0; //保存最长连续序列
+        for (int num : num_set) { //遍历数组
+            if (!num_set.contains(num - 1)) { //如果数组不包含当前数值-1
+                int currentNum = num; //就将num设置为当前数
+                int currentStreak = 1; //找到一个最小的数，当前长度为1
+                //不停判断数组是否包含当前数的下一个数
                 while (num_set.contains(currentNum + 1)) {
-                    currentNum += 1;
+                    currentNum += 1; //如果包含，就当前数+1，当前长度+1
                     currentStreak += 1;
-                }
-
+                }//退出这个循环说明找到了一条最长连续数组，更新全局最大值
                 longestStreak = Math.max(longestStreak, currentStreak);
             }
         }
-
-        return longestStreak;
+        return longestStreak; //返回全局最大值
     }
 }

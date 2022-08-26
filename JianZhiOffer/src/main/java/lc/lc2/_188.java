@@ -43,29 +43,39 @@ sell[i][j]=max{sell[i−1][j],buy[i−1][j−1]+price[i]}
 * */
 public class _188 {
     public int maxProfit(int k, int[] prices) {
-        if (prices.length == 0) {
+        if (prices.length == 0) {//如果股票数组为空，返回0
             return 0;
         }
-
-        int n = prices.length;
+        int n = prices.length;//获取股票数组大小n
+        //因为一共n天，最多进行n/2次有效交易，同一天不断买入卖出没有意义
         k = Math.min(k, n / 2);
+        //buy[i][j]表示进行 j 笔交易且持有股票的最大利润
         int[][] buy = new int[n][k + 1];
+        //sell[i][j]表示进行 j 笔交易且当前不持有股票的最大利润
         int[][] sell = new int[n][k + 1];
-
-        buy[0][0] = -prices[0];
-        sell[0][0] = 0;
+        buy[0][0] = -prices[0];//第0天持有一只股票收益是-prices[0]
+        sell[0][0] = 0; //第0天手上没有股票收益是0
         for (int i = 1; i <= k; ++i) {
+            //第0天不可能进行过任何交易，所有buy[0][1..k]和sell[0][1..k]设置为小值代表不合法
             buy[0][i] = sell[0][i] = Integer.MIN_VALUE / 2;
         }
 
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < n; ++i) {//i从1到n，j从1到k
+            //buy[i][0]代表第i天进行过0次交易且有股票，可能在i-1天就有股票即buy[i - 1][0]
+            //也可能i-1天没有股票，i天买入，即sell[i - 1][0] - prices[i]
             buy[i][0] = Math.max(buy[i - 1][0], sell[i - 1][0] - prices[i]);
             for (int j = 1; j <= k; ++j) {
+                //buy[i][j]考虑当前持有的股票如果是第i天买入，那第i−1天不持有股票，对应sell[i−1][j]且扣除prices[i]
+                //如果不是第i天买入，那么第 i−1天持有股票，对应buy[i−1][j]因此：
+                //buy[i][j]=max{buy[i−1][j],sell[i−1][j]−price[i]}
                 buy[i][j] = Math.max(buy[i - 1][j], sell[i - 1][j] - prices[i]);
+                //sell[i][j]如果是第i天卖出，那么i−1天持有股票，对应buy[i−1][j−1]且增加prices[i]；
+                //如果不是第i天卖出，那么第i−1天不持有股票，对应sell[i−1][j]。因此：
+                //sell[i][j]=max{sell[i−1][j],buy[i−1][j−1]+price[i]}
                 sell[i][j] = Math.max(sell[i - 1][j], buy[i - 1][j - 1] + prices[i]);
             }
         }
-
+        // n天结束后，不持有股票利润一定优于持有股票利润，而交易数不是越多越好，因此答案为sell[n−1][0..k]中最大值
         return Arrays.stream(sell[n - 1]).max().getAsInt();
     }
 }

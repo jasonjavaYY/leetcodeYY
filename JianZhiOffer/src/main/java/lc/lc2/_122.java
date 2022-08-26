@@ -21,14 +21,20 @@ dp[i][1]=max{dp[i−1][1],dp[i−1][0]−prices[i]}
 * */
 public class _122 {
     public int maxProfit(int[] prices) {
-        int n = prices.length;
+        int n = prices.length; //计算股票天数
+        //dp[i][0]表示第 i 天交易完手里没有股票的最大利润
+        //dp[i][1]表示第 i 天交易完手里持有一支股票的最大利润
         int[][] dp = new int[n][2];
-        dp[0][0] = 0;
-        dp[0][1] = -prices[0];
-        for (int i = 1; i < n; ++i) {
+        dp[0][0] = 0; //第0天没有股票利润为0
+        dp[0][1] = -prices[0]; //第0天有股票利润为-prices[0]
+        for (int i = 1; i < n; ++i) { //i从1到n
+            //dp[i][0]可能状态为前一天已经没有股票，即 dp[i−1][0]
+            //或前一天有股票但将其卖出，即dp[i−1][1]+prices[i]
             dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+            //dp[i][1]可能状态前一天已经有股票，即dp[i−1][1]
+            //或者前一天没股票要将其买入，即dp[i−1][0]-prices[i] 取最大值
             dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
         }
-        return dp[n - 1][0];
+        return dp[n - 1][0]; //返回最后一天手里没有股票的值
     }
 }

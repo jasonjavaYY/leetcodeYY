@@ -18,27 +18,31 @@ a+(n+1)b+nc=2(a+b)⟹a=c+(n−1)(b+c)
 * */
 public class _142 {
     public ListNode detectCycle(ListNode head) {
-        if (head == null) {
+        if (head == null) { //如果链表为空返回空
             return null;
-        }
+        } //定义快慢指针
         ListNode slow = head, fast = head;
-        while (fast != null) {
-            slow = slow.next;
+        //因为可能无环，所以不能用fast!=slow判断
+        while (fast != null) {//遍历判断快指针是否到头
+            slow = slow.next; //更新慢指针
+            //如果快指针下一节点到头，返回null代表无环，否则走两步
             if (fast.next != null) {
                 fast = fast.next.next;
             } else {
                 return null;
-            }
+            } //如果快慢指针相遇
             if (fast == slow) {
+                //使用指针ptr指向头部
                 ListNode ptr = head;
+                //ptr和 slow每次向后移动。最终在入环点相遇
                 while (ptr != slow) {
                     ptr = ptr.next;
                     slow = slow.next;
                 }
-                return ptr;
+                return ptr; //返回相遇点
             }
         }
-        return null;
+        return null; //如果快指针到头了，说明无环，返回null
     }
 
     class ListNode {

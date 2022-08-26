@@ -34,15 +34,20 @@ fmin(i) = i=1 min n{fmax(i−1)×ai,fmin(i−1)×ai,ai}
 * */
 public class _152 {
     public int maxProduct(int[] nums) {
-        int length = nums.length;
-        int[] maxF = new int[length];
-        int[] minF = new int[length];
+        int length = nums.length; //计算数组长度
+        //因为存在负数，所以要同时更新最大和最小
+        int[] maxF = new int[length];//maxF(i)表示第i个元素结尾的乘积最大子数组的乘积
+        int[] minF = new int[length];//minF(i)表示第i个元素结尾的乘积最小子数组的乘积
+        //将nums分别复制到maxF和minF，代表每个数字都不合前面任何数字相乘的最大值和最小值情况，即等于数字本身值
         System.arraycopy(nums, 0, maxF, 0, length);
         System.arraycopy(nums, 0, minF, 0, length);
         for (int i = 1; i < length; ++i) {
+            //i为0时，最大值和最小值都是它本身，因此i从1到l，更新maxF[i]和minF[i]
+            //maxF[i]是maxF[i-1]*ai minF[i-1]*ai ai这三个数中的max
+            //minF[i]是maxF[i-1]*ai minF[i-1]*ai ai这三个数中的min
             maxF[i] = Math.max(maxF[i - 1] * nums[i], Math.max(nums[i], minF[i - 1] * nums[i]));
             minF[i] = Math.min(minF[i - 1] * nums[i], Math.min(nums[i], maxF[i - 1] * nums[i]));
-        }
+        }//最后找出maxF数组中的最大值就是答案
         int ans = maxF[0];
         for (int i = 1; i < length; ++i) {
             ans = Math.max(ans, maxF[i]);

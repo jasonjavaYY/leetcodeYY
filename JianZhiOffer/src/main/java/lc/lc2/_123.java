@@ -54,15 +54,22 @@ buy2即为在同一天买入并且卖出后再以 prices[0] 的价格买入股�
 * */
 public class _123 {
     public int maxProfit(int[] prices) {
-        int n = prices.length;
+        int n = prices.length; //计算股票天数
+        //只可能有四种状态：
+        //①只买了一次；②买一次卖一次；③完成一笔交易下买了第二次；④卖出了第二次。
+        //初始值分别如下
         int buy1 = -prices[0], sell1 = 0;
         int buy2 = -prices[0], sell2 = 0;
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < n; ++i) { //i从1到n
+            //buy1在第 i天可以不进行任何操作，也可以在未进行操作下以prices[i]买入股票
             buy1 = Math.max(buy1, -prices[i]);
+            //sell1在第 i天可以不进行任何操作，也可以在buy1下以 prices[i]卖出股票
             sell1 = Math.max(sell1, buy1 + prices[i]);
+            //buy2在第 i天可以不进行任何操作，也可以在sell1下以prices[i]买入股票
             buy2 = Math.max(buy2, sell1 - prices[i]);
+            //sell2在第 i天可以不进行任何操作，也可以在buy2下以 prices[i]卖出股票
             sell2 = Math.max(sell2, buy2 + prices[i]);
         }
-        return sell2;
+        return sell2; //最后返回sell2
     }
 }

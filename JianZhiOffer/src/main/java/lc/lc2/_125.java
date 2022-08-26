@@ -21,23 +21,23 @@ package lc.lc2;
 * */
 public class _125 {
     public boolean isPalindrome(String s) {
-        int n = s.length();
-        int left = 0, right = n - 1;
-        while (left < right) {
+        int n = s.length(); //获取字符串长度n
+        int left = 0, right = n - 1; //左右指针
+        while (left < right) { //循环
             while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
-                ++left;
+                ++left; //从左遍历找到字符或数字字符
             }
             while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
-                --right;
+                --right; //从右边找到哦啊字符或数字字符
             }
             if (left < right) {
                 if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
-                    return false;
-                }
+                    return false; //如果两个字符不相同，返回false
+                } //否则同时更新左右指针
                 ++left;
                 --right;
             }
         }
-        return true;
+        return true; //如果遍历退出，说明是回文串，返回true
     }
 }

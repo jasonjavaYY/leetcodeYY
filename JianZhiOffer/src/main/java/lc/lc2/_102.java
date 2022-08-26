@@ -19,20 +19,18 @@ import java.util.List;
 * */
 public class _102 {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        if (root == null) {
+        if (root == null) { //如果树为空，返回空数组
             return new ArrayList<List<Integer>>();
         }
-
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<List<Integer>> res = new ArrayList<List<Integer>>(); //存放结果
         LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
-        //将根节点放入队列中，然后不断遍历队列
-        queue.add(root);
+        queue.add(root);  //根节点放入队列，然后不断遍历队列
         while (queue.size() > 0) {
-            //获取当前队列的长度，这个长度相当于 当前这一层的节点个数
+            //获取当前队列长度，这相当于这一层的节点数
             int size = queue.size();
             ArrayList<Integer> tmp = new ArrayList<Integer>();
             //将队列中的元素都拿出来(也就是获取这一层的节点)，放到临时list中
-            //如果节点的左/右子树不为空，也放入队列中
+            //如果节点的左/右子树不为空，放入队列中
             for (int i = 0; i < size; ++i) {
                 TreeNode t = queue.remove();
                 tmp.add(t.val);
@@ -43,10 +41,10 @@ public class _102 {
                     queue.add(t.right);
                 }
             }
-            //将临时list加入最终返回结果中
+            //将临时list(每层)加入结果
             res.add(tmp);
         }
-        return res;
+        return res; //返回结果
     }
 
     class TreeNode {

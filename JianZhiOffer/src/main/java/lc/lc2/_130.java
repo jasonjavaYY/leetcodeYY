@@ -21,24 +21,28 @@ package lc.lc2;
 我们可以使用深度优先搜索实现标记操作。在下面的代码中，我们把标记过的字母 O 修改为字母 A。
 * */
 public class _130 {
-    int n, m;
+    int n, m; //所有不被包围的 O 都直接或间接与边界 O 相连
 
     public void solve(char[][] board) {
-        n = board.length;
-        if (n == 0) {
+        n = board.length; //n行m列
+        if (n == 0) { //如果数组为空，返回
             return;
         }
         m = board[0].length;
         for (int i = 0; i < n; i++) {
+            //遍历搜索第i行第0列和第m-1列，即左右边界
             dfs(board, i, 0);
             dfs(board, i, m - 1);
-        }
+        } //遍历搜索第0行第i列和第n-1行，即上下边界
+        //i从1到m-1，因为上下边界搜索的时候不需要搜索四个顶点了
+        //在左右边界搜索的时候已经搜索过了
         for (int i = 1; i < m - 1; i++) {
             dfs(board, 0, i);
             dfs(board, n - 1, i);
-        }
+        } //至此已经将和边界相邻的O都改成了A
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
+                //遍历二维矩阵，将A替换成O，将O替换为X
                 if (board[i][j] == 'A') {
                     board[i][j] = 'O';
                 } else if (board[i][j] == 'O') {
@@ -49,10 +53,12 @@ public class _130 {
     }
 
     public void dfs(char[][] board, int x, int y) {
+        //如果x，y越界或者x,y位置不是O，直接返回
         if (x < 0 || x >= n || y < 0 || y >= m || board[x][y] != 'O') {
             return;
         }
-        board[x][y] = 'A';
+        board[x][y] = 'A'; //否则代表是O，将其标记为A
+        //急速搜索x周围的四个节点
         dfs(board, x + 1, y);
         dfs(board, x - 1, y);
         dfs(board, x, y + 1);

@@ -32,7 +32,7 @@ package lc.lc2;
 * */
 public class _153 {
     public int findMin(int[] nums) {
-        int low = 0;
+        int low = 0; //标准二分查找，直到low和high相遇
         int high = nums.length - 1;
         while (low < high) {
             int pivot = low + (high - low) / 2;

@@ -26,30 +26,32 @@ cut 递归终止条件： 当head.next == None时，说明只有一个节点了�
 public class _148 {
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null)
-            return head;
+            return head; //如果链表为空或者只有1个节点，直接返回
+        //快慢指针都指向head
         ListNode fast = head.next, slow = head;
+        //移动快慢指针，让快指针移动到末尾
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        ListNode tmp = slow.next;
-        slow.next = null;
-        ListNode left = sortList(head);
+        ListNode tmp = slow.next;//保存slow的下一个节点
+        slow.next = null; //从slow处切断链表
+        ListNode left = sortList(head);//排序左右链表
         ListNode right = sortList(tmp);
-        ListNode h = new ListNode(0);
+        ListNode h = new ListNode(0);//构造一个虚拟节点res
         ListNode res = h;
-        while (left != null && right != null) {
-            if (left.val < right.val) {
+        while (left != null && right != null) {//循环左右不能为空
+            if (left.val < right.val) {//如果left小，就让h的next为left
                 h.next = left;
-                left = left.next;
-            } else {
+                left = left.next;//left++
+            } else { //否则让h的next为right
                 h.next = right;
-                right = right.next;
+                right = right.next;//right++
             }
-            h = h.next;
-        }
+            h = h.next;//h++
+        }//某一半为空，剩下不为空的子链表直接加入h的next
         h.next = left != null ? left : right;
-        return res.next;
+        return res.next;//然会res的next就是排序后的头节点
     }
 
     class ListNode {

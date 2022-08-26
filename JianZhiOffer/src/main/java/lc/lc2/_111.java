@@ -11,23 +11,20 @@ package lc.lc2;
 * */
 public class _111 {
     public int minDepth(TreeNode root) {
-        if (root == null) {
+        if (root == null) { //如果树为空，返回0
             return 0;
-        }
-
+        }//如果左或右子树为空，返回1
         if (root.left == null && root.right == null) {
             return 1;
         }
-
-        int min_depth = Integer.MAX_VALUE;
-        if (root.left != null) {
+        int min_depth = Integer.MAX_VALUE; //初始值最小深度为最大整数
+        if (root.left != null) { //递归求左子树深度并更新最小深度
             min_depth = Math.min(minDepth(root.left), min_depth);
-        }
+        } //递归求右子树深度并更新最小深度
         if (root.right != null) {
             min_depth = Math.min(minDepth(root.right), min_depth);
         }
-
-        return min_depth + 1;
+        return min_depth + 1; //返回最小深度+1，因为根节点深度没统计
     }
 
     class TreeNode {

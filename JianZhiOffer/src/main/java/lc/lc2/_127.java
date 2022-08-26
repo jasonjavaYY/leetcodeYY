@@ -36,58 +36,64 @@ sk == endWord
 
 * */
 public class _127 {
+    //给每个单词标号id。创建由 word 到 id 的映射 wordId
     Map<String, Integer> wordId = new HashMap<String, Integer>();
+    //保存边，edge[idx]是个数组，代表从idx可以一步到达哪些节点的id数组
     List<List<Integer>> edge = new ArrayList<List<Integer>>();
-    int nodeNum = 0;
+    int nodeNum = 0;  //记录节点数
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        for (String word : wordList) {
+        for (String word : wordList) { //遍历单词列表，为每个单词构造虚拟节点添加边
             addEdge(word);
         }
-        addEdge(beginWord);
+        addEdge(beginWord); //给开始单词添加边
+        //如果添加完所有节点和边，单词映射表不包含结束单词，肯定没法转换，返回0
         if (!wordId.containsKey(endWord)) {
             return 0;
         }
-        int[] dis = new int[nodeNum];
-        Arrays.fill(dis, Integer.MAX_VALUE);
-        int beginId = wordId.get(beginWord), endId = wordId.get(endWord);
-        dis[beginId] = 0;
+        int[] dis = new int[nodeNum];  //存放到指定节点的最短距离
+        Arrays.fill(dis, Integer.MAX_VALUE); //最开始设置为最大值
+        int beginId = wordId.get(beginWord), endId = wordId.get(endWord); //获取开始id和结束id
+        dis[beginId] = 0; //到达初始节点距离是0，因为不需要变换
 
-        Queue<Integer> que = new LinkedList<Integer>();
-        que.offer(beginId);
-        while (!que.isEmpty()) {
-            int x = que.poll();
-            if (x == endId) {
-                return dis[endId] / 2 + 1;
+        Queue<Integer> que = new LinkedList<Integer>(); //构造队列
+        que.offer(beginId); //起点加入队列
+        while (!que.isEmpty()) { //广度搜索
+            int x = que.poll(); //弹出队首id
+            if (x == endId) { //如果队首id是结束id表明找到了路径，
+                return dis[endId] / 2 + 1; //返回到endId的距离/2+1
             }
-            for (int it : edge.get(x)) {
-                if (dis[it] == Integer.MAX_VALUE) {
-                    dis[it] = dis[x] + 1;
-                    que.offer(it);
+            for (int it : edge.get(x)) { //否则遍历包含x的所有边的节点id
+                if (dis[it] == Integer.MAX_VALUE) { //如果还没遇到过
+                    dis[it] = dis[x] + 1; //就更新dis[it]=dis[x]+1，因为从x需要再更新一次
+                    que.offer(it); //将it节点加入队列
                 }
             }
         }
-        return 0;
+        return 0; //遍历都没找到，就返回0
     }
 
     public void addEdge(String word) {
-        addWord(word);
-        int id1 = wordId.get(word);
-        char[] array = word.toCharArray();
+        addWord(word); //先把单词加入表中，增加一条空边
+        int id1 = wordId.get(word); //获取单词对应的节点值id1
+        char[] array = word.toCharArray(); //单词转换成字符数组
         int length = array.length;
-        for (int i = 0; i < length; ++i) {
-            char tmp = array[i];
+        for (int i = 0; i < length; ++i) { //遍历字符数组
+            char tmp = array[i]; //更新第i位为*
             array[i] = '*';
+            //构造虚拟的新单词
             String newWord = new String(array);
-            addWord(newWord);
-            int id2 = wordId.get(newWord);
+            addWord(newWord); //添加新单词
+            int id2 = wordId.get(newWord); //从映射表中获取新单词的id2
+            //id1和id2能互相转换，增加两条边
             edge.get(id1).add(id2);
             edge.get(id2).add(id1);
-            array[i] = tmp;
+            array[i] = tmp; //恢复原单词
         }
     }
 
     public void addWord(String word) {
+        //如果映射表不包含该单词，将其加入表中，新增一条空边
         if (!wordId.containsKey(word)) {
             wordId.put(word, nodeNum++);
             edge.add(new ArrayList<Integer>());

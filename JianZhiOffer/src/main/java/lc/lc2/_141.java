@@ -16,19 +16,21 @@ package lc.lc2;
 * */
 public class _141 {
     public boolean hasCycle(ListNode head) {
+        //如果链表为空或者只有一个节点，返回false
         if (head == null || head.next == null) {
             return false;
         }
-        ListNode slow = head;
+        ListNode slow = head; //定义快慢指针，快指针在前
         ListNode fast = head.next;
-        while (slow != fast) {
+        while (slow != fast) {//循环判断快慢指针是否指向同节点
+            //如果快指针到末尾了，说明没有环，返回false
             if (fast == null || fast.next == null) {
                 return false;
             }
-            slow = slow.next;
+            slow = slow.next; //更新快慢指针
             fast = fast.next.next;
         }
-        return true;
+        return true; //如果能退出，说明快慢指针相遇，有环返回true
     }
 
     class ListNode {

@@ -37,25 +37,29 @@ dp[i][j]={  dp[i+1][j+1]+dp[i+1][j],   s[i]=t[j]
 * */
 public class _115 {
     public int numDistinct(String s, String t) {
-        int m = s.length(), n = t.length();
-        if (m < n) {
+        int m = s.length(), n = t.length(); //计算s和t的长度m和n
+        if (m < n) { //如果s长度小于t，s肯定不包含t的子序列，返回0
             return 0;
-        }
-        int[][] dp = new int[m + 1][n + 1];
+        } //dp[i][j] 表示在 s[i:] 子序列中 t[j:] 出现个数
+        int[][] dp = new int[m + 1][n + 1]; //构造dp
+        //j=n 时，t[j:]为空串，空字符串是任何字符串的子序列，因此dp[i][n]=1
         for (int i = 0; i <= m; i++) {
             dp[i][n] = 1;
         }
-        for (int i = m - 1; i >= 0; i--) {
-            char sChar = s.charAt(i);
+        for (int i = m - 1; i >= 0; i--) { //i<m，j<n时
+            char sChar = s.charAt(i); //获取s[i]
             for (int j = n - 1; j >= 0; j--) {
-                char tChar = t.charAt(j);
+                char tChar = t.charAt(j);//获取t[j]
+                //如果s[i]=t[j]，不代表s[i]要和t[j]匹配，这种情况有匹配的权力
+                //如果匹配，则考虑t[j+1:] 作为s[i+1:]子序列，为 dp[i+1][j+1]；
+                //如果不匹配，则考虑t[j:] 作为s[i+1:]子序列，为 dp[i+1][j]。
                 if (sChar == tChar) {
                     dp[i][j] = dp[i + 1][j + 1] + dp[i + 1][j];
-                } else {
+                } else {//s[i]！=t[j]时，s[i]不能和t[j]匹配，只考虑t[j:]作为s[i+1:]子序列，为 dp[i+1][j]
                     dp[i][j] = dp[i + 1][j];
                 }
             }
         }
-        return dp[0][0];
+        return dp[0][0]; //返回dp[0][0]
     }
 }

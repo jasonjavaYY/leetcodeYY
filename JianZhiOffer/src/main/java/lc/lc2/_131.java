@@ -7,7 +7,7 @@ import java.util.List;
 /*
 * 分割回文串
 *
-* 给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是 回文串 。返回 s 所有可能的分割方案。
+* 给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文串 。返回 s 所有可能的分割方案。
 回文串 是正着读和反着读都一样的字符串。
 示例 1：
 输入：s = "aab"
@@ -33,38 +33,41 @@ f(i,j)={     True,                      i≥j
 预处理完成之后，我们只需要 O(1) 的时间就可以判断任意 s[i..j] 是否为回文串了。
 * */
 public class _131 {
-    boolean[][] f;
+    boolean[][] f; //f(i,j)表示s[i..j]是否为回文串
+    //存放结果数组，是一个二层数组
     List<List<String>> ret = new ArrayList<List<String>>();
-    List<String> ans = new ArrayList<String>();
-    int n;
+    List<String> ans = new ArrayList<String>(); //存放一种可能的分割方式
+    int n; //保存输入字符串长度
 
     public List<List<String>> partition(String s) {
-        n = s.length();
-        f = new boolean[n][n];
-        for (int i = 0; i < n; ++i) {
+        n = s.length(); //计算字符串长度n
+        f = new boolean[n][n]; //构造f
+        for (int i = 0; i < n; ++i) { //最开始都填充为true
             Arrays.fill(f[i], true);
         }
-
-        for (int i = n - 1; i >= 0; --i) {
+        //i≥j代表空串或单字符的串，为true
+        //f(i,j)={     True,                      i≥j
+        //​	           f(i+1,j−1)∧(s[i]=s[j]),   otherwise
+        for (int i = n - 1; i >= 0; --i) {//i逆向遍历
             for (int j = i + 1; j < n; ++j) {
+                //j从i+1开始，利用状态方程更新f[i][j]
                 f[i][j] = (s.charAt(i) == s.charAt(j)) && f[i + 1][j - 1];
             }
         }
-
-        dfs(s, 0);
+        dfs(s, 0); //从第0位开始搜索字符串s
         return ret;
     }
 
     public void dfs(String s, int i) {
-        if (i == n) {
-            ret.add(new ArrayList<String>(ans));
+        if (i == n) { //如果i=n代表遍历完了原字符串
+            ret.add(new ArrayList<String>(ans)); //将ans放入ret返回
             return;
         }
-        for (int j = i; j < n; ++j) {
-            if (f[i][j]) {
+        for (int j = i; j < n; ++j) {//否则j从i开始
+            if (f[i][j]) { //如果i到j是回文串，就将i到j子串加入ans
                 ans.add(s.substring(i, j + 1));
-                dfs(s, j + 1);
-                ans.remove(ans.size() - 1);
+                dfs(s, j + 1); //继续回溯j+1
+                ans.remove(ans.size() - 1);//回退时删除ans最后一个串
             }
         }
     }

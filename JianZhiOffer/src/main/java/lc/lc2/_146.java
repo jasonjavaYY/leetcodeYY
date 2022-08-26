@@ -47,10 +47,10 @@ LRU 缓存机制可以通过哈希表辅以双向链表实现，我们用一个�
 * */
 public class _146 {
     class LRUCache {
-        class DLinkedNode {
-            int key;
+        class DLinkedNode { //双向链表
+            int key; //存放k和v
             int value;
-            DLinkedNode prev;
+            DLinkedNode prev;//前后指针
             DLinkedNode next;
 
             public DLinkedNode() {
@@ -62,12 +62,14 @@ public class _146 {
             }
         }
 
+        //哈希表辅以双向链表实现，哈希表存放key到节点
         private Map<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
-        private int size;
-        private int capacity;
-        private DLinkedNode head, tail;
+        private int size;  //当前节点数
+        private int capacity; //最大容量
+        private DLinkedNode head, tail; //头尾节点
 
-        public LRUCache(int capacity) {
+        public LRUCache(int capacity) {//构造方法
+            //初始化size、容量。头尾节点，头尾互相指向对方
             this.size = 0;
             this.capacity = capacity;
             // 使用伪头部和伪尾部节点
@@ -77,58 +79,66 @@ public class _146 {
             tail.prev = head;
         }
 
-        public int get(int key) {
+        public int get(int key) {//从缓存中获取指定key的节点
             DLinkedNode node = cache.get(key);
-            if (node == null) {
+            if (node == null) {//如果节点为空，返回-1
                 return -1;
             }
-            // 如果 key 存在，先通过哈希表定位，再移到头部
+            //将node删除再插入到头节点，保证最新访问的在最前面
             moveToHead(node);
-            return node.value;
+            return node.value;//返回节点值
         }
 
+        //放入
         public void put(int key, int value) {
-            DLinkedNode node = cache.get(key);
+            DLinkedNode node = cache.get(key);//获取key对应的node
             if (node == null) {
-                // 如果 key 不存在，创建一个新的节点
+                // 如果node不存在，根据k和v创建新节点
                 DLinkedNode newNode = new DLinkedNode(key, value);
-                // 添加进哈希表
-                cache.put(key, newNode);
-                // 添加至双向链表的头部
-                addToHead(newNode);
-                ++size;
+                cache.put(key, newNode);// node添加进哈希表
+                addToHead(newNode); // node添加至链表头
+                ++size; //更新size
                 if (size > capacity) {
-                    // 如果超出容量，删除双向链表的尾部节点
-                    DLinkedNode tail = removeTail();
-                    // 删除哈希表中对应的项
-                    cache.remove(tail.key);
-                    --size;
+                    DLinkedNode tail = removeTail();//如果超出容量删除尾节点
+                    cache.remove(tail.key);//删除哈希表中对应项
+                    --size;//size--
                 }
             } else {
-                // 如果 key 存在，先通过哈希表定位，再修改 value，并移到头部
+                //如果node存在，更新value并移到头部
                 node.value = value;
                 moveToHead(node);
             }
         }
 
+        //节点添加到头，双向链表添加节点要移动四个指针
         private void addToHead(DLinkedNode node) {
+            //head是虚拟节点，因此让node的pre指向head
+            //node的next指向head的next
             node.prev = head;
             node.next = head.next;
+            //head的next的pre指向node
+            //head的next指向node
             head.next.prev = node;
             head.next = node;
         }
 
+        //删除某个节点，要移动两个指针
         private void removeNode(DLinkedNode node) {
+            //node的前节点的next指向node的next，跳过node
             node.prev.next = node.next;
+            //node的后节点的pre指向node的pre，也跳过node实现删除node
             node.next.prev = node.prev;
         }
 
+        //先将node删除，然后将node添加到头
         private void moveToHead(DLinkedNode node) {
             removeNode(node);
             addToHead(node);
         }
 
+        //删除尾节点
         private DLinkedNode removeTail() {
+            //tail也是虚拟节点，获取tail的pre是当前的尾节点，将其删除
             DLinkedNode res = tail.prev;
             removeNode(res);
             return res;

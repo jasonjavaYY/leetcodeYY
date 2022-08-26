@@ -39,16 +39,16 @@ import java.util.LinkedList;
 * */
 public class _150 {
     public int evalRPN(String[] tokens) {
-        Deque<Integer> stack = new LinkedList<Integer>();
-        int n = tokens.length;
-        for (int i = 0; i < n; i++) {
+        Deque<Integer> stack = new LinkedList<Integer>();//栈存储操作数
+        int n = tokens.length; //计算传入波兰式长度n
+        for (int i = 0; i < n; i++) {//遍历每个字符
             String token = tokens[i];
-            if (isNumber(token)) {
+            if (isNumber(token)) {//如果字符是数字直接转换成整形入栈
                 stack.push(Integer.parseInt(token));
-            } else {
+            } else {//否则是表达式，弹出栈顶两个元素
                 int num2 = stack.pop();
                 int num1 = stack.pop();
-                switch (token) {
+                switch (token) {//针对表达式对栈顶两元素计算，结果入栈
                     case "+":
                         stack.push(num1 + num2);
                         break;
@@ -65,10 +65,10 @@ public class _150 {
                 }
             }
         }
-        return stack.pop();
+        return stack.pop();//最后返回栈顶元素就是结果
     }
 
-    public boolean isNumber(String token) {
+    public boolean isNumber(String token) {//不是+-*/就是数字
         return !("+".equals(token) || "-".equals(token) || "*".equals(token) || "/".equals(token));
     }
 }

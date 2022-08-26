@@ -9,18 +9,18 @@ import java.util.List;
  * */
 public class _145 {
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
+        List<Integer> res = new ArrayList<Integer>(); //存放结果
         postorder(root, res);
         return res;
     }
 
     public void postorder(TreeNode root, List<Integer> res) {
-        if (root == null) {
+        if (root == null) {//如果节点为空返回
             return;
-        }
-        postorder(root.left, res);
+        }//左右根
+        postorder(root.left, res);//递归左右
         postorder(root.right, res);
-        res.add(root.val);
+        res.add(root.val);//节点放入res
     }
 
     class TreeNode {

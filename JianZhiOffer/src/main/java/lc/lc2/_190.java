@@ -14,11 +14,12 @@ package lc.lc2;
 * */
 public class _190 {
     public int reverseBits(int n) {
-        int rev = 0;
+        int rev = 0; //i从0开始，i<32且n不为0
         for (int i = 0; i < 32 && n != 0; ++i) {
+            //|=就是位运算的+= rev+=(n&1)<<(31-i0)
             rev |= (n & 1) << (31 - i);
-            n >>>= 1;
+            n >>>= 1;//n右移
         }
-        return rev;
+        return rev;//返回rev
     }
 }
