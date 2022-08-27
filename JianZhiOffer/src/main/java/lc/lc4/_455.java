@@ -30,16 +30,20 @@ import java.util.Arrays;
 * 由于 g 和 s 已经排好序，因此整个过程只需要对数组 g 和 s 各遍历一次。两个数组之一遍历结束时，说明所有孩子都分配到了饼干，或所有饼干都已经被分配
 * ,此时被分配到饼干的孩子数量即为可以满足的最多数量。
 * */
+//每个孩子最多一块饼干。孩子i有胃口值g[i]，饼干j有尺寸s[j]。如果s[j]>=g[i]孩子满足。输出能满足孩子的最大值
 public class _455 {
     public int findContentChildren(int[] g, int[] s) {
-        Arrays.sort(g);
-        Arrays.sort(s);
-        int numOfChildren = g.length, numOfCookies = s.length;
-        int count = 0;
+        Arrays.sort(g);//孩子胃口升序排序
+        Arrays.sort(s);//饼干大小升序排序
+        int numOfChildren = g.length, numOfCookies = s.length;//计算孩子数和饼干数
+        int count = 0;//保存满足的最多孩子数
+        //i从0到孩子数，j从0到饼干数遍历，注意外层循环j每次不一定比上一次大1，因为内层也会j++
+        //如果外层循环j跳跃了多个，说明部分小饼干没法用，不能满足胃口最小的孩子被跳过了
         for (int i = 0, j = 0; i < numOfChildren && j < numOfCookies; i++, j++) {
+            //如果j小于饼干数且孩子胃口大于饼干，就j++找下一块更大饼干
             while (j < numOfCookies && g[i] > s[j]) {
                 j++;
-            }
+            }//如果j小于饼干数，说明找到了满足g[i]胃口最小的饼干就count++
             if (j < numOfCookies) {
                 count++;
             }

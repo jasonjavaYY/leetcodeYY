@@ -30,25 +30,29 @@ import java.util.Map;
 * 它对 o 的贡献是 x 被选中和不被选中情况下权值和的较大值。故 g(o)=max{f(l),g(l)}+max{f(r),g(r)}。至此，我们可以用哈希表来存 f 和 g 的
 * 函数值，用深度优先搜索的办法后序遍历这棵二叉树，我们就可以得到每一个节点的 f 和 g。根节点的 f 和 g 的最大值就是我们要找的答案。
 * */
+//如果二叉树直接相连节点在同一天晚上被劫将报警。给二叉树，返回不触动警报能盗取最高金额
 public class _337 {
+    //f(o)表示选择o节点下，o节点子树被选择的节点最大权值和；g(o)表示不选择o节点下子树被选择的节点最大权值和
     Map<TreeNode, Integer> f = new HashMap<TreeNode, Integer>();
     Map<TreeNode, Integer> g = new HashMap<TreeNode, Integer>();
 
     public int rob(TreeNode root) {
-        dfs(root);
+        dfs(root);//dfs树               //返回f和g在root对应值的较大值
         return Math.max(f.getOrDefault(root, 0), g.getOrDefault(root, 0));
     }
 
     public void dfs(TreeNode node) {
-        if (node == null) {
+        if (node == null) {//如果节点位空直接返回
             return;
         }
-        dfs(node.left);
+        dfs(node.left);//dfs左右节点
         dfs(node.right);
+        //节点被选中下子树被选中的最大权值和为 l 和 r 不被选中的最大权值和相加再加当前值，f(o)=g(l)+g(r)+node(o)，默认值0代表空节点
         f.put(node, node.val + g.getOrDefault(node.left, 0) + g.getOrDefault(node.right, 0));
-        g.put(node, Math.max(f.getOrDefault(node.left, 0), g.getOrDefault(node.left, 0)) + Math.max(f.getOrDefault(node.right, 0), g.getOrDefault(node.right, 0)));
+        //节点不被选中，左右孩子可以选也可不选，对o某个孩子x，它对o的贡献是x被选或不被选的较大值。g(o)=max{f(l),g(l)}+max{f(r),g(r)}
+        g.put(node, Math.max(f.getOrDefault(node.left, 0), g.getOrDefault(node.left, 0)) +
+                Math.max(f.getOrDefault(node.right, 0), g.getOrDefault(node.right, 0)));
     }
-
     class TreeNode {
         int val;
         TreeNode left;

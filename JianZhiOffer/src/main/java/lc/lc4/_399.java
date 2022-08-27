@@ -41,24 +41,25 @@ import java.util.Map;
 * 有向边权值乘积，a 的父亲结点要修改成根结点，它的权值依然是从当前结点到根结点经过的所有有向边的权值的乘积.
 * 合并」操作基于这样一个 很重要的前提：我们将要合并的两棵树的高度最多为 22，换句话说两棵树都必需是「路径压缩」以后的效果，
 * */
+//一个变量对数组equations和实数值数组values为已知条件，其中equations[i]=[Ai, Bi]和values[i]
+//表示Ai / Bi = values[i]。Ai 或 Bi 是表示单个变量的字符串。另有一些以数组 queries 表示的问题，
+//queries[j] = [Cj, Dj]，根据已知条件找出 Cj / Dj结果作为答案。返回所有问题答案 。如果无法确定用-1.0
 public class _399 {
 
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
-        int equationsSize = equations.size();
-
+        int equationsSize = equations.size();//的到方程数
         UnionFind unionFind = new UnionFind(2 * equationsSize);
-        // 第 1 步：预处理，将变量的值与 id 进行映射，使得并查集的底层使用数组实现，方便编码
+        // 第 1 步：变量值与id映射
         Map<String, Integer> hashMap = new HashMap<>(2 * equationsSize);
         int id = 0;
-        for (int i = 0; i < equationsSize; i++) {
-            List<String> equation = equations.get(i);
+        for (int i = 0; i < equationsSize; i++) {//遍历方程
+            List<String> equation = equations.get(i);//获取方程中的Ai和Bi字符串
             String var1 = equation.get(0);
             String var2 = equation.get(1);
-
-            if (!hashMap.containsKey(var1)) {
+            if (!hashMap.containsKey(var1)) {//如果映射表不含Ai，将其和id放入
                 hashMap.put(var1, id);
-                id++;
-            }
+                id++;//id++，保证所有变量对应唯一的id
+            }//如果映射表不含Bi，将其和id放入
             if (!hashMap.containsKey(var2)) {
                 hashMap.put(var2, id);
                 id++;
@@ -86,14 +87,11 @@ public class _399 {
     }
 
     private class UnionFind {
-
         private int[] parent;
-
         /**
          * 指向的父结点的权值
          */
         private double[] weight;
-
 
         public UnionFind(int n) {
             this.parent = new int[n];
@@ -103,7 +101,7 @@ public class _399 {
                 weight[i] = 1.0d;
             }
         }
-
+        //x和y代表一组Ai和Bi的id，value是Ai/Bi的值
         public void union(int x, int y, double value) {
             int rootX = find(x);
             int rootY = find(y);
@@ -118,7 +116,6 @@ public class _399 {
 
         /**
          * 路径压缩
-         *
          * @param x
          * @return 根结点的 id
          */

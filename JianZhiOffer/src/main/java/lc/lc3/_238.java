@@ -24,20 +24,21 @@ res[1] =	num[0]	  1	        ...	    num[n-2]	num[n-1]
 res[n-2] =	num[0]	  num[1]	...	    1	        num[n-1]
 res[n-1] =	num[0]	  num[1]	...	    num[n-2]	1
 * */
+//给一个整数数组nums，返回数组answer，answer[i]等于nums中除nums[i]外其余元素乘积
 public class _238 {
     public int[] productExceptSelf(int[] nums) {
-        int[] res = new int[nums.length];
-        int p = 1, q = 1;
+        int[] res = new int[nums.length]; //构造res结果数组
+        int p = 1, q = 1;//初始化p和q都是1，后面累乘
         //先把下三角每行非1数字都乘到res中
-        for (int i = 0; i < nums.length; i++) {
-            res[i] = p;
-            p *= nums[i];
+        for (int i = 0; i < nums.length; i++) {//i从0到len
+            res[i] = p;//res[i] = p
+            p *= nums[i];//p*= nums[i]
         }
         //再把上三角每行乘机乘到res中
-        for (int i = nums.length - 1; i > 0; i--) {
-            q *= nums[i];
-            res[i - 1] *= q;
+        for (int i = nums.length - 1; i > 0; i--) {//i从len到0
+            q *= nums[i];//q *= nums[i]
+            res[i - 1] *= q;//res[i - 1] *= q
         }
-        return res;
+        return res;//返回res
     }
 }

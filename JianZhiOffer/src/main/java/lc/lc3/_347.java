@@ -22,32 +22,33 @@ import java.util.PriorityQueue;
 可以建立一个小顶堆，然后遍历「出现次数数组」：如果堆元素个数小于 k，直接插入堆。如果堆元素个数等于 k，则检查堆顶与当前出现次数的大小。如果堆顶更大，
 * 舍弃当前值；否则，就弹出堆顶，将当前值插入堆。遍历完成后，堆中的元素就代表了「出现次数数组」中前 kk 大的值。
 * */
+//一个整数数组nums和整数k，返回出现频率前k高元素
 public class _347 {
     public int[] topKFrequent(int[] nums, int k) {
-        Map<Integer, Integer> occurrences = new HashMap<Integer, Integer>();
-        for (int num : nums) {
+        Map<Integer, Integer> occurrences = new HashMap<Integer, Integer>();//记录各数字出现次数
+        for (int num : nums) {//num作为key，如果已经有值了就+1，否则default为0
             occurrences.put(num, occurrences.getOrDefault(num, 0) + 1);
         }
-
-        // int[] 的第一个元素代表数组的值，第二个元素代表了该值出现的次数
+        // int[]第一元素代表数值，第二元素代表该值次数，按次数构造小顶堆
         PriorityQueue<int[]> queue = new PriorityQueue<int[]>(new Comparator<int[]>() {
             public int compare(int[] m, int[] n) {
                 return m[1] - n[1];
             }
         });
         for (Map.Entry<Integer, Integer> entry : occurrences.entrySet()) {
+            //遍历出现次数map，获取数字num及次数count
             int num = entry.getKey(), count = entry.getValue();
-            if (queue.size() == k) {
-                if (queue.peek()[1] < count) {
-                    queue.poll();
+            if (queue.size() == k) {//如果堆大小达到k
+                if (queue.peek()[1] < count) {//如果栈顶元素次数小于count
+                    queue.poll();//就弹出栈顶元素，将新元素放入
                     queue.offer(new int[]{num, count});
                 }
-            } else {
+            } else {//如果堆大小没到k，直接放入元素
                 queue.offer(new int[]{num, count});
             }
         }
-        int[] ret = new int[k];
-        for (int i = 0; i < k; ++i) {
+        int[] ret = new int[k];//构造返回数组
+        for (int i = 0; i < k; ++i) {//将小顶堆内的num加入结果集合
             ret[i] = queue.poll()[0];
         }
         return ret;

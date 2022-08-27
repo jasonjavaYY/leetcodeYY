@@ -30,36 +30,37 @@ import java.util.Deque;
 代码实现中，若读到一个运算符，或者遍历到字符串末尾，即认为是遍历到了数字末尾。处理完该数字后，更新 preSign 为当前遍历的字符。
 遍历完字符串 s 后，将栈中元素累加，即为该字符串表达式的值。
 * */
+//字符串表达式s，实现计算器来计算它的值。除法仅保留整数，仅包含+-*/和数字
 public class _227 {
     public int calculate(String s) {
-        Deque<Integer> stack = new ArrayDeque<Integer>();
-        char preSign = '+';
+        Deque<Integer> stack = new ArrayDeque<Integer>();//构造栈
+        char preSign = '+'; //每个数字前的运算符
         int num = 0;
-        int n = s.length();
-        for (int i = 0; i < n; ++i) {
-            if (Character.isDigit(s.charAt(i))) {
+        int n = s.length();//计算字符串长度
+        for (int i = 0; i < n; ++i) {//遍历字符串
+            if (Character.isDigit(s.charAt(i))) {//如果字符是数字，将连续数字全取出并计算num
                 num = num * 10 + s.charAt(i) - '0';
-            }
+            }//如果字符不是数字并且不是空格，或者到了最后一位
             if (!Character.isDigit(s.charAt(i)) && s.charAt(i) != ' ' || i == n - 1) {
-                switch (preSign) {
+                switch (preSign) {//判断数字前的运算符，如果是+
                     case '+':
-                        stack.push(num);
+                        stack.push(num);//将num入栈
                         break;
                     case '-':
-                        stack.push(-num);
+                        stack.push(-num);//如果是-，将-num入栈
                         break;
                     case '*':
-                        stack.push(stack.pop() * num);
+                        stack.push(stack.pop() * num);//如果是*将栈顶出栈*num再入栈
                         break;
                     default:
-                        stack.push(stack.pop() / num);
-                }
+                        stack.push(stack.pop() / num);//如果是/将栈顶出栈/num再入栈
+                }//更新前置符号，重置num=0
                 preSign = s.charAt(i);
                 num = 0;
             }
         }
         int ans = 0;
-        while (!stack.isEmpty()) {
+        while (!stack.isEmpty()) {//将栈内元素累加就是结果
             ans += stack.pop();
         }
         return ans;

@@ -23,28 +23,28 @@ package lc.lc3;
 * 当遇到空节点时，仅将栈顶元素减 1；当遇到非空节点时，将栈顶元素减 1 后，再向栈中压入一个 2。无论何时，如果栈顶元素变为 0，就立刻将栈顶弹出。
 * 如果把栈中元素看成一个整体，即所有剩余槽位的数量，也能维护槽位的变化。因此只维护一个计数器，代表栈中所有元素之和，其余的操作逻辑均可以保持不变。
 * */
+//非空节点记录节点值。空节点用#标记。一串逗号分隔的序列，验证它是否是正确的二叉树前序序列化
 public class _331 {
     public boolean isValidSerialization(String preorder) {
-        int n = preorder.length();
+        int n = preorder.length(); //获取字符串长度
         int i = 0;
-        int slots = 1;
-        while (i < n) {
-            if (slots == 0) {
+        int slots = 1;//遇到空节点消耗一个槽；非空节点消耗一个槽再补充两个槽
+        while (i < n) {//遍历字符串序列
+            if (slots == 0) {//如果槽位数是0，返回false
                 return false;
             }
-            if (preorder.charAt(i) == ',') {
+            if (preorder.charAt(i) == ',') {//分隔符直接跳过
                 i++;
-            } else if (preorder.charAt(i) == '#') {
+            } else if (preorder.charAt(i) == '#') {//如果是空位，slot++
                 slots--;
                 i++;
-            } else {
-                // 读一个数字
+            } else {//否则是数字，读出到下一个,的所有数字
                 while (i < n && preorder.charAt(i) != ',') {
                     i++;
                 }
                 slots++; // slots = slots - 1 + 2
             }
         }
-        return slots == 0;
+        return slots == 0;//遍历完判断槽是否位0
     }
 }

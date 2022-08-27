@@ -24,32 +24,35 @@ import java.util.Map;
 * 不断更新哈希表，如果发生了冲突，则说明给定的输入不满足双射关系。在实际代码中，我们枚举 pattern 中的每一个字符，利用双指针来均摊线性地找
 * 到该字符在 str 中对应的字符串。每次确定一个字符与字符串的组合，我们就检查是否出现冲突，最后我们再检查两字符串是否比较完毕即可。
 * */
+//给一种规律pattern和一个字符串s ，判断 s 是否遵循相同规律
 public class _290 {
     public boolean wordPattern(String pattern, String str) {
+        //建立两个映射表，字符串到字符，字符到字符串
         Map<String, Character> str2ch = new HashMap<String, Character>();
         Map<Character, String> ch2str = new HashMap<Character, String>();
-        int m = str.length();
-        int i = 0;
-        for (int p = 0; p < pattern.length(); ++p) {
-            char ch = pattern.charAt(p);
-            if (i >= m) {
+        int m = str.length(); //单词字符串长度m
+        int i = 0;//代表单词起始下标
+        for (int p = 0; p < pattern.length(); ++p) {//遍历模式串
+            char ch = pattern.charAt(p);//获取模式串每个位置字符
+            if (i >= m) {//如果单词起始下标超出单词字符串长度m，返回false
                 return false;
             }
-            int j = i;
-            while (j < m && str.charAt(j) != ' ') {
+            int j = i; //j是单词结束下标
+            while (j < m && str.charAt(j) != ' ') {//找到字符串中对应单词的结束下标
                 j++;
             }
-            String tmp = str.substring(i, j);
+            String tmp = str.substring(i, j); //获取单词
+            //如果str2ch映射包含该单词但该单词对应的字符不是ch返回false
             if (str2ch.containsKey(tmp) && str2ch.get(tmp) != ch) {
                 return false;
-            }
+            }//如果ch2str映射包含该字符但该字符对应的单词不是tmp返回false
             if (ch2str.containsKey(ch) && !tmp.equals(ch2str.get(ch))) {
                 return false;
             }
-            str2ch.put(tmp, ch);
+            str2ch.put(tmp, ch);//否则说明没找到映射，将映射关系放入两个表
             ch2str.put(ch, tmp);
-            i = j + 1;
+            i = j + 1;//重置i位置为当前单词最后一个字母后一位
         }
-        return i >= m;
+        return i >= m;//返回i是否≥m，即单词字符串都被遍历完了
     }
 }

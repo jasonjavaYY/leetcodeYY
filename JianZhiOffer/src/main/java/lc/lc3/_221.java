@@ -36,27 +36,29 @@ dp(i,j)=min(dp(i−1,j),dp(i−1,j−1),dp(i,j−1))+1
 0 1 2 3 2
 0 0 1 2 3
 * */
+//由 '0' 和 '1' 组成的二维矩阵找到只包含 '1' 的最大正方形返回面积
 public class _221 {
     public int maximalSquare(char[][] matrix) {
         int maxSide = 0;
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-            return maxSide;
-        }
+            return maxSide; //如果矩阵为空，返回0
+        } //计算行列
         int rows = matrix.length, columns = matrix[0].length;
-        int[][] dp = new int[rows][columns];
+        //dp(i,j)表示(i,j)为右下角且只包含1的正方形边长最大值
+        int[][] dp = new int[rows][columns];//构造dp，初始值都是0
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (matrix[i][j] == '1') {
+            for (int j = 0; j < columns; j++) {//遍历行列
+                if (matrix[i][j] == '1') {//如果ij是1
+                    //如果i或j有一个为 0，则(i,j)为右下角的最大正方形的边长只能是1
                     if (i == 0 || j == 0) {
                         dp[i][j] = 1;
-                    } else {
+                    } else {//dp(i,j)值由上方、左方和左上三个相邻dp决定，dp(i,j)等于三个相邻位置元素中最小值加1
                         dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
-                    }
+                    } //找到一个dp[i][j]就更新最大边长
                     maxSide = Math.max(maxSide, dp[i][j]);
                 }
             }
-        }
-        int maxSquare = maxSide * maxSide;
-        return maxSquare;
+        }//返回最大面积
+        return maxSide * maxSide;
     }
 }

@@ -34,50 +34,56 @@ import java.util.Set;
 * 然后再检查这个序列是否是非严格递增的。当然，我们还需要解决子序列去重的问题。每次我们找到一个合法序列的时候，都去计算这个序列的哈希值，
 * 用一个哈希表来记录已有的哈希值，如果该值已经出现在哈希表中，就舍弃这个序列，否则就把这个序列加入到答案中。
 * */
+//一个整数数组nums，找出所有该数组中不同的递增子序列，至少有两个元素，两整数相等视作递增
 public class _491 {
-    List<Integer> temp = new ArrayList<Integer>();
-    List<List<Integer>> ans = new ArrayList<List<Integer>>();
-    Set<Integer> set = new HashSet<Integer>();
-    int n;
+    List<Integer> temp = new ArrayList<Integer>(); //存放一种子序列，每找下一个子序列都清空它
+    List<List<Integer>> ans = new ArrayList<List<Integer>>();//用于存放结果
+    Set<Integer> set = new HashSet<Integer>(); //存放所有已经出现序列的哈希值
+    int n; //保存输入数组长度
 
     public List<List<Integer>> findSubsequences(int[] nums) {
-        n = nums.length;
+        n = nums.length;//计算输入数组长度
+        //长度n的序列选子序列一共有2^n种
         for (int i = 0; i < (1 << n); ++i) {
-            findSubsequences(i, nums);
+            findSubsequences(i, nums);//根据标记位i从nums中找子序列
+            //要解决子序列去重问题。每找到一个合法序列都计算序列的哈希
             int hashValue = getHash(263, (int) 1E9 + 7);
+            //如果子序列合法并且哈希值集合中不包含该子序列的哈希
             if (check() && !set.contains(hashValue)) {
+                //就将子序列加入ans中，将哈希值加入set中
                 ans.add(new ArrayList<Integer>(temp));
                 set.add(hashValue);
             }
         }
-        return ans;
+        return ans; //最后返回ans
     }
 
     public void findSubsequences(int mask, int[] nums) {
-        temp.clear();
-        for (int i = 0; i < n; ++i) {
-            if ((mask & 1) != 0) {
+        temp.clear();//清除子序列
+        for (int i = 0; i < n; ++i) {//i从0到n
+            if ((mask & 1) != 0) {//如果mask这位是1，就将nums[i]加入集合
                 temp.add(nums[i]);
             }
-            mask >>= 1;
+            mask >>= 1;//标记位右移一位
         }
     }
-
+    //计算哈希
     public int getHash(int base, int mod) {
         int hashValue = 0;
-        for (int x : temp) {
+        for (int x : temp) {//遍历子序列每个整数，不断更新哈希值
             hashValue = hashValue * base % mod + (x + 101);
             hashValue %= mod;
         }
         return hashValue;
     }
-
+    //检查子序列是否递增
     public boolean check() {
         for (int i = 1; i < temp.size(); ++i) {
+            //从i开始遍历子序列每个数值，如果值小于前一个值返回false
             if (temp.get(i) < temp.get(i - 1)) {
                 return false;
             }
-        }
+        }//保证递增，最后判断子序列是否至少含2个数
         return temp.size() >= 2;
     }
 }

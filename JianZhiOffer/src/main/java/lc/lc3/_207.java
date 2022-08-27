@@ -49,22 +49,23 @@ import java.util.List;
 当 u 的所有相邻节点都为「已完成」时，我们将 u 放入栈中，并将其标记为「已完成」。
 在整个深度优先搜索的过程结束后，如果我们没有找到图中的环，那么栈中存储这所有的 n 个节点，从栈顶到栈底的顺序即为一种拓扑排序。
 * */
+//修numCourses门课。修某些课前要先修课程。数组prerequisites给出，prerequisites[i]=[ai, bi]表示学ai必须先学bi。判断能否学完所有课程
 public class _207 {
     List<List<Integer>> edges;
-    int[] visited;
-    boolean valid = true;
+    int[] visited; //标记某节点是否为搜索过0是未搜索，1是搜索中，2是已完成
+    boolean valid = true; //标记是否存在可能的排序
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        edges = new ArrayList<List<Integer>>();
+        edges = new ArrayList<List<Integer>>(); //构造numCourses条边
         for (int i = 0; i < numCourses; ++i) {
             edges.add(new ArrayList<Integer>());
         }
-        visited = new int[numCourses];
-        for (int[] info : prerequisites) {
+        visited = new int[numCourses]; //构造标记数组，初始大小numCourses
+        for (int[] info : prerequisites) { //遍历依赖数组，用依赖创建边
             edges.get(info[1]).add(info[0]);
         }
         for (int i = 0; i < numCourses && valid; ++i) {
-            if (visited[i] == 0) {
+            if (visited[i] == 0) { //如果第i和点没搜索过，搜索它
                 dfs(i);
             }
         }
@@ -72,18 +73,18 @@ public class _207 {
     }
 
     public void dfs(int u) {
-        visited[u] = 1;
-        for (int v : edges.get(u)) {
-            if (visited[v] == 0) {
+        visited[u] = 1; //将节点标记为1搜索中
+        for (int v : edges.get(u)) { //获取节点u需要的全部前置课程
+            if (visited[v] == 0) { //如果前置课程v没搜索过，就搜索v
                 dfs(v);
-                if (!valid) {
+                if (!valid) { //如果不能找到，直接返回
                     return;
-                }
+                }//如果前置课程也搜索中，则不能产生排序标记false返回
             } else if (visited[v] == 1) {
                 valid = false;
                 return;
             }
         }
-        visited[u] = 2;
+        visited[u] = 2;//搜索完了所有前置课程，将u标记为2搜索结束
     }
 }

@@ -33,25 +33,31 @@ f[i][j]= k=0 | min | i−1 {max(f[k][j−1],sub(k+1,i))}
 * 唯一的可能性就是前 i 个数被分成了一段。如果枚举的 k=0，那么就代表着这种情况；如果 k!=0，对应的状态 f[k][0] 是一个不合法的状态，无法转移。
 * 因此我们需要令 f[0][0]=0。最终的答案即为 f[n][m]。
 * */
+//一个非负整数数组nums和整数m，将数组分成m个非空连续子数组。使m个子数组各自和的最大值最小
 public class _410 {
     public int splitArray(int[] nums, int m) {
-        int n = nums.length;
-        int[][] f = new int[n + 1][m + 1];
-        for (int i = 0; i <= n; i++) {
+        int n = nums.length;//计算数组长度
+        //f[i][j]表示将数组前i个数分为j段能得到的最大连续子数组和最小值
+        int[][] f = new int[n + 1][m + 1];//因此f是[n+1]和[m+1]
+        for (int i = 0; i <= n; i++) {//先把f数组填充成MAX
             Arrays.fill(f[i], Integer.MAX_VALUE);
-        }
-        int[] sub = new int[n + 1];
-        for (int i = 0; i < n; i++) {
+        }//sub(i+1)表示数组nums下标从0到i内数的和
+        int[] sub = new int[n + 1];//因此sub大小是n+1，sub[0]是0
+        for (int i = 0; i < n; i++) {//计算sub数字每个位置的值
             sub[i + 1] = sub[i] + nums[i];
         }
-        f[0][0] = 0;
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= Math.min(i, m); j++) {
+        f[0][0] = 0;//0个字符分成0段，和的最小值是0
+        for (int i = 1; i <= n; i++) {//i从1到n
+            //j不能大于i，即长i的数组被分成超过i段是不可能的
+            for (int j = 1; j <= Math.min(i, m); j++) {//因此j从1到i和m的较小值
+                //枚举k，前k个数被分为 j−1 段，第k+1到第i个数为第j段，k从0到i-1
+                //此时j段子数组中和的最大值，就是f[k][j−1] 与 sub(k+1,i)中较大值
+                //再用这个较大值和f[i][j]判断谁更小，就更新f[i][j]
                 for (int k = 0; k < i; k++) {
                     f[i][j] = Math.min(f[i][j], Math.max(f[k][j - 1], sub[i] - sub[k]));
                 }
             }
         }
-        return f[n][m];
+        return f[n][m];//最后返回f[n][m]
     }
 }

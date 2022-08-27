@@ -30,39 +30,40 @@ import java.util.LinkedList;
 * 则更新sign←−ops.top()。然后，每当遇到 ( 时，都要将当前的 sign 取值压入栈中；每当遇到 ) 时，都从栈中弹出一个元素。
 * 这样，我们能够在扫描字符串的时候，即时地更新 ops 中的元素。
 * */
+//字符串表达式s，实现计算器来计算它的值，只包含+-或括号
 public class _224 {
     public int calculate(String s) {
-        Deque<Integer> ops = new LinkedList<Integer>();
-        ops.push(1);
-        int sign = 1;
+        Deque<Integer> ops = new LinkedList<Integer>();//构造栈
+        ops.push(1);//顶元素为初始值+1
+        int sign = 1;//记录符号位
 
-        int ret = 0;
-        int n = s.length();
+        int ret = 0; //保存结果
+        int n = s.length(); //计算字符串长度
         int i = 0;
-        while (i < n) {
-            if (s.charAt(i) == ' ') {
+        while (i < n) { //i从0到n
+            if (s.charAt(i) == ' ') {//如果字符是空格，跳过
                 i++;
-            } else if (s.charAt(i) == '+') {
-                sign = ops.peek();
+            } else if (s.charAt(i) == '+') {//如果是+
+                sign = ops.peek(); //符号=栈顶元素
                 i++;
-            } else if (s.charAt(i) == '-') {
-                sign = -ops.peek();
+            } else if (s.charAt(i) == '-') {//如果是-
+                sign = -ops.peek(); //符号=负栈顶元素
                 i++;
-            } else if (s.charAt(i) == '(') {
-                ops.push(sign);
+            } else if (s.charAt(i) == '(') {//如果是(
+                ops.push(sign);//将符号入栈
                 i++;
-            } else if (s.charAt(i) == ')') {
-                ops.pop();
+            } else if (s.charAt(i) == ')') {//如果是)
+                ops.pop();//出栈顶元素
                 i++;
-            } else {
-                long num = 0;
+            } else { //否则是数字
+                long num = 0; //找出所有连续数字计算其值为num
                 while (i < n && Character.isDigit(s.charAt(i))) {
                     num = num * 10 + s.charAt(i) - '0';
                     i++;
                 }
-                ret += sign * num;
+                ret += sign * num; //ret+=符号*num
             }
         }
-        return ret;
+        return ret;//返回ret
     }
 }

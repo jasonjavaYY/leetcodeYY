@@ -20,33 +20,36 @@ package lc.lc3;
 * */
 public class _215 {
     public int findKthLargest(int[] nums, int k) {
-        int heapSize = nums.length;
-        buildMaxHeap(nums, heapSize);
+        int heapSize = nums.length; //计算数组大小
+        buildMaxHeap(nums, heapSize); //用数组构造大顶堆
         for (int i = nums.length - 1; i >= nums.length - k + 1; --i) {
-            swap(nums, 0, i);
-            --heapSize;
-            maxHeapify(nums, 0, heapSize);
+            swap(nums, 0, i);//i从最后一个到n-k+1
+            --heapSize; //堆size--
+            maxHeapify(nums, 0, heapSize); //从0到堆size
         }
-        return nums[0];
+        return nums[0]; //返回Nums[0]
     }
 
     public void buildMaxHeap(int[] a, int heapSize) {
+        //i从heapSize/2到0，调整堆
         for (int i = heapSize / 2; i >= 0; --i) {
             maxHeapify(a, i, heapSize);
         }
     }
 
     public void maxHeapify(int[] a, int i, int heapSize) {
+        //l是2i+1，r是2i+2，最大下标初始化为i
         int l = i * 2 + 1, r = i * 2 + 2, largest = i;
+        //如果l不越界并且a[l] > a[largest]，更新最大下标为l
         if (l < heapSize && a[l] > a[largest]) {
             largest = l;
-        }
+        }//如果r不越界并且a[r] > a[largest]，更新最大下标为r
         if (r < heapSize && a[r] > a[largest]) {
             largest = r;
         }
-        if (largest != i) {
-            swap(a, i, largest);
-            maxHeapify(a, largest, heapSize);
+        if (largest != i) {//如果更新过large
+            swap(a, i, largest);//交换i和large位置元素
+            maxHeapify(a, largest, heapSize);//继续调整large
         }
     }
 

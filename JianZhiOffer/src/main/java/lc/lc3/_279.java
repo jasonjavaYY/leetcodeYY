@@ -21,16 +21,19 @@ f[i]=1+ j=1 |min| sqrt(i) f[i−j^2]
 其中 f[0]=0 为边界条件，实际上我们无法表示数字 0，只是为了保证状态转移过程中遇到 j 恰为 sqrt{i}的情况合法。
 同时因为计算 f[i] 时所需要用到的状态仅有 f[i-j^2]，必然小于 i，因此我们只需要从小到大地枚举 i 来计算 f[i] 即可。
 * */
+//一个整数n ，返回和为n的完全平方数最少数量
 public class _279 {
     public int numSquares(int n) {
-        int[] f = new int[n + 1];
-        for (int i = 1; i <= n; i++) {
-            int minn = Integer.MAX_VALUE;
-            for (int j = 1; j * j <= i; j++) {
+        int[] f = new int[n + 1];//f[i]表示最少要多少个平方数来表示i
+        for (int i = 1; i <= n; i++) {//i从1到n
+            int minn = Integer.MAX_VALUE; //定义最小个数
+            //f[i]= 1+ sqrt(i) |min| j=1 f[i−j^2]
+            for (int j = 1; j * j <= i; j++) {//遍历所有小于sqrt(i)的j
+                //找到f[i - j * j]的最小值
                 minn = Math.min(minn, f[i - j * j]);
-            }
+            }//f[i]=最小值+1
             f[i] = minn + 1;
         }
-        return f[n];
+        return f[n];//返回f[n]
     }
 }

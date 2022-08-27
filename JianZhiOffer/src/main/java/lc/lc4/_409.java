@@ -22,22 +22,24 @@ package lc.lc4;
 * 在代码中，我们用 ans 存储回文串的长度，由于在遍历字符时，ans 每次会增加 v / 2 * 2，因此 ans 一直为偶数。
 * 但在发现了第一个出现次数为奇数的字符后，我们将 ans 增加 1，这样 ans 变为奇数，在后面发现其它出现奇数次的字符时，我们就不改变 ans 的值了。
 * */
+//给一个包含大小写字母字符串s，返回通过这些字母构造成的最长回文串
 public class _409 {
     public int longestPalindrome(String s) {
+        //统计每个字符出现多少次，其实用不了128，128比较方便
         int[] count = new int[128];
-        int length = s.length();
+        int length = s.length();//获取字符串长度
         for (int i = 0; i < length; ++i) {
-            char c = s.charAt(i);
-            count[c]++;
+            char c = s.charAt(i);//遍历字符串每个字符
+            count[c]++;//字符的asc码处值++
         }
-
-        int ans = 0;
-        for (int v : count) {
-            ans += v / 2 * 2;
+        int ans = 0;//最长回文串长度
+        for (int v : count) {//遍历count数组
+            ans += v / 2 * 2; // v/2*2就是把所有双数字符用来构成回文
+            //针对剩余的所有奇数个字符，最多只能再加上一个，
             if (v % 2 == 1 && ans % 2 == 0) {
-                ans++;
+                ans++;//因此如果v是奇数并且ans是偶数，就给ans++
             }
         }
-        return ans;
+        return ans;//返回ans
     }
 }

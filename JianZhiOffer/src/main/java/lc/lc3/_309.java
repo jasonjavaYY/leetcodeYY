@@ -35,48 +35,55 @@ sumRange 函数:
 * update 函数的时间复杂度为 O(1)，而 sumRange 函数的时间复杂度为 O(size + n/size)，仅当 size= sqrt(n)时等号成立。
 * 因此 size 取 ⌊ sqrt(n) ⌋，此时 sumRange 函数的时间复杂度为 O( sqrt(n) )。
 * */
+//给一个数组nums，请完成两类查询。一类要更新数组下标的值,另一类要返回数组中索引left和right之间元素的和
 public class _309 {
+    //设数组大小n，将数组分成多块，每块大小size，最后一块大小为剩余的不超过size元素数
     class NumArray {
-        private int[] sum; // sum[i] 表示第 i 个块的元素和
+        private int[] sum; // sum[i]表示第i个块的元素和
         private int size; // 块的大小
-        private int[] nums;
+        private int[] nums;//存放所有数字的数组
 
         public NumArray(int[] nums) {
-            this.nums = nums;
+            this.nums = nums;//初始化nums
             int n = nums.length;
-            size = (int) Math.sqrt(n);
-            sum = new int[(n + size - 1) / size]; // n/size 向上取整
+            size = (int) Math.sqrt(n);//size等于√n
+            //n先+size-1再除以size就是n/size 向上取整，初始化sum数组
+            sum = new int[(n + size - 1) / size];
             for (int i = 0; i < n; i++) {
+                //遍历num[i]，更新sum数组
                 sum[i / size] += nums[i];
             }
         }
-
+        //更新方法
         public void update(int index, int val) {
+            //同时更新sum和nums
             sum[index / size] += val - nums[index];
             nums[index] = val;
         }
-
+        //求和方法
         public int sumRange(int left, int right) {
+            //计算出left落在哪块哪个位置，right落在哪块哪个位置：b1  i1  b2  i2
             int b1 = left / size, i1 = left % size, b2 = right / size, i2 = right % size;
-            if (b1 == b2) { // 区间 [left, right] 在同一块中
+            if (b1 == b2) { //如果[left, right] 在同一块
                 int sum = 0;
                 for (int j = i1; j <= i2; j++) {
+                    //就从b1块的i1遍历到i2求和返回
                     sum += nums[b1 * size + j];
                 }
                 return sum;
-            }
-            int sum1 = 0;
+            }//否则说明包含多个块
+            int sum1 = 0;//计算b1块中需要求的和，从i1开始到b1块末尾求和
             for (int j = i1; j < size; j++) {
                 sum1 += nums[b1 * size + j];
-            }
+            }//计算b2块中需要求的和，从0开始到i2位置求和
             int sum2 = 0;
             for (int j = 0; j <= i2; j++) {
                 sum2 += nums[b2 * size + j];
-            }
-            int sum3 = 0;
+            }//计算b1和b2之间的整块和
+            int sum3 = 0;//从b1+1到b2-1
             for (int j = b1 + 1; j < b2; j++) {
                 sum3 += sum[j];
-            }
+            }//上面三次求的sum再求和返回
             return sum1 + sum2 + sum3;
         }
     }

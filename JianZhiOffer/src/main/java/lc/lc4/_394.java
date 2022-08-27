@@ -30,55 +30,50 @@ import java.util.LinkedList;
 * 出栈序列反转后拼接成一个字符串，此时取出栈顶的数字，就是这个字符串应该出现的次数，我们根据这个次数和字符串构造出新的字符串并进栈
 重复如上操作，最终将栈中的元素按照从栈底到栈顶的顺序拼接起来，就得到了答案。注意：这里可以用不定长数组来模拟栈操作，方便从栈底向栈顶遍历。
 * */
+//返回解码后的字符串。编码规则:k[str]表示str重复k次。字符串没有空格，原始数据不含数字，数字只表示重复次数k
 public class _394 {
-    int ptr;
-
+    int ptr;//全局维护指针
     public String decodeString(String s) {
-        LinkedList<String> stk = new LinkedList<String>();
-        ptr = 0;
-
-        while (ptr < s.length()) {
-            char cur = s.charAt(ptr);
-            if (Character.isDigit(cur)) {
-                // 获取一个数字并进栈
+        LinkedList<String> stk = new LinkedList<String>();//构造栈维护token
+        ptr = 0;//指针初始指向字符串头
+        while (ptr < s.length()) {//遍历传入字符串
+            char cur = s.charAt(ptr);//获取字符
+            if (Character.isDigit(cur)) {//如果字符是数字，将连续数字都取出
                 String digits = getDigits(s);
-                stk.addLast(digits);
+                stk.addLast(digits);//加入最后
             } else if (Character.isLetter(cur) || cur == '[') {
-                // 获取一个字母并进栈
+                //如果是字母或[，加入最后
                 stk.addLast(String.valueOf(s.charAt(ptr++)));
-            } else {
-                ++ptr;
+            } else {//否则一定是]
+                ++ptr;//跳过右括号
                 LinkedList<String> sub = new LinkedList<String>();
-                while (!"[".equals(stk.peekLast())) {
+                while (!"[".equals(stk.peekLast())) {//将栈内元素非[全部出栈加入sub
                     sub.addLast(stk.removeLast());
-                }
+                }//出栈序列翻转
                 Collections.reverse(sub);
-                // 左括号出栈
-                stk.removeLast();
-                // 此时栈顶为当前 sub 对应的字符串应该出现的次数
+                stk.removeLast();// 左括号出栈
+                // 此时栈顶为当前sub对应字符串应出现次数，出栈并解析为整数
                 int repTime = Integer.parseInt(stk.removeLast());
                 StringBuffer t = new StringBuffer();
-                String o = getString(sub);
-                // 构造字符串
-                while (repTime-- > 0) {
-                    t.append(o);
+                String o = getString(sub);//将sub构造成字符串
+                while (repTime-- > 0) {//重复构造repTime次sub
+                    t.append(o);//形成结果t
                 }
-                // 将构造好的字符串入栈
-                stk.addLast(t.toString());
+                stk.addLast(t.toString());//最后将构造好的字符串t入栈
             }
         }
-
-        return getString(stk);
+        return getString(stk);//拼接链表内所有字符串返回
     }
-
+    //从s中提取数字
     public String getDigits(String s) {
         StringBuffer ret = new StringBuffer();
         while (Character.isDigit(s.charAt(ptr))) {
+            //从ptr开始取出所有连续数字加入buffer返回
             ret.append(s.charAt(ptr++));
         }
         return ret.toString();
     }
-
+    //拼接链表内所有字符串
     public String getString(LinkedList<String> v) {
         StringBuffer ret = new StringBuffer();
         for (String s : v) {

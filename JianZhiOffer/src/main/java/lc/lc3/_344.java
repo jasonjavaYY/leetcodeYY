@@ -19,10 +19,12 @@ package lc.lc3;
 当 left < right：交换 s[left] 和 s[right]；left 指针右移一位，即 left = left + 1；right 指针左移一位，即 right = right - 1。
 当 left >= right，反转结束，返回字符数组即可。
 * */
+//将输入字符串反转。输入字符串以字符数组s形式
 public class _344 {
     public void reverseString(char[] s) {
-        int n = s.length;
+        int n = s.length; //计算输入字符串长度
         for (int left = 0, right = n - 1; left < right; ++left, --right) {
+            //不断交换首尾字符，首尾字符不断靠近
             char tmp = s[left];
             s[left] = s[right];
             s[right] = tmp;

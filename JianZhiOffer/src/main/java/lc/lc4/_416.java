@@ -31,39 +31,40 @@ dp[i][j]=  { dp[i−1][j] ∣ dp[i−1][j−nums[i]],  j≥nums[i]
            dp[i−1][j],                          j<nums[i]
 最终得到 dp[n−1][target] 即为答案。
 * */
+//一个只含正整数的非空数组nums。判断是否可将数组分成两个子集，两个子集元素和相等
 public class _416 {
     public boolean canPartition(int[] nums) {
-        int n = nums.length;
-        if (n < 2) {
+        int n = nums.length;//计算数组长度
+        if (n < 2) {//如果长度小于2，返回false
             return false;
         }
-        int sum = 0, maxNum = 0;
-        for (int num : nums) {
+        int sum = 0, maxNum = 0;//最大元素maxNum
+        for (int num : nums) {//计算整个数组元素和sum，求maxNum
             sum += num;
             maxNum = Math.max(maxNum, num);
-        }
+        }//如果sum是奇数，不可能分成元素和相等的两个子集，返回false
         if (sum % 2 != 0) {
             return false;
-        }
+        }//如果sum是偶数，令target= sum/2
         int target = sum / 2;
         if (maxNum > target) {
-            return false;
-        }
+            return false;//如果数组中最大数超过target，也不能分割成功
+        }//dp[i][j]表示从数组[0,i]选若干数，是否有一种方案使被选数和等于j
         boolean[][] dp = new boolean[n][target + 1];
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {//j为0时肯定是true，即不选任何数
             dp[i][0] = true;
-        }
+        }//从num的0-0下标选数，j只能是nums[0]，因此dp[0][nums[0]]=true
         dp[0][nums[0]] = true;
-        for (int i = 1; i < n; i++) {
-            int num = nums[i];
-            for (int j = 1; j <= target; j++) {
-                if (j >= num) {
+        for (int i = 1; i < n; i++) {//i从1到n
+            int num = nums[i];//获取nums[i]的值
+            for (int j = 1; j <= target; j++) {//j从1到target
+                if (j >= num) {//j≥nums[i]，当前数nums[i]可选可不选，只要一个为true即可
                     dp[i][j] = dp[i - 1][j] | dp[i - 1][j - num];
-                } else {
+                } else {//如果j<nums[i]，则无法选当前数nums[i]，因此dp[i][j]=dp[i−1][j]
                     dp[i][j] = dp[i - 1][j];
                 }
             }
         }
-        return dp[n - 1][target];
+        return dp[n - 1][target];//返回dp[n - 1][target]
     }
 }

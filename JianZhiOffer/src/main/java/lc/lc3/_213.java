@@ -39,25 +39,28 @@ dp[start+1]=max(nums[start],nums[start+1])         只有两间房屋，偷窃�
 可以得到时间复杂度 O(n) 和空间复杂度 O(n) 的实现。考虑到每间房屋的最高总金额只和该房屋的前两间房屋的最高总金额相关，
 * 因此可以使用滚动数组，在每个时刻只需要存储前两间房屋的最高总金额，将空间复杂度降到 O(1)。
 * */
+//给一个代表房屋金额的非负整数数组，相邻房屋同一晚被闯入会报警，计算不触动警报下今晚能偷到最高金额
 public class _213 {
-
     public int rob(int[] nums) {
-        int length = nums.length;
-        if (length == 1) {
+        int length = nums.length; //计算数组长度
+        if (length == 1) { //如果只有一间，返回nums[0]
             return nums[0];
-        } else if (length == 2) {
+        } else if (length == 2) {//两间房返回价值更高的一间
             return Math.max(nums[0], nums[1]);
-        }
+        }//返回从0偷到len-2或者1偷到len-1的更大值
         return Math.max(robRange(nums, 0, length - 2), robRange(nums, 1, length - 1));
     }
 
     public int robRange(int[] nums, int start, int end) {
+        //计算dp[start]和dp[start+1]分别是first和second
         int first = nums[start], second = Math.max(nums[start], nums[start + 1]);
-        for (int i = start + 2; i <= end; i++) {
+        for (int i = start + 2; i <= end; i++) { //i从start+2开始到end
             int temp = second;
+            //只需存储前两间房屋最高总金额，first是i-2间，second是i-1间
+            //i可以从first过来再加nums[i]，也可以从second过来不偷nums[i]
             second = Math.max(first + nums[i], second);
-            first = temp;
+            first = temp; //之前的second变成现在的first，因为i后移一位
         }
-        return second;
+        return second;//返回second
     }
 }

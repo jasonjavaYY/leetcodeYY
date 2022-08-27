@@ -18,15 +18,16 @@ import java.util.Arrays;
 t 是 s 的异位词等价于「两个字符串排序后相等」。因此我们可以对字符串 s 和 t 分别排序，看排序后的字符串是否相等即可判断。
 * 此外，如果 s 和 t 的长度不同，t 必然不是 s 的异位词。
 * */
+//给两个字符串s和t，判断t是否是s的字母异位词。若s和t中每个字符出现次数都相同则是字母异位词
 public class _242 {
     public boolean isAnagram(String s, String t) {
-        if (s.length() != t.length()) {
+        if (s.length() != t.length()) {//如果s和t长度不等，返回false
             return false;
         }
-        char[] str1 = s.toCharArray();
+        char[] str1 = s.toCharArray();//s和t转换成字符数组后排序
         char[] str2 = t.toCharArray();
         Arrays.sort(str1);
         Arrays.sort(str2);
-        return Arrays.equals(str1, str2);
+        return Arrays.equals(str1, str2);//判断排序后数组是否相同
     }
 }

@@ -34,21 +34,27 @@ import java.util.List;
 * 并且他们无论站在哪里，对第 i 个人都没有任何影响，因为他们都比第 i 个人矮。我们可以发现，后面的人既然不会对第 i 个人造成影响，
 * 我们可以采用「插空」的方法，依次给每一个人在当前的队列中选择一个插入的位置。当我们放入第 i 个人时，只需将其插入队列，使他前面恰好有 k_i个人。
 * */
+//一群人乱序站成队people，people[i]=[hi, ki]，第i人高hi，前面有ki个身高≥hi的人。
+//请返回真实队列顺序queue，其中 queue[j] = [hj,kj]
+//输入：people = [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]
+//输出：[[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]
 public class _406 {
     public int[][] reconstructQueue(int[][] people) {
+        //对原数组排序，按hi为第一关键字降序，ki为第二关键字升序
         Arrays.sort(people, new Comparator<int[]>() {
             public int compare(int[] person1, int[] person2) {
-                if (person1[0] != person2[0]) {
+                if (person1[0] != person2[0]) {//降序是var2-var1
                     return person2[0] - person1[0];
-                } else {
+                } else {//升序是var1-var2
                     return person1[1] - person2[1];
                 }
             }
         });
-        List<int[]> ans = new ArrayList<int[]>();
-        for (int[] person : people) {
+        List<int[]> ans = new ArrayList<int[]>();//构造结果数组
+        for (int[] person : people) {//遍历排序后的people数组
+            //将person插入身高的index位置
             ans.add(person[1], person);
-        }
+        }//将ans转换成数组返回
         return ans.toArray(new int[ans.size()][]);
     }
 }

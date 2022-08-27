@@ -35,47 +35,49 @@ import java.util.Set;
 * 如果该基因序列已经遍历过，则直接跳过；如果合法且未遍历过的基因序列，则我们将其加入到队列中。如果当前变换后的基因序列与 end 相等，
 * 直接返回最小变化次数；如果队列中所有元素都已经遍历完成还无法变成 end，则此时无法实现目标变化，返回 −1。
 * */
+//基因序列为8个字符，字符是A、C、G和T之一。给start和end及基因库bank，变化后基因必须位于bank，返回start变为end最少次数，如无法变返回-1
 public class _433 {
     public int minMutation(String start, String end, String[] bank) {
-        Set<String> cnt = new HashSet<String>();
-        Set<String> visited = new HashSet<String>();
-        char[] keys = {'A', 'C', 'G', 'T'};
-        for (String w : bank) {
+        Set<String> cnt = new HashSet<String>();//将基因库去重
+        Set<String> visited = new HashSet<String>();//存放已经遍历的基因列表
+        char[] keys = {'A', 'C', 'G', 'T'};//可能的字符列表
+        for (String w : bank) {//将基因库内容加入cnt去重
             cnt.add(w);
         }
-        if (start.equals(end)) {
+        if (start.equals(end)) {//如果start和end相同，返回0步
             return 0;
-        }
+        }//如果基因库不包含end，返回-1
         if (!cnt.contains(end)) {
             return -1;
-        }
-        Queue<String> queue = new ArrayDeque<String>();
-        queue.offer(start);
-        visited.add(start);
-        int step = 1;
-        while (!queue.isEmpty()) {
-            int sz = queue.size();
-            for (int i = 0; i < sz; i++) {
-                String curr = queue.poll();
-                for (int j = 0; j < 8; j++) {
-                    for (int k = 0; k < 4; k++) {
-                        if (keys[k] != curr.charAt(j)) {
+        }//BFS要创建队列
+        Queue<String> queue = new ArrayDeque<String>();//建队列
+        queue.offer(start);//将start入队
+        visited.add(start);//将start标记为已使用
+        int step = 1;//初始化步数
+        while (!queue.isEmpty()) {//循环判断队列不为空
+            int sz = queue.size();//获取队列大小
+            for (int i = 0; i < sz; i++) {//遍历队列每个元素
+                String curr = queue.poll();//弹出队首元素
+                for (int j = 0; j < 8; j++) {//基因序列8个字符，每次替换一个
+                    for (int k = 0; k < 4; k++) {//k从0到3，因为有四种字符AGCT
+                        if (keys[k] != curr.charAt(j)) {//如果基因j位字符和keys[k]不相等
                             StringBuffer sb = new StringBuffer(curr);
-                            sb.setCharAt(j, keys[k]);
+                            sb.setCharAt(j, keys[k]);//将基因j位替换位keys[k]构造next基因
                             String next = sb.toString();
+                            //如果next基因没被用过并且在基因库中
                             if (!visited.contains(next) && cnt.contains(next)) {
-                                if (next.equals(end)) {
+                                if (next.equals(end)) {//如果该基因和end相同，返回步数
                                     return step;
-                                }
+                                }//否则将next入队，标记位已使用
                                 queue.offer(next);
                                 visited.add(next);
                             }
                         }
                     }
                 }
-            }
+            }//每次层序遍历步数+1
             step++;
         }
-        return -1;
+        return -1;//如果最后都没找到end，返回-1
     }
 }

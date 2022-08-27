@@ -40,49 +40,58 @@ Trie，又称前缀树，是一棵有根树，其每个节点包含以下字段�
 重复以上步骤，直到返回空指针或搜索完前缀的最后一个字符。
 若搜索到了前缀的末尾，就说明字典树中存在该前缀。此外，若前缀末尾对应节点的 isEnd 为真，则说明字典树中存在该字符串。
 * */
+//实现Trie类：Trie()初始化前缀树。void insert(String word)向树插入word。boolean search(String word)如果word在树中返回true
+//boolean startsWith(String prefix) 如果已经插入的word前缀之一为prefix返回true
 public class _208 {
+    //Trie节点包含：指向子节点指针数组children。本题数组长26即英文字母数。
+    // children[0]对应a，children[25]对应z。
+    // 布尔字段 isEnd，表示该节点是否为字符串结尾
     class Trie {
         private Trie[] children;
         private boolean isEnd;
 
-        public Trie() {
+        public Trie() { //构造方法初始化children和isEnd
             children = new Trie[26];
             isEnd = false;
         }
 
         public void insert(String word) {
-            Trie node = this;
+            Trie node = this; //构造节点
             for (int i = 0; i < word.length(); i++) {
-                char ch = word.charAt(i);
-                int index = ch - 'a';
+                char ch = word.charAt(i); //遍历单词每个字符
+                int index = ch - 'a'; //计算该字符的index
+                //如果node的children在index处没节点，就构造一个
                 if (node.children[index] == null) {
                     node.children[index] = new Trie();
-                }
+                }//否则将node指向children在index节点，继续向下找
                 node = node.children[index];
             }
-            node.isEnd = true;
+            node.isEnd = true; //插入完毕将最后一个节点标记为end
         }
-
+        //搜索前缀之后判断当前node是否不为空且是end
         public boolean search(String word) {
             Trie node = searchPrefix(word);
             return node != null && node.isEnd;
         }
 
+        //搜索前缀，判断是否能搜到最后一个节点
         public boolean startsWith(String prefix) {
             return searchPrefix(prefix) != null;
         }
 
+        //根据前缀搜索节点
         private Trie searchPrefix(String prefix) {
-            Trie node = this;
+            Trie node = this; //构造头节点
             for (int i = 0; i < prefix.length(); i++) {
-                char ch = prefix.charAt(i);
-                int index = ch - 'a';
+                char ch = prefix.charAt(i); //遍历前缀每个字符
+                int index = ch - 'a'; //计算该字符的index
+                //如果node的children在index处没节点，返回空
                 if (node.children[index] == null) {
                     return null;
-                }
+                }//否则继续找下一个节点
                 node = node.children[index];
             }
-            return node;
+            return node;//查找完毕返回前缀最后一个字符对应节点
         }
     }
 

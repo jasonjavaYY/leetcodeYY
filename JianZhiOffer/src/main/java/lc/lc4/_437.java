@@ -22,32 +22,30 @@ package lc.lc4;
 * 与 rootSum(pr,targetSum−val) 之和，同时还要判断当前节点 p 的值是否刚好等于 targetSum。
 采用递归遍历二叉树的每个节点 p，对节点 p 求 rootSum(p,val)，然后将每个节点所有求的值进行相加求和返回。
 * */
+//给二叉树和整数targetSum，求二叉树里节点值和等于targetSum的路径数。不需从根开始也不需在叶结束，路径必须向下
 public class _437 {
     public int pathSum(TreeNode root, int targetSum) {
-        if (root == null) {
+        if (root == null) {//如果树为空，返回0
             return 0;
         }
-
-        int ret = rootSum(root, targetSum);
-        ret += pathSum(root.left, targetSum);
+        int ret = rootSum(root, targetSum);//从根节点开始找看有多少路径
+        ret += pathSum(root.left, targetSum);//再加上从左右节点找到的路径
         ret += pathSum(root.right, targetSum);
-        return ret;
+        return ret;//最后返回总路径
     }
-
+    //从root开始找target一共有多少路径
     public int rootSum(TreeNode root, int targetSum) {
-        int ret = 0;
-
-        if (root == null) {
+        int ret = 0;//记录结果，初始值为0
+        if (root == null) {//如果节点为空，返回0
             return 0;
         }
-        int val = root.val;
+        int val = root.val;//获取节点值，如果值为target，ret++
         if (val == targetSum) {
             ret++;
-        }
-
+        }//遍历左右子树，寻找target-val
         ret += rootSum(root.left, targetSum - val);
         ret += rootSum(root.right, targetSum - val);
-        return ret;
+        return ret;//返回路径数
     }
 
     class TreeNode {

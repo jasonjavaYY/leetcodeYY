@@ -36,14 +36,21 @@ package lc.lc3;
 142 题中慢指针走一步 slow = slow.next ==> 本题 slow = nums[slow]
 142 题中快指针走两步 fast = fast.next.next ==> 本题 fast = nums[nums[fast]]
 * */
+//包含n+1个整数的数组nums，数字都在[1, n]范围内，可知至少存在一个重复数。假设只有一个重复整数，返回这个重复数
 public class _287 {
     public int findDuplicate(int[] nums) {
-        int slow = 0, fast = 0;
+        int slow = 0, fast = 0;//定义快慢指针，最初指向0
+        //1.数组中有一个重复整数 <==> 链表中存在环
+        //2.找到数组中重复整数 <==> 找到链表的环入口
+        //至此转换为找到环入口节点。慢指针走一步slow = slow.next ==>本题slow = nums[slow]
+        //快指针走两步 fast = fast.next.next ==> 本题 fast = nums[nums[fast]]
         do {
             slow = nums[slow];
             fast = nums[nums[fast]];
         } while (slow != fast);
-        slow = 0;
+        //先让快慢节点相遇
+        slow = 0;//然后慢节点指向头
+        //快慢指针都每次走一步直到相遇就是环入口节点，返回
         while (slow != fast) {
             slow = nums[slow];
             fast = nums[fast];

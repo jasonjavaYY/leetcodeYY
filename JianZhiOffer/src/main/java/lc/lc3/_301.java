@@ -32,10 +32,13 @@ import java.util.List;
 我们在每次进行搜索时，如果遇到连续相同的括号我们只需要搜索一次即可，比如当前遇到的字符串为 "(((())"，去掉前四个左括号中的任意一个，
 * 生成的字符串是一样的，均为 "((())"，因此我们在尝试搜索时，只需去掉一个左括号进行下一轮搜索，不需要将前四个左括号都尝试一遍。
 * */
+//一个由若干括号和字母组成的字符串s，删除最小数量无效括号使输入字符串有效。返回所有可能结果
 public class _301 {
     private List<String> res = new ArrayList<String>(); //存放结果
 
     public List<String> removeInvalidParentheses(String s) {
+        //如果左括号数严格小于右括号则表达式无效。因此统计左右括号次数。
+        //遍历到左括号时lremove加1。遍历到右括号时如果lremove不为0就−1；如果为0，rremove加1。得到值就是各自最少删除数
         int lremove = 0;
         int rremove = 0;
         for (int i = 0; i < s.length(); i++) { //计算需要删除的左右括号数
@@ -48,20 +51,19 @@ public class _301 {
                     lremove--;
                 }
             }
-        }
+        }//执行删除操作
         helper(s, 0, lremove, rremove);
-        return res;
+        return res;//返回结果
     }
 
     private void helper(String str, int start, int lremove, int rremove) {
         if (lremove == 0 && rremove == 0) {
             if (isValid(str)) {
                 res.add(str);
-            }
+            }//如果待删除的左右括号数都是0，且str有效就将str加入res并返回
             return;
-        }
-
-        for (int i = start; i < str.length(); i++) {
+        }//否则从start开始遍历字符串
+        for (int i = start; i < str.length(); i++) {//如果i不是start且i和i-1字符相同，下一轮循环
             if (i != start && str.charAt(i) == str.charAt(i - 1)) {
                 continue;
             }
@@ -69,11 +71,11 @@ public class _301 {
             if (lremove + rremove > str.length() - i) {
                 return;
             }
-            // 尝试去掉一个左括号
+            // 如果还需要删除左括号且当前字符是(，将第i个字符去掉，继续回溯i，l-1
             if (lremove > 0 && str.charAt(i) == '(') {
                 helper(str.substring(0, i) + str.substring(i + 1), i, lremove - 1, rremove);
             }
-            // 尝试去掉一个右括号
+            // 如果还需要删除右括号且当前字符是)，将第i个字符去掉，继续回溯i，r-1
             if (rremove > 0 && str.charAt(i) == ')') {
                 helper(str.substring(0, i) + str.substring(i + 1), i, lremove, rremove - 1);
             }
@@ -82,7 +84,7 @@ public class _301 {
 
     //ok  判断某个字符串是否有效
     private boolean isValid(String str) {
-        int cnt = 0;
+        int cnt = 0; //计算str的左右括号数，如果相等就返回true
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == '(') {
                 cnt++;

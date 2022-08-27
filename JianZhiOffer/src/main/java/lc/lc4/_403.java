@@ -26,29 +26,36 @@ dp[i][k]=dp[j][k−1]⋁dp[j][k]⋁dp[j][k+1]
 因为青蛙到达第 i−1 个石子时，它的「上一次跳跃距离」至多为 i−1，而距离第 i−1 个石子最近的石子即为第 i 个石子，它们的距离超过了当前能跳的最远距离，
 * 因此青蛙无路可跳。因此可以提前检查是否有相邻的石子不满足条件，如果有，我们可以提前返回 false。
 * */
+//河流被等分为若干格，每格可能有石子可能没。青蛙可跳上石子。石子位置列表stones，判断青蛙能否在最后一步跳至最后一块石子，
+//开始青蛙在第一块石子，假定第一步只能跳1单位。如果上一步跳k单位，接下来只能选k - 1、k 或 k + 1单位
 public class _403 {
     public boolean canCross(int[] stones) {
-        int n = stones.length;
+        int n = stones.length;//求石子数组长度
+        //dp[i][k]表示青蛙能否到石子编号i且上次跳距离k的状态
         boolean[][] dp = new boolean[n][n];
-        dp[0][0] = true;
-        //优化2，快速判断是否无法跳到终点
+        dp[0][0] = true;//第0个石子能到达，为true
+        //遍历判断当第i石子与i−1石子距离超过i时，必定无法到终点，返回false
         for (int i = 1; i < n; ++i) {
             if (stones[i] - stones[i - 1] > i) {
                 return false;
             }
         }
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < n; ++i) {//i从1到n
+            //对于第i个石子，枚举所有j（即上次在的石子编号），因此j从i-1到0
             for (int j = i - 1; j >= 0; --j) {
+                //计算两个石子间的距离k
                 int k = stones[i] - stones[j];
-                if (k > j + 1) { //优化1，快速判断是否无法到达终点
+                if (k > j + 1) { //如果距离大于j+1，肯定没法跳break
                     break;
-                }
+                }//从j石头过来跳了k距离，这次可以跳k-1、k或k+1，所以
+                //dp[j][k - 1]、dp[j][k]、dp[j][k + 1]有一个为真即可
                 dp[i][k] = dp[j][k - 1] || dp[j][k] || dp[j][k + 1];
+                //当找到一个dp[n−1][k]为真时，就知道青蛙可以到达终点
                 if (i == n - 1 && dp[i][k]) {
                     return true;
                 }
             }
         }
-        return false;
+        return false;//没找到dp[n−1][k]为真，代表无法跳到终点
     }
 }

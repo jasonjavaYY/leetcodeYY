@@ -24,17 +24,21 @@ dp[i][j]=  [j−1 | max | k=i+1]  val[i]×val[k]×val[j] + dp[i][k] + dp[k][j], 
            0,                                                                 i≥j−1
 最终答案即为 dp[0][n+1]。实现时要注意到动态规划的次序。
 * */
+//n个气球每个气球一个数，存在nums中。戳破所有气球。戳破第i个气球可获得nums[i-1] * nums[i] * nums[i+1]值。如果i-1或i+1越界就是1。求最大值
 public class _312 {
     public int maxCoins(int[] nums) {
-        int n = nums.length;
+        int n = nums.length;//计算数组长度
+        //dp[i][j]表示填满开区间 (i,j) 得到的最多硬币数
         int[][] rec = new int[n + 2][n + 2];
-        int[] val = new int[n + 2];
+        int[] val = new int[n + 2];//扩展原数组两边，各增加一个1
         val[0] = val[n + 1] = 1;
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) {//通过nums[i-1]给val[i]赋值
             val[i] = nums[i - 1];
         }
-        for (int i = n - 1; i >= 0; i--) {
+        for (int i = n - 1; i >= 0; i--) {//i从n-1开始
+            //如果i≥j−1代表i到j的区间没有数字，dp[i][j]不合法就是0，因此j从i+2开始
             for (int j = i + 2; j <= n + 1; j++) {
+                //dp[i][j]= val[i]×val[k]×val[j]+dp[i][k]+dp[k][j]这个表达式的k从i+1到j-1的最大值
                 for (int k = i + 1; k < j; k++) {
                     int sum = val[i] * val[k] * val[j];
                     sum += rec[i][k] + rec[k][j];
@@ -42,6 +46,6 @@ public class _312 {
                 }
             }
         }
-        return rec[0][n + 1];
+        return rec[0][n + 1];//返回[0][n-1]就是最大值
     }
 }

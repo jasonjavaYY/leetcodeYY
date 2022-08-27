@@ -42,31 +42,30 @@ import java.util.Map;
 * 因为每个顶点都要访问一次，每条边都要访问一次，时间复杂度应为 O(∣V∣+∣E∣)，还要记得对临接点排序的时间复杂度 O(∣E∣log∣E∣)，
 * 算法整体时间复杂度为 O(∣E∣log∣E∣)；如果整个图是链式的，那么调用栈最深，空间复杂度应为 O(∣E∣)。
 * */
+//一份航线列表tickets，tickets[i]=[fromi,toi]表示出发和降落点。对行程重新排序，从JFK开始。按字典序返回最小行程组合
 public class _332 {
     public List<String> findItinerary(List<List<String>> tickets) {
-        // 因为逆序插入，所以用链表
-        List<String> ans = new LinkedList<>();
-        if (tickets == null || tickets.size() == 0)
+        List<String> ans = new LinkedList<>();//构造结果链表
+        if (tickets == null || tickets.size() == 0)//如果票列表为空，返回空数组
             return ans;
-        Map<String, List<String>> graph = new HashMap<>();
-        for (List<String> pair : tickets) {
-            // 因为涉及删除操作，我们用链表
+        Map<String, List<String>> graph = new HashMap<>();//构造图map
+        for (List<String> pair : tickets) {//遍历所有机票
+            //将某个地点能到的所有地点放入graph中
             List<String> nbr = graph.computeIfAbsent(pair.get(0), k -> new LinkedList<>());
             nbr.add(pair.get(1));
         }
-        // 按目的顶点排序
-        graph.values().forEach(x -> x.sort(String::compareTo));
-        visit(graph, "JFK", ans);
+        graph.values().forEach(x -> x.sort(String::compareTo)); //按目的地升序排序
+        visit(graph, "JFK", ans);//从JFK开始dfs遍历图
         return ans;
     }
 
     // DFS方式遍历图，当走到不能走为止，再将节点加入到答案
     private void visit(Map<String, List<String>> graph, String src, List<String> ans) {
-        List<String> nbr = graph.get(src);
-        while (nbr != null && nbr.size() > 0) {
-            String dest = nbr.remove(0);
+        List<String> nbr = graph.get(src);//从图中获取src能到的所有dest
+        while (nbr != null && nbr.size() > 0) {//遍历所有dest
+            String dest = nbr.remove(0);//从列表中移除并继续遍历dest
             visit(graph, dest, ans);
-        }
+        }//将src逆序加入
         ans.add(0, src); // 逆序插入
     }
 }

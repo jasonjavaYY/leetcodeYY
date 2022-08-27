@@ -22,54 +22,55 @@ package lc.lc3;
 步骤三比较两个部分的值，当后半部分到达末尾则比较完成，可以忽略计数情况中的中间节点。
 步骤四与步骤二使用的函数相同，再反转一次恢复链表本身。
 * */
+//一个单链表头节点head ，判断是否为回文链表
 public class _234 {
     public boolean isPalindrome(ListNode head) {
-        if (head == null) {
+        if (head == null) {//如果链表为空，返回true
             return true;
         }
-
-        // 找到前半部分链表的尾节点并反转后半部分链表
+        // 找到前半部分链表尾节点并反转后半部分链表
         ListNode firstHalfEnd = endOfFirstHalf(head);
         ListNode secondHalfStart = reverseList(firstHalfEnd.next);
-
-        // 判断是否回文
+        // 判断是否回文，p1指向头，p2指向后半部分的头
         ListNode p1 = head;
         ListNode p2 = secondHalfStart;
         boolean result = true;
-        while (result && p2 != null) {
-            if (p1.val != p2.val) {
+        while (result && p2 != null) {//当标志位为true且p2没到终点时
+            if (p1.val != p2.val) {//如果p1和p2值不相等，返回false
                 result = false;
-            }
+            }//否则p1和p2依次移动一位
             p1 = p1.next;
             p2 = p2.next;
         }
-        // 还原链表并返回结果，这步可以省略
+        // 翻转后半部分链表，还原链表并返回结果
         firstHalfEnd.next = reverseList(secondHalfStart);
         return result;
     }
 
     //ok 翻转链表
     private ListNode reverseList(ListNode head) {
-        ListNode prev = null;
-        ListNode curr = head;
-        while (curr != null) {
+        ListNode prev = null; //pre=null
+        ListNode curr = head; //cur指向head
+        while (curr != null) {//循环
+            //四部曲，构造temp是cur的next
+            //cur的next是pre，pre=cur,cur=temp
             ListNode nextTemp = curr.next;
             curr.next = prev;
             prev = curr;
             curr = nextTemp;
         }
-        return prev;
+        return prev; //返回pre
     }
 
     //ok 找到链表中间节点
     private ListNode endOfFirstHalf(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
+        ListNode fast = head;//构造快慢指针，最初都指向head
+        ListNode slow = head;//当快指针的next和next.next都不到末尾时
         while (fast.next != null && fast.next.next != null) {
             fast = fast.next.next;
-            slow = slow.next;
+            slow = slow.next;//移动快慢指针
         }
-        return slow;
+        return slow;//返回慢指针
     }
 
     class ListNode{

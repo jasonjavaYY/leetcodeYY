@@ -25,20 +25,23 @@ package lc.lc4;
 可以使用回溯的方法遍历所有的表达式，回溯过程中维护一个计数器 count，当遇到一种表达式的结果等于目标数 target 时，将 count 的值加 1。
 * 遍历完所有的表达式之后，即可得到结果等于目标数 target 的表达式的数目。
 * */
+//一个整数数组nums和整数target。向数组每个数前添'+'或'-'，串联所有数，返回构造的运算结果等于target的不同表达式数目
 public class _494 {
-    int count = 0;
+    int count = 0; //保存表达式数
 
     public int findTargetSumWays(int[] nums, int target) {
+        //回溯找target，下标从0开始，sum为当前得到的数字和
         backtrack(nums, target, 0, 0);
         return count;
     }
 
     public void backtrack(int[] nums, int target, int index, int sum) {
-        if (index == nums.length) {
-            if (sum == target) {
+        if (index == nums.length) {//如果下标到了数组长度
+            if (sum == target) { //如果sum=target，说明找到一种表达式，count++
                 count++;
             }
-        } else {
+        } else {//否则继续回溯index+1、sum+nums[index]和index+1、sum-nums[index]
+            //代表分别给index数字加+和-符号
             backtrack(nums, target, index + 1, sum + nums[index]);
             backtrack(nums, target, index + 1, sum - nums[index]);
         }
