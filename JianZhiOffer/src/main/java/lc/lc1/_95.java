@@ -25,6 +25,7 @@ import java.util.List;
 * 出口为当start>end 的时候，当前二叉搜索树为空，返回空节点即可。
 
 * */
+//给一个整数 n ，生成所有n个节点组成且节点值从1到n的不同二叉搜索树
 public class _95 {
     public List<TreeNode> generateTrees(int n) {
         if (n == 0) { //如果n=0，返回空链表

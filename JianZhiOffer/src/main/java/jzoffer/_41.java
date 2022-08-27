@@ -10,6 +10,7 @@ import java.util.Arrays;
 * 例如输入字符串 abc，则打印出由字符 a, b, c 所能排列出来的所有字符串
 *  abc, acb, bac, bca, cab 和 cba。
 * */
+//一个字符串按字典序打印该字符串字符的所有排列
 public class _41 {
     private ArrayList<String> ret = new ArrayList<>(); //用来存放最终结果字符串
 

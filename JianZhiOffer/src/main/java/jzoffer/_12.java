@@ -18,6 +18,7 @@ package jzoffer;
  * 此时无法确定解在哪个区间，需要切换到顺序查找。例如对于数组 {1,1,1,0,1}，
  * l、m 和 h 指向的数都为 1，此时无法知道最小数字 0 在哪个区间
  * */
+//一个数组最开始若干元素搬到末尾称为旋转，一个非递减数组的旋转，输出旋转数组最小元素
 public class _12 {
     public int minNumberInRotateArray(int[] nums) {
         if (nums.length == 0) //如果数组为空，返回0

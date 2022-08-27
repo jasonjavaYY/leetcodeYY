@@ -12,6 +12,7 @@ package jzoffer;
 * (2N-1)/N ~ 2，因此该算法的平均时间复杂度为 O(1)
 *
 * */
+//O(1)时间内删除链表节点
 public class _18 {
     public ListNode deleteNode(ListNode head, ListNode tobeDelete) {
         if (head == null || tobeDelete == null) //如果头结点或者待删除节点为空，返回空

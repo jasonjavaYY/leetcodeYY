@@ -18,6 +18,7 @@ package lc.lc1;
 再找到第二个最大索引是 nums[4] = 3,交换，nums = [1,3,7,4,2,1];翻转，nums = [1,3,1,2,4,7]完毕!
 所以,时间复杂度：O(n),空间复杂度：O(1)
 * */
+//返回整数数组的下一个排列，例如，arr = [1,2,3]下一个排列是 [1,3,2]
 public class _31 {
     public void nextPermutation(int[] nums) {
         if (nums == null || nums.length == 0) return; //如果传入数组为空，直接返回

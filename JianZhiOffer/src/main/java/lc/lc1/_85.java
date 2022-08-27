@@ -11,6 +11,7 @@ import java.util.LinkedList;
  * 我们首先计算出矩阵的每个元素的左边连续 1 的数量，使用二维数组 left 记录，其中 left[i][j] 为矩阵第 i 行第 j 列元素的左边连续 1 的数量。
  * 然后针对left矩阵，依次遍历每列，按照lc的_84题方法求出该列数组的最大矩形面积，便利完所有列，最后的最大值就是最终结果
  * */
+//一个仅含0和1、rows x cols的二维矩阵，找出只包含1的最大矩形并返回面积
 public class _85 {
     public int maximalRectangle(char[][] matrix) {
         int m = matrix.length;

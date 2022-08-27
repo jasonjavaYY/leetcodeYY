@@ -21,6 +21,7 @@ package lc.lc1;
 根据题意，我们可以将数组分成「前后」两段：前半段是有效部分，存储的是不等于 val 的元素。
 后半段是无效部分，存储的是等于 val 的元素。最终答案返回有效部分的结尾下标。
 * */
+//数组nums和值val，原地移除所有数值val的元素，返回移除后数组新长度
 public class _27 {
     public int removeElement(int[] nums, int val) {
         int j = nums.length - 1;

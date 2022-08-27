@@ -19,6 +19,7 @@ import java.util.*;
 *
 * 由于互为字母异位词的两个字符串包含的字母相同，因此对两个字符串分别进行排序之后得到的字符串一定是相同的，故可以将排序之后的字符串作为哈希表的键。
 * */
+//一个字符串数组，将字母异位词组合在一起。异位词是由重排列源单词的字母得到新单词，源单词字母恰好只用一次
 public class _49 {
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> map = new HashMap<String, List<String>>(); //用map保存，key是排序之后的字符串，value是异位词

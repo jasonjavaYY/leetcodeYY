@@ -1,7 +1,7 @@
 package jzoffer;
 
+//一个整数，输出该数二进制中0的个数。
 public class _75 {
-    //    输入一个整数，输出该数二进制表示中0的个数。
     public static int findZero(int n) {
         int count = 0;
         while (n != 0) { //循环判断n不为0

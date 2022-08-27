@@ -4,6 +4,7 @@ package jzoffer;
 *
 * 请实现两个函数，分别用来序列化和反序列化二叉树。
 * */
+//两个函数分别序列化和反序列化二叉树
 public class _40 {
     private String deserializeStr;
 

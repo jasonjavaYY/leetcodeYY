@@ -28,17 +28,19 @@ import java.util.Map;
 * */
 public class _205 {
     public boolean isIsomorphic(String s, String t) {
+        //两个map分别表示s到t的字符映射和t到s的字符映射
         Map<Character, Character> s2t = new HashMap<Character, Character>();
         Map<Character, Character> t2s = new HashMap<Character, Character>();
-        int len = s.length();
+        int len = s.length(); //计算s的长度
         for (int i = 0; i < len; ++i) {
+            //遍历s和t相同位置字符x和y
             char x = s.charAt(i), y = t.charAt(i);
             if ((s2t.containsKey(x) && s2t.get(x) != y) || (t2s.containsKey(y) && t2s.get(y) != x)) {
-                return false;
-            }
+                return false; //如果s2t映射中有x这个k但get(x)不是y；或t2s中包含y但get(y)不是x，映射失败返回false
+            }//否则将xy  yx映射分别加入s2t和t2s
             s2t.put(x, y);
             t2s.put(y, x);
         }
-        return true;
+        return true; //遍历完毕都匹配了，返回true
     }
 }

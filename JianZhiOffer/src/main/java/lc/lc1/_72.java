@@ -31,6 +31,7 @@ dp[i][j] 代表 word1 到 i 位置转换成 word2 到 j 位置需要最少步数
 其中，dp[i-1][j-1] 表示替换操作，dp[i-1][j] 表示删除操作，dp[i][j-1] 表示插入操作。针对第一行，第一列要单独考虑，引入 ''
 第一行，是 word1 为空变成 word2 最少步数，就是插入操作,第一列，是 word2 为空，需要的最少步数，就是删除操作
 * */
+//两个单词word1 和 word2，返回word1 转换成 word2使用的最少操作数，可以插一字符、删一字符、换一字符
 public class _72 {
     public int minDistance(String word1, String word2) {
         int n1 = word1.length(); //计算两个单词各自长度

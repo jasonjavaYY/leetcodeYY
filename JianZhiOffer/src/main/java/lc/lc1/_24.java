@@ -24,6 +24,7 @@ node2.next = node1
 完成上述操作之后，节点关系即变成 temp -> node2 -> node1。再令 temp = node1，对链表中的其余节点进行两两交换，直到全部节点都被两两交换。
 两两交换链表中的节点之后，新的链表的头节点是 dummyHead.next，返回新的链表的头节点即可。
 * */
+//一个链表，两两交换其相邻节点，返回交换后链表的头节点
 public class _24 {
     public ListNode swapPairs(ListNode head) {
         ListNode dummyHead = new ListNode(0); //构造一个哑节点

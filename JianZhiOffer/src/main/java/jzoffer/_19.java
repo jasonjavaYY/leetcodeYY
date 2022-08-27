@@ -2,6 +2,7 @@ package jzoffer;
 /*
 * 删除链表中重复的结点
 * */
+//删除链表中重复结点
 public class _19 {
     public ListNode deleteDuplication(ListNode pHead) {
         //链表为空或者只有一个元素，肯定没有重复元素，直接返回原链表

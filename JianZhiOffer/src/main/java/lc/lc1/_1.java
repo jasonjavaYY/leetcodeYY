@@ -16,6 +16,7 @@ import java.util.Map;
 * 创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，
 * 即可保证不会让 x 和自己匹配。
 * */
+//整数数组 nums和整数值target，数组中找出和为target的两个数返回下标。假设只有一个答案。数组中元素在答案里不能重复出现
 public class _1 {
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> hashtable = new HashMap<Integer, Integer>();

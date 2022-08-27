@@ -1,4 +1,5 @@
 package lc.lc1;
+
 /*
 * 最长回文子串
 *
@@ -30,55 +31,53 @@ P(i,i+1)=(Si ==Si+1)
 * 根据这个思路，我们就可以完成动态规划了，最终的答案即为所有 P(i,j)=true 中j−i+1的最大值。
 * 注意：在状态转移方程中，我们是从长度较短的字符串向长度较长的字符串进行转移的，因此一定要注意动态规划的循环顺序。
 * */
+//给一个字符串s，找到s中最长回文子串
 public class _5 {
-    public class Solution {
-
-        public String longestPalindrome(String s) {
-            int len = s.length();
-            if (len < 2) { //如果字符串长度为1，直接返回
-                return s;
-            }
-            int maxLen = 1;
-            int begin = 0;
-            // dp[i][j] 表示 s[i..j] 是否是回文串
-            boolean[][] dp = new boolean[len][len];
-            // 初始化：所有长度为 1 的子串都是回文串，斜对角线代表取出第i个字符这一个字符是回文串
+    public String longestPalindrome(String s) {
+        int len = s.length();
+        if (len < 2) { //如果字符串长度为1，直接返回
+            return s;
+        }
+        int maxLen = 1;
+        int begin = 0;
+        // dp[i][j] 表示 s[i..j] 是否是回文串
+        boolean[][] dp = new boolean[len][len];
+        // 初始化：所有长度为 1 的子串都是回文串，斜对角线代表取出第i个字符这一个字符是回文串
+        for (int i = 0; i < len; i++) {
+            dp[i][i] = true;
+        }
+        char[] charArray = s.toCharArray();
+        // 递推开始
+        // 先枚举子串长度
+        for (int L = 2; L <= len; L++) {
+            // 枚举左边界，左边界的上限设置可以宽松一些
             for (int i = 0; i < len; i++) {
-                dp[i][i] = true;
-            }
-            char[] charArray = s.toCharArray();
-            // 递推开始
-            // 先枚举子串长度
-            for (int L = 2; L <= len; L++) {
-                // 枚举左边界，左边界的上限设置可以宽松一些
-                for (int i = 0; i < len; i++) {
-                    // 由 L 和 i 可以确定右边界，即 j - i + 1 = L 得
-                    int j = L + i - 1;
-                    // 如果右边界越界，就可以退出当前循环
-                    if (j >= len) {
-                        break;
-                    }
-                    //如果i和j字符不相等，设置为false
-                    if (charArray[i] != charArray[j]) {
-                        dp[i][j] = false;
+                // 由 L 和 i 可以确定右边界，即 j - i + 1 = L 得
+                int j = L + i - 1;
+                // 如果右边界越界，就可以退出当前循环
+                if (j >= len) {
+                    break;
+                }
+                //如果i和j字符不相等，设置为false
+                if (charArray[i] != charArray[j]) {
+                    dp[i][j] = false;
+                } else {
+                    //如果字符相等，就继续判断：
+                    //如果j和i之间少于3个元素，就是true，因为dp[i][j] = dp[i+1][j-1]，
+                    // 此时i+1=j-1，就是再对角线上，一定位true
+                    if (j - i < 3) {
+                        dp[i][j] = true;
                     } else {
-                        //如果字符相等，就继续判断：
-                        //如果j和i之间少于3个元素，就是true，因为dp[i][j] = dp[i+1][j-1]，
-                        // 此时i+1=j-1，就是再对角线上，一定位true
-                        if (j - i < 3) {
-                            dp[i][j] = true;
-                        } else {
-                            dp[i][j] = dp[i + 1][j - 1];
-                        }
-                    }
-                    // 只要 dp[i][L] == true 成立，就表示子串 s[i..L] 是回文，此时记录回文长度和起始位置
-                    if (dp[i][j] && j - i + 1 > maxLen) {
-                        maxLen = j - i + 1;
-                        begin = i;
+                        dp[i][j] = dp[i + 1][j - 1];
                     }
                 }
+                // 只要 dp[i][L] == true 成立，就表示子串 s[i..L] 是回文，此时记录回文长度和起始位置
+                if (dp[i][j] && j - i + 1 > maxLen) {
+                    maxLen = j - i + 1;
+                    begin = i;
+                }
             }
-            return s.substring(begin, begin + maxLen);
         }
+        return s.substring(begin, begin + maxLen);
     }
 }

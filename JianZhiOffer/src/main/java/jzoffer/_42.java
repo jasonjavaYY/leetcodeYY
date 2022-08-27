@@ -12,6 +12,7 @@ package jzoffer;
 * 或者有 majority，但是出现的次数少于 i / 2 ，因为如果多于 i / 2 的话cnt就一定不会为 0 。
 * 此时剩下的 n - i 个元素中，majority 的数目依然多于 (n - i) / 2，因此继续查找就能找出 majority。
 * */
+//数组中出现次数超过一半的数字，例如输入{1,2,3,2,2,2,5,4,2}。2出现5次超过数组长一半，输出2。如不存在输出0
 public class _42 {
     public int MoreThanHalfNum_Solution(int[] nums) {
         //majority代表数组中出现次数最多的元素值，首先设置第0个元素为majority

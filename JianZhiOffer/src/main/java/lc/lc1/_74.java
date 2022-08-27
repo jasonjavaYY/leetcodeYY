@@ -10,6 +10,7 @@ package lc.lc1;
 由于每行的第一个元素大于前一行的最后一个元素，且每行元素是升序的，所以每行的第一个元素大于前一行的第一个元素，因此矩阵第一列的元素是升序的。
 我们可以对矩阵的第一列的元素二分查找，找到最后一个不大于目标值的元素，然后在该元素所在行中二分查找目标值是否存在。
 * */
+//判断 m x n 矩阵中是否存在目标值。矩阵每行从左到右升序。每行第一个整数大于前一行最后一个整数
 public class _74 {
     public boolean searchMatrix(int[][] matrix, int target) {
         int rowIndex = binarySearchFirstColumn(matrix, target);

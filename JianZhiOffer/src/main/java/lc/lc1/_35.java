@@ -20,6 +20,7 @@ package lc.lc1;
 * 我们返回的索引也是pos，因此我们可以将两个条件合并得出最后的目标：「在一个有序数组中找第一个大于等于target 的下标」。
 * 问题转化到这里，直接套用二分法即可，即不断用二分法逼近查找第一个大于等于target 的下标 。
 * */
+//排序数组和目标值，在数组中找目标值索引。如果目标值不存在，返回它将被按序插入位置
 public class _35 {
     public int searchInsert(int[] nums, int target) {
         int n = nums.length;

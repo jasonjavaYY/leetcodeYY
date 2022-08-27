@@ -13,6 +13,7 @@ import java.util.Queue;
 *
 * 和前面一题基本一样，只是增加一个翻转标记，每打印一层就翻转一次
 * */
+//之字形打印二叉树，第一行从左到右，第二层从右至左，第三行从左到右，以此类推。
 public class _35 {
     public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<>(); //存放结果数组

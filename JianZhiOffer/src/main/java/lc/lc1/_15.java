@@ -29,6 +29,7 @@ import java.util.List;
 当 sum == 0 时，nums[R] == nums[R−1] 则会导致结果重复，应该跳过，R--
 时间复杂度：O(n^2)，n 为数组长
 * */
+//n个整数的数组nums，找出其中所有和为 0 且不重复的三元组。
 public class _15 {
     public static List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> ans = new ArrayList(); //存放结果，结果是一个双层数组

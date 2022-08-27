@@ -11,6 +11,7 @@ Output:
 2147483647
 0
 * */
+//将字符串转换成整数，字符串不是合法数值则返回 0
 public class _72 {
     public int StrToInt(String str) {
         //如果字符串为空，返回0

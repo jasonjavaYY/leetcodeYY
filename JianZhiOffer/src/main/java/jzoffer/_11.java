@@ -16,6 +16,7 @@ f(n) - f(n-1) = f(n-1)
 f(n) = 2*f(n-1)
 所以 f(n) 是一个等比数列
 * */
+//一只青蛙一次可跳1级、2级... 也可跳n级，青蛙跳n级台阶共多少跳法
 public class _11 {
     public int JumpFloorII(int target) {
         //返回2的n-1次方

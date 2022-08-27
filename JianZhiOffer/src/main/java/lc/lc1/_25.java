@@ -20,6 +20,7 @@ k 是一个正整数，它的值小于或等于链表的长度。如果节点总
 * 创建了节点 pre ,这个节点一开始被连接到了头节点的前面，而无论之后链表有没有翻转，它的 next 指针都会指向正确的头节点。
 * 那么我们只要返回它的下一个节点就好了。至此，问题解决。
 * */
+//给链表头节点head ，每k个节点一组翻转，返回修改后的链表。k≤链表长度。如果节点数不是k整数倍，最后剩余节点保持原顺序
 public class _25 {
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode hair = new ListNode(0); //构造虚拟节点

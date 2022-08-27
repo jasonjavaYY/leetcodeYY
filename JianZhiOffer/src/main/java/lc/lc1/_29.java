@@ -20,6 +20,7 @@ package lc.lc1;
 * 那我让这个6再翻倍，得12，11不比12大，我知道最终结果肯定在2和4之间。也就是说2再加上某个数，这个数是多少呢？
 * 我让11减去刚才最后一次的结果6，剩下5，我们计算5是3的几倍，也就是除法，看，递归出现了。
 * */
+//被除数 dividend 和除数 divisor。将两数相除，不使用乘法、除法和mod
 public class _29 {
     public long divide(int dividend, int divisor) {
         if (dividend == 0) return 0; //如果被除数是0，返回0

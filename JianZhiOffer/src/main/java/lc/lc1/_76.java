@@ -32,6 +32,7 @@ import java.util.Map;
 * 用一个哈希表动态维护窗口中所有的字符以及它们的个数，如果这个动态表中包含 t 的哈希表中的所有字符，
 * 并且对应的个数都不小于 t 的哈希表中各个字符的个数，那么当前的窗口是「可行」的。
 * */
+//字符串s和t。返回s中涵盖t所有字符的最小子串。如果s中不存在则返回空字符串
 public class _76 {
     Map<Character, Integer> ori = new HashMap<Character, Integer>();
     Map<Character, Integer> cnt = new HashMap<Character, Integer>();

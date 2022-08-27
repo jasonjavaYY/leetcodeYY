@@ -2,6 +2,7 @@ package jzoffer;
 /*
 * 从 1 到 n 整数中 1 出现的次数
 * */
+//从 1 到 n 整数中 1 出现的次数
 public class _47 {
     public static int NumberOf1Between1AndN_Solution(int n) {
         //假设n=76

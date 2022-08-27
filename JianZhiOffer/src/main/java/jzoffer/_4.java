@@ -8,6 +8,7 @@ import java.util.Stack;
  *
  * 栈具有后进先出的特点，在遍历链表时将值按顺序放入栈中，最后出栈的顺序即为逆序
  * */
+//从尾到头打印链表
 public class _4 {
     public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
         Stack<Integer> stack = new Stack<>(); //构造一个栈

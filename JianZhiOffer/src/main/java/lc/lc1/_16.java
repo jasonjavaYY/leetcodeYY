@@ -23,6 +23,7 @@ import java.util.Arrays;
 * 如果 sum == target 则说明距离为 0 直接返回结果,整个遍历过程，固定值为 n 次，双指针为 n 次，时间复杂度为O(n2)
 总时间复杂度：O(nlogn)+O(n 2)=O(n 2)
 * */
+//长n的整数数组 nums 和目标值target。从 nums 中选出三个整数，使和与 target 最接近。返回三数的和
 public class _16 {
     public int threeSumClosest(int[] nums, int target) {
         //这里假定给的数组长度都是大于等于3的，否则要跟上一题一样进行边界判断

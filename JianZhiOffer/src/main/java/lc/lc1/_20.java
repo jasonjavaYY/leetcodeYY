@@ -38,6 +38,7 @@ import java.util.Map;
 时间复杂度 O(N)：正确的括号组合需要遍历 1 遍 s；
 空间复杂度 O(N)：哈希表和栈使用线性的空间大小。
 * */
+//给一个只包括 '('，')'，'{'，'}'，'['，']' 字符串s ，判断括号是否有效
 public class _20 {
     private static final Map<Character, Character> map = new HashMap<Character, Character>() {{
         put('{', '}');

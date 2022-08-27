@@ -28,6 +28,10 @@ P     I
 * 即矩阵的 x 行 y列。初始(x,y)=(0,0)，即矩阵左上角。若当前字符下标 i满足 i mod t<r−1，则向下移动，否则向右上移动。
 * 填写完成后，逐行扫描矩阵中的非空字符，组成答案。
 * */
+//将给定字符串s根据行数numRows从上往下、从左到右Z形排列，如输入"PAYPALISHIRING"行数3时，排列如下：
+//P   A   H   N
+//A P L S I I G
+//Y   I   R
 public class _6 {
     public String convert(String s, int numRows) {
         int n = s.length(), r = numRows;

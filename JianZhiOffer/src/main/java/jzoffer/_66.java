@@ -7,6 +7,7 @@ import java.util.Arrays;
 *
 * 五张牌，其中大小鬼为癞子，牌面为 0。判断这五张牌是否能组成顺子。
 * */
+//五张牌，其中大小鬼为癞子牌为 0。判断五张牌是否能组成顺子
 public class _66 {
     public boolean isContinuous(int[] nums) {
         //如果牌数小于5，返回false

@@ -10,6 +10,7 @@ import java.util.Queue;
 *
 * 用一个List<List>存储，每一个内层list存储一行
 * */
+//二叉树打印成多行，和上题几乎一样
 public class _34 {
     ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<>(); //存放结果数组

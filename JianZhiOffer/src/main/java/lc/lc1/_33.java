@@ -25,6 +25,7 @@ package lc.lc1;
 * 如果 [l, mid - 1] 是有序数组，且 target 的大小满足 [nums[l],nums[mid])，则我们应该将搜索范围缩小至 [l, mid - 1]，否则在[mid + 1, r]中。
 如果 [mid, r] 是有序数组，且 target 满足 (nums[mid+1],nums[r]]，则我们应该将搜索范围缩小至 [mid + 1, r]，否则在 [l, mid - 1] 中寻找。
 * */
+//整数数组nums升序值互不相同，nums在k旋转，如[0,1,2,4,5,6,7]在3处旋转为[4,5,6,7,0,1,2]，在旋转后数组找target下标，不存在返回-1
 public class _33 {
     public int search(int[] nums, int target) {
         int n = nums.length; //如果数组为空，返回-1

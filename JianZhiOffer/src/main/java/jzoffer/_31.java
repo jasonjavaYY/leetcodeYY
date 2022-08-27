@@ -7,6 +7,7 @@ import java.util.Stack;
 *
 * 定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的 min 函数。
 * */
+//定义栈数据结构，实现能得到栈最小元素的 min 函数
 public class _31 {
     private Stack<Integer> dataStack = new Stack<>();  //存放原数据序列的栈
     private Stack<Integer> minStack = new Stack<>();  //保证栈顶存放当前栈内最小的元素

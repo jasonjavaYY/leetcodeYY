@@ -33,6 +33,7 @@ package lc.lc1;
 因此我们会一直移动左指针，直到两个指针重合。在这期间，对应的可以容纳的水量为：min(2,8)∗3=6，min(5,8)∗2=10，min(4,8)∗1=4。
 在我们移动指针的过程中，计算到的最多可以容纳的数量为 49，即为最终的答案。
 * */
+//一个长n整数数组height，第i条线两端点是(i, 0)和(i, height[i])，找两条线使它们与 x 轴构成容器可容最多水。返回最大水量
 public class _11 {
     public int maxArea(int[] height) {
         int l = 0, r = height.length - 1;  //确定左右指针

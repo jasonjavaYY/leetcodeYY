@@ -9,6 +9,7 @@ package jzoffer;
 * 第二步，对复制节点的 random 链接进行赋值
 * 第三步，拆分
 * */
+//输入一个复杂链表，节点有节点值及两个指针，一个指向下一节点，另一个指向任意节点，返回复制后复杂链表的head
 public class _38 {
     public class RandomListNode {
         int label;

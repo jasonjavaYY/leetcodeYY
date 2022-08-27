@@ -9,8 +9,8 @@ package lc.lc1;
 网格中的障碍物和空位置分别用 1 和 0 来表示。
 *
 * 我们用f(i,j) 来表示从坐标 (0,0) 到坐标(i,j) 的路径总数，u(i,j) 表示坐标 (i,j) 是否可行，如果坐标(i,j)有障碍物u(i,j)=0，否则u(i,j)=1。
-
 * */
+//机器人位于m x n左上角，每次只能向下或右移一步，有障碍物。从左上到右下有多少条不同路径，障碍物和空位分别1和0
 public class _63 {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int n = obstacleGrid.length, m = obstacleGrid[0].length; //n行m列

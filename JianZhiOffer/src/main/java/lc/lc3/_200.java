@@ -31,13 +31,11 @@ package lc.lc3;
 public class _200 {
     //类似于lc的_130，只不过那道题边界不算被包围
     void dfs(char[][] grid, int r, int c) {
-        int nr = grid.length;
+        int nr = grid.length; //nr行nc列
         int nc = grid[0].length;
-
         if (r < 0 || c < 0 || r >= nr || c >= nc || grid[r][c] == '0') {
-            return;
-        }
-
+            return; //如果rc下标越界或者rc位置是0就返回
+        } //否则将rc位置设为0，继续找相邻上下左右四个点
         grid[r][c] = '0';
         dfs(grid, r - 1, c);
         dfs(grid, r + 1, c);
@@ -46,22 +44,21 @@ public class _200 {
     }
 
     public int numIslands(char[][] grid) {
-        if (grid == null || grid.length == 0) {
+        if (grid == null || grid.length == 0) {//如果数组为空，返回0
             return 0;
-        }
-
-        int nr = grid.length;
+        }//网格看成无向图，扫描图以1为起点dfs。搜到的1被重标记为0。岛屿数就是dfs次数
+        int nr = grid.length; //nr行nc列
         int nc = grid[0].length;
-        int num_islands = 0;
+        int num_islands = 0; //岛屿数
         for (int r = 0; r < nr; ++r) {
             for (int c = 0; c < nc; ++c) {
+                //遍历数组，如果rc位置是1，将岛屿数++并从rc开始dfs相邻的1
                 if (grid[r][c] == '1') {
                     ++num_islands;
                     dfs(grid, r, c);
                 }
             }
         }
-
-        return num_islands;
+        return num_islands; //返回岛屿数
     }
 }

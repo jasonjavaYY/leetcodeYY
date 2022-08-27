@@ -16,6 +16,7 @@ import java.util.List;
 * 数字 x 不能和当前行、列、九宫格中已经填入的数字相同，因此 line[i][x−1]，column[j][x−1] 以及 block[⌊i/3⌋][⌊j/3⌋][x−1]必须均为False。
 当我们填入了数字 x 之后，我们要将上述的三个值都置为True，并且继续对下一个空白格位置进行递归。在回溯到当前递归层时，我们还要将上述的三个值重新置为False。
 * */
+//填充空格解数独。数独部分空格已填入了数字，空白格用 '.' 表示。要做的就是填充所有.为数字
 public class _37 {
     //line和columns记录每一行列每个数字出现次数，subboxes记录每个小九宫格中每个数字出现次数
     private boolean[][] line = new boolean[9][9];

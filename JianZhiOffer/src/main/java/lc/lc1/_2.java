@@ -24,6 +24,7 @@ package lc.lc1;
 * 而新的进位值为 (n1+n2+carry)/10,如果两个链表的长度不同，则可以认为长度短的链表的后面有若干个0 。
 * 此外，如果链表遍历结束后，有 carry > 0，还需要在答案链表的后面附加一个节点，节点的值为 carry。
 * */
+//两个非空链表表示两个非负整数。每节点存一位数。返回表示和的链表。例如l1=[2,4,3],l2=[5,6,4]返回[7,0,8]
 public class _2 {
     class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {

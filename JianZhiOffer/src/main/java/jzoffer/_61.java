@@ -9,6 +9,7 @@ import java.util.ArrayList;
 [9, 10, 11, 12, 13, 14, 15, 16]
 [18, 19, 20, 21, 22]。
 * */
+//输出所有和为 S 的连续正数序列
 public class _61 {
     public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<>(); //存放结果

@@ -6,6 +6,7 @@ package jzoffer;
 *
 * 使用贪心策略，假设第 i 轮进行卖出操作，买入操作价格应该在 i 之前并且价格最低。
 * */
+//股票最大利润，可以有一次买入和一次卖出，买入必须在前求最大收益
 public class _68 {
     public int maxProfit(int[] prices) {
         //如果数组为空，返回0

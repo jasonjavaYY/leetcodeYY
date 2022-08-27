@@ -6,6 +6,7 @@ package jzoffer;
 * 则还有 N - K 个节点可以移动。此时让 P1 和 P2 同时移动，
 * 可以知道当 P1 移动到链表结尾时，P2 移动到第 N - K 个节点处，该位置就是倒数第 K 个节点
 * */
+//返回链表中倒数第 K 个结点
 public class _23 {
     public ListNode FindKthToTail(ListNode head, int k) {
         if (head == null) //如果链表为空，返回空

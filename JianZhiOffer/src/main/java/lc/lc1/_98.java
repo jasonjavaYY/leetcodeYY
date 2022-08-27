@@ -11,6 +11,7 @@ package lc.lc1;
 *
 * 中序遍历时，判断当前节点是否大于中序遍历的前一个节点，如果大于，说明满足 BST，继续遍历；否则直接返回 false。
 * */
+//给一个二叉树根节点，判断其是否是有效的二叉搜索树
 public class _98 {
     long pre = Long.MIN_VALUE;
 

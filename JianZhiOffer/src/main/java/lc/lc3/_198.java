@@ -29,23 +29,25 @@ dp[i]=max(dp[i−2]+nums[i],dp[i−1])
 边界条件为：
 dp[0]=nums[0]                只有一间房屋，则偷窃该房屋
 dp[1]=max(nums[0],nums[1])   只有两间房屋，选择其中金额较高的房屋进行偷窃
-最终的答案即为 dp[n−1]，其中 n 是数组的长度。
+最终的答案即为 dp[i - 1]，其中 n 是数组的长度。
 * */
 public class _198 {
     public int rob(int[] nums) {
-        if (nums == null || nums.length == 0) {
+        if (nums == null || nums.length == 0) {//如果数组为空，返回0
             return 0;
         }
         int length = nums.length;
-        if (length == 1) {
+        if (length == 1) { //如果只有一家，偷他家就是最高收益
             return nums[0];
-        }
-        int[] dp = new int[length];
-        dp[0] = nums[0];
+        }//dp[i]表示前 i 间屋能偷到的最高总金额
+        int[] dp = new int[length]; //构造dp
+        dp[0] = nums[0]; //第0家能偷到的最高金额就是nums[0]
+        //只有两间屋，选金额较高的房屋偷窃
         dp[1] = Math.max(nums[0], nums[1]);
-        for (int i = 2; i < length; i++) {
+        for (int i = 2; i < length; i++) {//i从2开始
+            //偷第i间屋就不能偷第i−1间屋，总金额为dp[i-2]+nums[i],不偷第i间，总金额为dp[i-1]
             dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
         }
-        return dp[length - 1];
+        return dp[length - 1];//返回dp[i - 1]
     }
 }

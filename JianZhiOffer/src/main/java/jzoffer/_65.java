@@ -14,6 +14,7 @@ import java.util.Map;
 使用一个二维数组 dp 存储点数出现的次数，其中 dp[i][j] 表示前 i 个骰子产生点数 j 的次数。
 * 空间复杂度：O(N<sup>2</sup>)
 * */
+//n个骰子仍在地上，求点数和为 s 的概率
 public class _65 {
     public List<Map.Entry<Integer, Double>> dicesSum(int n) {
         final int face = 6;  //一共有六个面

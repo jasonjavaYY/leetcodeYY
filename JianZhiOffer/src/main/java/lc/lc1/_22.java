@@ -22,6 +22,7 @@ import java.util.List;
 * 遍历 a 与 b 的所有可能性并拼接，即可得到所有长度为 2n 的括号序列。为了节省计算时间，我们在每次 generate(i) 函数返回之前，
 * 把返回值存储起来，下次再调用 generate(i) 时可以直接返回，不需要再递归计算。
 * */
+//数字 n 代表括号对数，请生成所有可能的且有效的括号组合
 public class _22 {
     ArrayList[] cache = new ArrayList[100];
 

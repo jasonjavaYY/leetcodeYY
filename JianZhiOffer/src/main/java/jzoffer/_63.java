@@ -12,6 +12,7 @@ Output:
 * 先将 "abc" 和 "XYZdef" 分别翻转，得到 "cbafedZYX"，然后再把整个字符串翻转得到 "XYZdefabc"。
 * 思想根前一道题一样
 * */
+//把字符串前K位放到最后，例如S="abcXYZdef"，K=3；输出"XYZdefabc"
 public class _63 {
     public String LeftRotateString(String str, int n) {
         //如果n超出了字符串长度，直接返回原字符串

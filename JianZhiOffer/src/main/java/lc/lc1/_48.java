@@ -9,6 +9,7 @@ package lc.lc1;
 * 方法三：用翻转代替旋转
 我们还可以另辟蹊径，用翻转操作代替旋转操作。先将其通过水平轴翻转,再根据主对角线翻转,就得到了答案。
 * */
+//n × n二维矩阵matrix。将其顺时针旋转 90 度
 public class _48 {
     public void rotate(int[][] matrix) {
         int n = matrix.length; //获取行数

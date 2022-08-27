@@ -31,6 +31,7 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 * 对于这种情况，我们也可以将每个字符视作一个单独的值，若一个数字右侧的数字比它大，则将该数字的符号取反。
 * 例如XIV 可视作 X−I+V=10−1+5=14。
 * */
+//罗马数字转整数
 public class _13 {
     Map<Character, Integer> symbolValues = new HashMap<Character, Integer>() {{
         put('I', 1);

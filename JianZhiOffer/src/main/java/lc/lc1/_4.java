@@ -1,4 +1,5 @@
 package lc.lc1;
+
 /*
 * 寻找两个正序数组的中位数
 *
@@ -31,61 +32,60 @@ package lc.lc1;
 * 如果一个数组为空，说明该数组中的所有元素都被排除，我们可以直接返回另一个数组中第 k 小的元素。
 * 如果 k=1，只要返回两个数组首元素的最小值即可。
 * */
+//两个m 和 n的正序数组nums1 和 nums2。返回这两个正序数组的中位数
 public class _4 {
-    class Solution {
-        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-            int length1 = nums1.length, length2 = nums2.length; //计算两个数组的长度之和
-            int totalLength = length1 + length2;
-            if (totalLength % 2 == 1) { //如果总长度为奇数，则k=midIndex + 1
-                int midIndex = totalLength / 2;
-                double median = getKthElement(nums1, nums2, midIndex + 1);
-                return median;
-            } else {  //如果为偶数，就是midIndex1 + 1和midIndex2 + 1的平均数
-                int midIndex1 = totalLength / 2 - 1, midIndex2 = totalLength / 2;
-                double median = (getKthElement(nums1, nums2, midIndex1 + 1) + getKthElement(nums1, nums2, midIndex2 + 1)) / 2.0;
-                return median;
-            }
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int length1 = nums1.length, length2 = nums2.length; //计算两个数组的长度之和
+        int totalLength = length1 + length2;
+        if (totalLength % 2 == 1) { //如果总长度为奇数，则k=midIndex + 1
+            int midIndex = totalLength / 2;
+            double median = getKthElement(nums1, nums2, midIndex + 1);
+            return median;
+        } else {  //如果为偶数，就是midIndex1 + 1和midIndex2 + 1的平均数
+            int midIndex1 = totalLength / 2 - 1, midIndex2 = totalLength / 2;
+            double median = (getKthElement(nums1, nums2, midIndex1 + 1) + getKthElement(nums1, nums2, midIndex2 + 1)) / 2.0;
+            return median;
         }
+    }
 
-        public int getKthElement(int[] nums1, int[] nums2, int k) {
-            /* 主要思路：要找到第 k (k>1) 小的元素，那么就取 pivot1 = nums1[k/2-1] 和 pivot2 = nums2[k/2-1] 进行比较
-             * 这里的 "/" 表示整除
-             * nums1 中小于等于 pivot1 的元素有 nums1[0 .. k/2-2] 共计 k/2-1 个
-             * nums2 中小于等于 pivot2 的元素有 nums2[0 .. k/2-2] 共计 k/2-1 个
-             * 取 pivot = min(pivot1, pivot2)，两个数组中小于等于 pivot 的元素共计不会超过 (k/2-1) + (k/2-1) <= k-2 个
-             * 这样 pivot 本身最大也只能是第 k-1 小的元素
-             * 如果 pivot = pivot1，那么 nums1[0 .. k/2-1] 都不可能是第 k 小的元素。把这些元素全部 "删除"，剩下的作为新的 nums1 数组
-             * 如果 pivot = pivot2，那么 nums2[0 .. k/2-1] 都不可能是第 k 小的元素。把这些元素全部 "删除"，剩下的作为新的 nums2 数组
-             * 由于我们 "删除" 了一些元素（这些元素都比第 k 小的元素要小），因此需要修改 k 的值，减去删除的数的个数
-             */
-            int length1 = nums1.length, length2 = nums2.length; //获取两个数组各自长度
-            int index1 = 0, index2 = 0;
-            int kthElement = 0;
-            while (true) {
-                // 边界情况 如果index1越界了，就返回num2的第k-1个数
-                if (index1 == length1) {
-                    return nums2[index2 + k - 1];
-                } //如果index2越界了，就返回num1的第k-1个数
-                if (index2 == length2) {
-                    return nums1[index1 + k - 1];
-                }  //如果k=1，就返回两个数组队首元素的较小值
-                if (k == 1) {
-                    return Math.min(nums1[index1], nums2[index2]);
-                }
-                // 正常情况  更新index1和index2，获取两个数组对应位置的值
-                int half = k / 2;
-                int newIndex1 = Math.min(index1 + half, length1) - 1;
-                int newIndex2 = Math.min(index2 + half, length2) - 1;
-                int pivot1 = nums1[newIndex1], pivot2 = nums2[newIndex2];
-                //如果num1≤num2，更新k和index1的值
-                if (pivot1 <= pivot2) {
-                    k -= (newIndex1 - index1 + 1);
-                    index1 = newIndex1 + 1;
-                } else {
-                    //否则更新k和index2的值
-                    k -= (newIndex2 - index2 + 1);
-                    index2 = newIndex2 + 1;
-                }
+    public int getKthElement(int[] nums1, int[] nums2, int k) {
+        /* 主要思路：要找到第 k (k>1) 小的元素，那么就取 pivot1 = nums1[k/2-1] 和 pivot2 = nums2[k/2-1] 进行比较
+         * 这里的 "/" 表示整除
+         * nums1 中小于等于 pivot1 的元素有 nums1[0 .. k/2-2] 共计 k/2-1 个
+         * nums2 中小于等于 pivot2 的元素有 nums2[0 .. k/2-2] 共计 k/2-1 个
+         * 取 pivot = min(pivot1, pivot2)，两个数组中小于等于 pivot 的元素共计不会超过 (k/2-1) + (k/2-1) <= k-2 个
+         * 这样 pivot 本身最大也只能是第 k-1 小的元素
+         * 如果 pivot = pivot1，那么 nums1[0 .. k/2-1] 都不可能是第 k 小的元素。把这些元素全部 "删除"，剩下的作为新的 nums1 数组
+         * 如果 pivot = pivot2，那么 nums2[0 .. k/2-1] 都不可能是第 k 小的元素。把这些元素全部 "删除"，剩下的作为新的 nums2 数组
+         * 由于我们 "删除" 了一些元素（这些元素都比第 k 小的元素要小），因此需要修改 k 的值，减去删除的数的个数
+         */
+        int length1 = nums1.length, length2 = nums2.length; //获取两个数组各自长度
+        int index1 = 0, index2 = 0;
+        int kthElement = 0;
+        while (true) {
+            // 边界情况 如果index1越界了，就返回num2的第k-1个数
+            if (index1 == length1) {
+                return nums2[index2 + k - 1];
+            } //如果index2越界了，就返回num1的第k-1个数
+            if (index2 == length2) {
+                return nums1[index1 + k - 1];
+            }  //如果k=1，就返回两个数组队首元素的较小值
+            if (k == 1) {
+                return Math.min(nums1[index1], nums2[index2]);
+            }
+            // 正常情况  更新index1和index2，获取两个数组对应位置的值
+            int half = k / 2;
+            int newIndex1 = Math.min(index1 + half, length1) - 1;
+            int newIndex2 = Math.min(index2 + half, length2) - 1;
+            int pivot1 = nums1[newIndex1], pivot2 = nums2[newIndex2];
+            //如果num1≤num2，更新k和index1的值
+            if (pivot1 <= pivot2) {
+                k -= (newIndex1 - index1 + 1);
+                index1 = newIndex1 + 1;
+            } else {
+                //否则更新k和index2的值
+                k -= (newIndex2 - index2 + 1);
+                index2 = newIndex2 + 1;
             }
         }
     }

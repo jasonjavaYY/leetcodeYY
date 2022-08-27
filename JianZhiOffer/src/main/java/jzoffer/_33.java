@@ -13,6 +13,7 @@ import java.util.Queue;
 * 不需要使用两个队列分别存储当前层的节点和下一层的节点，因为在开始遍历一层的节点时，
 * 当前队列中的节点数就是当前层的节点数，只要控制遍历这么多节点数，就能保证这次遍历的都是当前层的节点
 * */
+//从上往下打印二叉树每个节点，同层从左至右
 public class _33 {
     public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>(); //辅助队列

@@ -4,6 +4,7 @@ package jzoffer;
 *
 * 利用二叉查找树中序遍历有序的特点。
 * */
+//返回二叉查找树第 K 个结点
 public class _56 {
     private TreeNode ret;
     private int cnt = 0;

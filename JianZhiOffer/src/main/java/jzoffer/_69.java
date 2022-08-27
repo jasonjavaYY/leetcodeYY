@@ -12,6 +12,7 @@ package jzoffer;
 * 本题的递归返回条件为 n <= 0，取非后就是 n > 0；递归的主体部分为 sum += Sum_Solution(n - 1)，
 * 转换为条件语句后就是 (sum += Sum_Solution(n - 1)) > 0。
 * */
+//求 1+2+3+...+n，要求不能使用乘除法
 public class _69 {
     public int Sum_Solution(int n) {
         int sum = n;

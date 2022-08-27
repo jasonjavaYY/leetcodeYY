@@ -10,6 +10,7 @@ package jzoffer;
 令 P1 指向字符串原来的末尾位置，P2 指向字符串现在的末尾位置。
 * P1 和 P2 从后向前遍历，当 P1 遍历到一个空格时，就需要令P2指向的位置依次填充 02%，否则就填充上P1指向字符值。
 * */
+//将一个字符串中空格替换成 "%20"。
 public class _3 {
     public String replaceSpace(StringBuffer str) {
         int P1 = str.length() - 1; //p1指向尾部

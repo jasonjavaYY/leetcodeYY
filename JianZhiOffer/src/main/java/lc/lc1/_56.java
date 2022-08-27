@@ -25,6 +25,7 @@ import java.util.List;
 如果当前区间的左端点在数组 merged 中最后一个区间的右端点之后，那么它们不会重合，可以直接将这个区间加入数组 merged 的末尾；
 否则，它们重合，我们需要用当前区间的右端点更新数组 merged 中最后一个区间的右端点，将其置为二者的较大值。
 * */
+//数组intervals表示若干区间集合，单个区间为intervals[i]=[starti, endi]。合并所有重叠区间返回不重叠的区间数组，恰好覆盖输入中所有区间
 public class _56 {
     public int[][] merge(int[][] intervals) {
         if (intervals.length == 0) { //如果区间列表为空，返回0到2

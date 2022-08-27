@@ -4,6 +4,7 @@ package jzoffer;
 *
 * 递归
 * */
+//反转链表
 public class _25 {
     public ListNode ReverseList(ListNode head) {
         //如果为空或者只有一个节点，直接返回，因为翻转之后还是原链表

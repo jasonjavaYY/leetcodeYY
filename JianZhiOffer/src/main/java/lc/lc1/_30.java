@@ -33,6 +33,7 @@ import java.util.Map;
 * 则表示这个窗口中的单词频次和 words 中单词频次相同，窗口的左端点是一个待求的起始位置。划分的方法有n 种，做n 次滑动窗口后，
 * 即可找到所有的起始位置。
 * */
+//字符串s和一些长度相同的单词words 。找出s恰好可由words中所有单词串联形成的子串起始位置。子串要与words中单词完全匹配但不考虑单词顺序
 public class _30 {
     public List<Integer> findSubstring(String s, String[] words) {
         List<Integer> res = new ArrayList<Integer>(); //存放结果数组

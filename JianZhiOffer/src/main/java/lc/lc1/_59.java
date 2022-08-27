@@ -26,6 +26,7 @@ package lc.lc1;
 如果left<right 且 top<bottom，则从右到左填入下侧元素，依次为(bottom,right−1) 到 (bottom,left+1)，
 * 以及从下到上填入左侧元素，依次为(bottom,left) 到(top+1,left)。填完当前层的元素之后，将 left 和top增加1，将right和bottom减少1，继续填入元素
 * */
+//给一个正整数n，请生成包含1到 n^2元素，元素顺时针螺旋排列的 n x n矩阵
 public class _59 {
     //和jzoffer的_30操作相反
     public int[][] generateMatrix(int n) {

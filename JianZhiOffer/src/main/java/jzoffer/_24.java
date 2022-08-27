@@ -14,6 +14,7 @@ package jzoffer;
 * 并且速度变为每次移动一个节点，那么它到环入口点还需要移动 x 个节点。
 * 在上面已经推导出 x=z，因此 fast 和 slow 将在环入口点相遇。
 * */
+//一个链表包含环，请找出环入口结点。不能使用额外空间
 public class _24 {
     public ListNode EntryNodeOfLoop(ListNode pHead) {
         //空链表或者只有一个节点的链表不能成环，直接返回空

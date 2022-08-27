@@ -8,6 +8,7 @@ package jzoffer;
 * 同样地，当访问链表 B 的指针访问到链表尾部时，令它从链表 A 的头部重新开始访问链表 A。
 * 这样就能控制访问 A 和 B 两个链表的指针能同时访问到交点。
 * */
+//求两个链表的第一个公共结点
 public class _54 {
     public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
         ListNode l1 = pHead1, l2 = pHead2;

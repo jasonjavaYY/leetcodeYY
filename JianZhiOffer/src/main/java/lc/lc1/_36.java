@@ -18,31 +18,30 @@ package lc.lc1;
 * 则将 rows[i][n−1]、columns[j][n−1] 和 subboxes[⌊i/3⌋][⌊j/3⌋][n−1] 各加 1。如果更新后的计数大于 1，则不符合有效的数独的条件，
 * 返回false。如果遍历结束之后没有出现计数大于 1 的情况，则符合有效的数独的条件，返回 true。
 * */
+//判断9 x 9数独是否有效。1-9在每一行、每一列、每个3x3宫内只能出现一次。验证已填入数字是否有效。空白为'.'
 public class _36 {
-    class Solution {
-        public boolean isValidSudoku(char[][] board) {
-            //rows和columns记录每一行列每个数字出现次数，subboxes记录每个小九宫格中每个数字出现次数
-            int[][] rows = new int[9][9];
-            int[][] columns = new int[9][9];
-            int[][][] subboxes = new int[3][3][9];
-            for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < 9; j++) {
-                    //遍历数独二维矩阵每个元素
-                    char c = board[i][j];
-                    if (c != '.') { //如果有值就计算值，-1是因为数组下标从0开始
-                        int index = c - '0' - 1;
-                        //更新三个矩阵指定位置的值
-                        rows[i][index]++;
-                        columns[j][index]++;
-                        subboxes[i / 3][j / 3][index]++;
-                        //每次更新都判断，如果有出现>1的值就返回false
-                        if (rows[i][index] > 1 || columns[j][index] > 1 || subboxes[i / 3][j / 3][index] > 1) {
-                            return false;
-                        }
+    public boolean isValidSudoku(char[][] board) {
+        //rows和columns记录每一行列每个数字出现次数，subboxes记录每个小九宫格中每个数字出现次数
+        int[][] rows = new int[9][9];
+        int[][] columns = new int[9][9];
+        int[][][] subboxes = new int[3][3][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                //遍历数独二维矩阵每个元素
+                char c = board[i][j];
+                if (c != '.') { //如果有值就计算值，-1是因为数组下标从0开始
+                    int index = c - '0' - 1;
+                    //更新三个矩阵指定位置的值
+                    rows[i][index]++;
+                    columns[j][index]++;
+                    subboxes[i / 3][j / 3][index]++;
+                    //每次更新都判断，如果有出现>1的值就返回false
+                    if (rows[i][index] > 1 || columns[j][index] > 1 || subboxes[i / 3][j / 3][index] > 1) {
+                        return false;
                     }
                 }
             }
-            return true; //如果通过了检测，返回true
         }
+        return true; //如果通过了检测，返回true
     }
 }
