@@ -71,5 +71,4 @@ public class _23 {
         }
         ListNode next;
     }
-
 }

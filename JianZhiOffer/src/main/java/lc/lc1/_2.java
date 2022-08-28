@@ -45,12 +45,8 @@ public class _2 {
                 tail = tail.next;
             }
             carry = sum / 10; //计算一次和，就要计算进位
-            if (l1 != null) { //同时移动l1和l2
-                l1 = l1.next;
-            }
-            if (l2 != null) {
-                l2 = l2.next;
-            }
+            if (l1 != null) l1 = l1.next; //同时移动l1和l2
+            if (l2 != null) l2 = l2.next;
         }
         if (carry > 0) { //如果最后一位carry不为0，要在最后再插入一个节点保存进位
             tail.next = new ListNode(carry);
