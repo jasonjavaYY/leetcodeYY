@@ -49,7 +49,7 @@ import java.util.List;
 当 u 的所有相邻节点都为「已完成」时，我们将 u 放入栈中，并将其标记为「已完成」。
 在整个深度优先搜索的过程结束后，如果我们没有找到图中的环，那么栈中存储这所有的 n 个节点，从栈顶到栈底的顺序即为一种拓扑排序。
 * */
-//修numCourses门课。修某些课前要先修课程。数组prerequisites给出，prerequisites[i]=[ai, bi]表示学ai必须先学bi。判断能否学完所有课程
+//dfs 修numCourses门课。prerequisites[i]=[ai, bi]表示学ai必须先学bi。判断能否学完所有课程
 public class _207 {
     List<List<Integer>> edges;
     int[] visited; //标记某节点是否为搜索过0是未搜索，1是搜索中，2是已完成

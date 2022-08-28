@@ -24,7 +24,7 @@ pre：永远指向待反转区域的第一个节点 left 的前一个节点，�
 执行操作 ②：把 next 的下一个节点指向 pre 的下一个节点；
 执行操作 ③：把 pre 的下一个节点指向 next。
 * */
-//给你单链表头head和两个数left和right，反转从left到right的链表节点，返回反转后的链表
+//链表 给你单链表头head和两个数left和right，反转从left到right的链表节点，返回反转后的链表
 public class _92 {
     public ListNode reverseBetween(ListNode head, int left, int right) {
         // 因为left可能是0即从头开始翻转，因此要建立哑节点

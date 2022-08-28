@@ -31,7 +31,7 @@ dp[i][j]=  { dp[i−1][j] ∣ dp[i−1][j−nums[i]],  j≥nums[i]
            dp[i−1][j],                          j<nums[i]
 最终得到 dp[n−1][target] 即为答案。
 * */
-//一个只含正整数的非空数组nums。判断是否可将数组分成两个子集，两个子集元素和相等
+//动态规划 只含正整数的非空数组nums。判断是否可将数组分成两个子集，两个子集元素和相等
 public class _416 {
     public boolean canPartition(int[] nums) {
         int n = nums.length;//计算数组长度

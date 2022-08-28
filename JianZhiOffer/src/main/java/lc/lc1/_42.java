@@ -17,7 +17,7 @@ package lc.lc1;
 初始化 ans=0,从左向右扫描数组：初始化 max_left=0 和 max_right=0,从当前元素向左扫描并更新：max_left=max(max_left,height[j])
 从当前元素向右扫描并更新：max_right=max(max_right,height[j]),将min(max_left,max_right)−height[i] 累加到 ans
 * */
-//n个非负整数表示宽度为1的柱子高度图，计算此排列柱子能接多少雨水
+//数组 n个非负整数表示宽度为1的柱子高度图，计算此排列柱子能接多少雨水
 public class _42 {
     public int trap(int[] height) {
         int ans = 0;

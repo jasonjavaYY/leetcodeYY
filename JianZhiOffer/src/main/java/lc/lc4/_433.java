@@ -35,7 +35,7 @@ import java.util.Set;
 * 如果该基因序列已经遍历过，则直接跳过；如果合法且未遍历过的基因序列，则我们将其加入到队列中。如果当前变换后的基因序列与 end 相等，
 * 直接返回最小变化次数；如果队列中所有元素都已经遍历完成还无法变成 end，则此时无法实现目标变化，返回 −1。
 * */
-//基因序列为8个字符，字符是A、C、G和T之一。给start和end及基因库bank，变化后基因必须位于bank，返回start变为end最少次数，如无法变返回-1
+//bfs 基因序列为8字符，字符是A、C、G和T之一。给start和end及基因库bank，变化后基因必须位于bank，返回start变为end最少次数，无法变返回-1
 public class _433 {
     public int minMutation(String start, String end, String[] bank) {
         Set<String> cnt = new HashSet<String>();//将基因库去重

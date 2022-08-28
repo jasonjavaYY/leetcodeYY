@@ -24,7 +24,7 @@ dp[i][j]=  [j−1 | max | k=i+1]  val[i]×val[k]×val[j] + dp[i][k] + dp[k][j], 
            0,                                                                 i≥j−1
 最终答案即为 dp[0][n+1]。实现时要注意到动态规划的次序。
 * */
-//n个气球每个气球一个数，存在nums中。戳破所有气球。戳破第i个气球可获得nums[i-1] * nums[i] * nums[i+1]值。如果i-1或i+1越界就是1。求最大值
+//动态规划 n个气球都有数存在nums。戳破所有气球。戳破i个气球可获得nums[i-1]*nums[i]*nums[i+1]值。如果i-1或i+1越界就是1。求最大值
 public class _312 {
     public int maxCoins(int[] nums) {
         int n = nums.length;//计算数组长度

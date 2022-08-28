@@ -20,7 +20,7 @@ package lc.lc4;
 输入：prices = [1,3,7,5,10,3], fee = 3
 输出：6
 * */
-//整数数组prices，prices[i]表示i天股票价；整数fee是手续费。可无限交易每笔交易(买又卖)付手续费。手里最多持一股票。返回利润最大值。
+//动态规划 整数数组prices，prices[i]表示i天股价；fee是手续费。可无限交易每笔交易(买又卖)付手续费。手里最多持一股票。返回利润最大
 public class _714 {
     //同lc的_122，方程多减一个free
     public int maxProfit(int[] prices, int fee) {

@@ -4,7 +4,7 @@ package jzoffer;
 *
 * 递归
 * */
-//反转链表
+//链表 反转链表
 public class _25 {
     public ListNode ReverseList(ListNode head) {
         //如果为空或者只有一个节点，直接返回，因为翻转之后还是原链表
@@ -13,8 +13,7 @@ public class _25 {
         //获取头的next，头的next指向空
         ListNode next = head.next;
         head.next = null;
-        //翻转next
-        ListNode newHead = ReverseList(next);
+        ListNode newHead = ReverseList(next); //翻转next
         //next的next指向头
         next.next = head;
         return newHead; //返回新的头

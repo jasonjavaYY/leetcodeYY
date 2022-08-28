@@ -9,13 +9,11 @@ package jzoffer;
 *
 * 因为 (x*x)n/2 可以通过递归求解，并且每次递归 n 都减小一半，因此整个算法的时间复杂度为 O(logN)
 * */
-//一个double的base和int的exponent，求base的exponent 次方
+//数学 一个double的base和int的exponent，求base的exponent 次方
 public class _16 {
     public double Power(double base, int exponent) {
-        if (exponent == 0) //如果指数是0，返回1
-            return 1;
-        if (exponent == 1) //如果指数是1，返回base
-            return base;
+        if (exponent == 0) return 1; //如果指数是0，返回1
+        if (exponent == 1) return base;//如果指数是1，返回base
         boolean isNegative = false;
         if (exponent < 0) { //记录指数是否为负值
             exponent = -exponent;

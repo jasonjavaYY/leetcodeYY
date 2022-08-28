@@ -17,7 +17,7 @@ package lc.lc5;
 此时还剩下没有在 arr2中出现过的元素，因此还要对整个数组 frequency 进行一次遍历。当遍历到元素 x 时，如果 frequency[x] 不为 0，
 * 我们将 frequency[x] 个 x 加入答案。可以对空间复杂度优化。不使用长度为 1001 数组，可以找出数组 arr1中最大值 upper，使用upper+1 数组。
 * */
-//两个数组arr1和arr2，arr2元素各不相同，arr2每个元素都出现在arr1中。对arr1排序使项顺序和arr2相同。未arr2出现元素升序放arr1末尾
+//数组 两数组arr1和arr2，arr2元素各不相同，arr2每个元素都出现在arr1中。对arr1排序使项顺序和arr2相同。未arr2出现元素升序放arr1末尾
 public class _1122 {
     public int[] relativeSortArray(int[] arr1, int[] arr2) {
         int upper = 0;

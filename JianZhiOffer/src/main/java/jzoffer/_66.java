@@ -7,21 +7,16 @@ import java.util.Arrays;
 *
 * 五张牌，其中大小鬼为癞子，牌面为 0。判断这五张牌是否能组成顺子。
 * */
-//五张牌，其中大小鬼为癞子牌为 0。判断五张牌是否能组成顺子
+//数组 五张牌，其中大小鬼为癞子牌为 0。判断五张牌是否能组成顺子
 public class _66 {
     public boolean isContinuous(int[] nums) {
-        //如果牌数小于5，返回false
-        if (nums.length < 5)
-            return false;
-        //将数组排序
-        Arrays.sort(nums);
-
-        // 统计癞子数量
-        int cnt = 0;
+        if (nums.length < 5) return false; //如果牌数小于5，返回false
+        Arrays.sort(nums); //将数组排序
+        int cnt = 0;  // 统计癞子数量
         for (int num : nums)
             if (num == 0)
                 cnt++;
-        // 使用癞子去补全不连续的顺子
+        // 使用癞子补全不连续的顺子
         for (int i = cnt; i < nums.length - 1; i++) {
             //遍历除了癞子后面的数字，只要有重复的直接返回false
             if (nums[i + 1] == nums[i])

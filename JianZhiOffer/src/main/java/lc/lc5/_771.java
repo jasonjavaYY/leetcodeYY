@@ -20,7 +20,7 @@ import java.util.Set;
 使用哈希集合存储字符串 jewels 中的宝石，可以降低判断的时间复杂度。
 遍历字符串 jewels，使用哈希集合存储其中的字符，然后遍历字符串 stones，对于其中的每个字符，如果其在哈希集合中，则是宝石。
 * */
-//字符串jewels代表宝石类型，字符串stones代表拥有的石头。计算拥有的石头中多少个宝石
+//字符串 字符串jewels代表宝石类型，字符串stones代表拥有的石头。计算拥有的石头中多少个宝石
 public class _771 {
     public int numJewelsInStones(String jewels, String stones) {
         int jewelsCount = 0;//初始化宝石数=0

@@ -23,7 +23,7 @@ package lc.lc1;
 * 那么我们给数组中的第∣x∣−1位置的数添加一个负号。如果它已经有负号，不需要重复添加；
 * 在遍历完成之后，如果数组中的每一个数都是负数，那么答案是N+1，否则答案是第一个正数的位置加 1。
 * */
-//一个未排序整数数组nums找出其中没出现的最小正整数
+//数组 一个未排序整数数组nums找出其中没出现的最小正整数
 public class _41 {
     public int firstMissingPositive(int[] nums) {
         int n = nums.length;

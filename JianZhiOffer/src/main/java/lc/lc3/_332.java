@@ -42,7 +42,7 @@ import java.util.Map;
 * 因为每个顶点都要访问一次，每条边都要访问一次，时间复杂度应为 O(∣V∣+∣E∣)，还要记得对临接点排序的时间复杂度 O(∣E∣log∣E∣)，
 * 算法整体时间复杂度为 O(∣E∣log∣E∣)；如果整个图是链式的，那么调用栈最深，空间复杂度应为 O(∣E∣)。
 * */
-//一份航线列表tickets，tickets[i]=[fromi,toi]表示出发和降落点。对行程重新排序，从JFK开始。按字典序返回最小行程组合
+//dfs 航线列表tickets，tickets[i]=[fromi,toi]表示出发降落点。对行程排序从JFK开始。按字典序返回最小行程组合
 public class _332 {
     public List<String> findItinerary(List<List<String>> tickets) {
         List<String> ans = new LinkedList<>();//构造结果链表

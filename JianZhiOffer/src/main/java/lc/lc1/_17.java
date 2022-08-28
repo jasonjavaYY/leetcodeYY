@@ -28,7 +28,7 @@ import java.util.Map;
 * 然后进行回退操作，遍历其余的字母排列。回溯算法用于寻找所有的可行解，如果发现一个解不可行，则会舍弃不可行的解。
 * 在这道题中，由于每个数字对应的每个字母都可能进入字母组合，因此不存在不可行的解，直接穷举所有的解即可。
 * */
-//一个仅含数字 2-9 的字符串，返回所有能表示的字母组合
+//回溯 一个仅含数字 2-9 的字符串，返回所有能表示的字母组合
 public class _17 {
     public List<String> letterCombinations(String digits) {
         List<String> combinations = new ArrayList<String>(); //记录字符串数组结果
@@ -36,14 +36,8 @@ public class _17 {
             return combinations;
         } //构造数字到字母映射表
         Map<Character, String> phoneMap = new HashMap<Character, String>() {{
-            put('2', "abc");
-            put('3', "def");
-            put('4', "ghi");
-            put('5', "jkl");
-            put('6', "mno");
-            put('7', "pqrs");
-            put('8', "tuv");
-            put('9', "wxyz");
+            put('2', "abc");put('3', "def");put('4', "ghi");put('5', "jkl");
+            put('6', "mno");put('7', "pqrs");put('8', "tuv");put('9', "wxyz");
         }};
         backtrack(combinations, phoneMap, digits, 0, new StringBuffer());//回溯
         return combinations;

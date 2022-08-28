@@ -29,7 +29,7 @@ import java.util.List;
 * 也可以选择使用第 idx 个数，即执行  dfs(target−candidates[idx],combine,idx)，注意到每个数字可以被无限制重复选取，因此搜索的下标仍为idx。
 * 更形象化地说，如果我们将整个搜索过程用一个树来表达，即如下图呈现，每次的搜索都会延伸出两个分叉，直到递归的终止条件，这样就能不重复且不遗漏找到所有可行解：
 * */
-//无重复元素整数数组candidates和目标target，找出数组中使数字和为target的不同组合，数字可重复选。如果至少一个数被选次数不同则两种组合不同
+//回溯法 无重复元素整数数组candidates和目标target，找出数组中使数字和为target的不同组合，数字可重复。如至少一个数被选次数不同则两组合不同
 public class _39 {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>(); //构造记录答案数组，是一个双层数组

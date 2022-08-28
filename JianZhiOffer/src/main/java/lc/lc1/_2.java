@@ -1,4 +1,5 @@
 package lc.lc1;
+
 /*
 * 两数相加
 *
@@ -24,43 +25,39 @@ package lc.lc1;
 * 而新的进位值为 (n1+n2+carry)/10,如果两个链表的长度不同，则可以认为长度短的链表的后面有若干个0 。
 * 此外，如果链表遍历结束后，有 carry > 0，还需要在答案链表的后面附加一个节点，节点的值为 carry。
 * */
-//两个非空链表表示两个非负整数。每节点存一位数。返回表示和的链表。例如l1=[2,4,3],l2=[5,6,4]返回[7,0,8]
+//链表 两个非空链表表示两个非负整数。每节点存一位数。返回表示和的链表。例如l1=[2,4,3],l2=[5,6,4]返回[7,0,8]
 public class _2 {
-    class Solution {
-        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-            ListNode head = null, tail = null;
-            int carry = 0; //carry是进位
-            while (l1 != null || l2 != null) {
-                //获取两个链表相同位置节点的值，求和，记得加上carry，最开始的carry为0
-                //如果链表元素为null，就把值看做0
-                int n1 = l1 != null ? l1.val : 0;
-                int n2 = l2 != null ? l2.val : 0;
-                int sum = n1 + n2 + carry;
-                //如果是第一轮计算，同时更新头结点和尾节点，值为sum%10
-                if (head == null) {
-                    head = tail = new ListNode(sum % 10);
-                } else {
-                    //否则只需要更新尾节点
-                    tail.next = new ListNode(sum % 10);
-                    tail = tail.next;
-                }
-                //计算一次和，就要计算进位
-                carry = sum / 10;
-                //同时移动l1和l2
-                if (l1 != null) {
-                    l1 = l1.next;
-                }
-                if (l2 != null) {
-                    l2 = l2.next;
-                }
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode head = null, tail = null;
+        int carry = 0; //carry是进位
+        while (l1 != null || l2 != null) {
+            //获取两个链表相同位置节点的值，求和，记得加上carry，最开始的carry为0
+            //如果链表元素为null，就把值看做0
+            int n1 = l1 != null ? l1.val : 0;
+            int n2 = l2 != null ? l2.val : 0;
+            int sum = n1 + n2 + carry;
+            //如果是第一轮计算，同时更新头结点和尾节点，值为sum%10
+            if (head == null) {
+                head = tail = new ListNode(sum % 10);
+            } else {
+                //否则只需要更新尾节点
+                tail.next = new ListNode(sum % 10);
+                tail = tail.next;
             }
-            //如果最后一位计算出来的carry也不为0，要在最后再插入一个节点保存进位
-            if (carry > 0) {
-                tail.next = new ListNode(carry);
-            }//最后返回链表
-            return head;
+            carry = sum / 10; //计算一次和，就要计算进位
+            if (l1 != null) { //同时移动l1和l2
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
         }
+        if (carry > 0) { //如果最后一位carry不为0，要在最后再插入一个节点保存进位
+            tail.next = new ListNode(carry);
+        }//最后返回链表
+        return head;
     }
+
     class ListNode {
         private int val;
         private ListNode next;

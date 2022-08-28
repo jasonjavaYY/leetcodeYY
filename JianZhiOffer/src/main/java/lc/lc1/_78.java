@@ -29,7 +29,7 @@ import java.util.List;
 * 可以发现 0/1 序列对应的二进制数正好从 0 到 2^n - 1。我们可以枚举mask∈[0,2^n−1]，mask 的二进制表示是一个 0/1 序列，
 * 我们可以按照这个 0/1 序列在原集合当中取数。当我们枚举完所有 2^n个 mask，我们也就能构造出所有的子集。
 * */
-//一个整数数组nums元素互不相同。返回该数组所有可能子集。不能包含重复子集
+//数学 一个整数数组nums元素互不相同。返回该数组所有可能子集。不能包含重复子集
 public class _78 {
     List<Integer> t = new ArrayList<Integer>(); //t存放每种可能的结果
     List<List<Integer>> ans = new ArrayList<List<Integer>>(); //存最终结果集

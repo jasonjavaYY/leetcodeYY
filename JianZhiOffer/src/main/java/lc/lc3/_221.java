@@ -36,7 +36,7 @@ dp(i,j)=min(dp(i−1,j),dp(i−1,j−1),dp(i,j−1))+1
 0 1 2 3 2
 0 0 1 2 3
 * */
-//由 '0' 和 '1' 组成的二维矩阵找到只包含 '1' 的最大正方形返回面积
+//动态规划 由 '0' 和 '1' 组成的二维矩阵找到只包含 '1' 的最大正方形返回面积
 public class _221 {
     public int maximalSquare(char[][] matrix) {
         int maxSide = 0;

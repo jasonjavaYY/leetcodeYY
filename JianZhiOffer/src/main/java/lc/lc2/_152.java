@@ -32,7 +32,7 @@ fmin(i) = i=1 min n{fmax(i−1)×ai,fmin(i−1)×ai,ai}
 它代表第 i 个元素结尾的乘积最大子数组的乘积 fmax(i)，可以考虑把ai加入第 i−1 个元素结尾的乘积最大或最小的子数组的乘积中，二者加上 ai，
 * 三者取大，就是第 i 个元素结尾的乘积最大子数组的乘积。第 i 个元素结尾的乘积最小子数组的乘积 fmin(i) 同理。
 * */
-//整数数组nums，找出数组中乘积最大的非空连续子数组，返回所对应乘积
+//动态规划 整数数组nums，找出数组中乘积最大的非空连续子数组，返回所对应乘积
 public class _152 {
     public int maxProduct(int[] nums) {
         int length = nums.length; //计算数组长度

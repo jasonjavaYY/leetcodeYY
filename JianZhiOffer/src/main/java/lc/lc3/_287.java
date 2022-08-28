@@ -36,7 +36,7 @@ package lc.lc3;
 142 题中慢指针走一步 slow = slow.next ==> 本题 slow = nums[slow]
 142 题中快指针走两步 fast = fast.next.next ==> 本题 fast = nums[nums[fast]]
 * */
-//包含n+1个整数的数组nums，数字都在[1, n]范围内，可知至少存在一个重复数。假设只有一个重复整数，返回这个重复数
+//链表 包含n+1个整数的数组nums，数字在[1, n]内，假设只有一个重复整数，返回这个重复数
 public class _287 {
     public int findDuplicate(int[] nums) {
         int slow = 0, fast = 0;//定义快慢指针，最初指向0

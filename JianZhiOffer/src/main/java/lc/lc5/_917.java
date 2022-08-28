@@ -18,7 +18,7 @@ package lc.lc5;
 使用 left 指针从左边开始扫描字符串 s，right 指针从右边开始扫描字符串 s。如果两指针都扫描到字母，且 left<right，交换 s[left] 和 rs[right]，
 * 然后继续进行扫描；否则表明反转过程结束，返回处理后的字符串。
 * */
-//字符串s，非英文字母保留原位置。英文字母位置反转。返回反转后的s
+//字符串 字符串s，非英文字母保留原位置。英文字母位置反转。返回反转后的s
 public class _917 {
     public String reverseOnlyLetters(String s) {
         int n = s.length();//计算字符串长度n

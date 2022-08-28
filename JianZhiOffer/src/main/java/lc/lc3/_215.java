@@ -18,7 +18,7 @@ package lc.lc3;
 思路和算法
 使用堆排序来解决这个问题——建立一个大根堆，做 k−1 次删除操作后堆顶元素就是我们要找的答案。
 * */
-//给整数数组nums和整数k，返回数组中第k大的元素
+//堆 给整数数组nums和整数k，返回数组中第k大的元素
 public class _215 {
     public int findKthLargest(int[] nums, int k) {
         int heapSize = nums.length; //计算数组大小

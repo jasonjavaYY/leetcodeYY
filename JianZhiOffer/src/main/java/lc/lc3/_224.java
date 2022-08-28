@@ -30,7 +30,7 @@ import java.util.LinkedList;
 * 则更新sign←−ops.top()。然后，每当遇到 ( 时，都要将当前的 sign 取值压入栈中；每当遇到 ) 时，都从栈中弹出一个元素。
 * 这样，我们能够在扫描字符串的时候，即时地更新 ops 中的元素。
 * */
-//字符串表达式s，实现计算器来计算它的值，只包含+-或括号
+//栈 字符串表达式s，实现计算器来计算它的值，只包含+-或括号
 public class _224 {
     public int calculate(String s) {
         Deque<Integer> ops = new LinkedList<Integer>();//构造栈

@@ -25,7 +25,7 @@ parkingSystem.addCar(1); // 返回 false ，因为没有空的大车位，唯一
 * 方法一：模拟
 为每种车维护一个计数器，初始值为车位的数目。此后，每来一辆车，就将对应类型的计数器减 11。当计数器为 00 时，说明车位已满。
 * */
-//停车场有大，中和小车位。实现ParkingSystem类：
+//数学 停车场有大，中和小车位。实现ParkingSystem类：
 //ParkingSystem(int big, int medium, int small)初始化ParkingSystem类，三个参数对应每种车位数
 //bool addCar(int carType) 检查是否有carType的车位。大，中，小，分别用1，2和3，车只能停对应尺寸
 public class _1603 {

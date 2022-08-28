@@ -31,7 +31,7 @@ P(i,i+1)=(Si ==Si+1)
 * 根据这个思路，我们就可以完成动态规划了，最终的答案即为所有 P(i,j)=true 中j−i+1的最大值。
 * 注意：在状态转移方程中，我们是从长度较短的字符串向长度较长的字符串进行转移的，因此一定要注意动态规划的循环顺序。
 * */
-//给一个字符串s，找到s中最长回文子串
+//回文串 给一个字符串s，找到s中最长回文子串
 public class _5 {
     public String longestPalindrome(String s) {
         int len = s.length();

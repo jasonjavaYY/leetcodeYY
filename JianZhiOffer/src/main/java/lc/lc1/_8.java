@@ -14,7 +14,7 @@ package lc.lc1;
 本题中的空白字符只包括空格字符 ' ' 。
 除前导空格或数字后的其余字符串外，请勿忽略 任何其他字符。
 * */
-//将字符串转换成一个 32 位有符号整数，丢弃无用的前导空格
+//字符串 将字符串转换成一个32位有符号整数，丢弃无用的前导空格
 public class _8 {
     public int myAtoi(String str) {
         int len = str.length();

@@ -23,7 +23,7 @@ cut 递归终止条件： 当head.next == None时，说明只有一个节点了�
 时间复杂度 O(l + r)，l, r 分别代表两个链表长度。
 当题目输入的 head == None 时，直接返回None。
 * */
-//给链表头结点，请按升序排列并返回排序后的链表
+//链表 给链表头结点，请按升序排列并返回排序后的链表
 public class _148 {
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null)

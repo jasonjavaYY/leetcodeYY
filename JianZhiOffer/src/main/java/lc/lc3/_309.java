@@ -35,7 +35,7 @@ sumRange 函数:
 * update 函数的时间复杂度为 O(1)，而 sumRange 函数的时间复杂度为 O(size + n/size)，仅当 size= sqrt(n)时等号成立。
 * 因此 size 取 ⌊ sqrt(n) ⌋，此时 sumRange 函数的时间复杂度为 O( sqrt(n) )。
 * */
-//给一个数组nums，请完成两类查询。一类要更新数组下标的值,另一类要返回数组中索引left和right之间元素的和
+//数组 给一个数组nums，请完成两类查询。一类要更新数组下标的值,另一类要返回数组中索引left和right之间元素的和
 public class _309 {
     //设数组大小n，将数组分成多块，每块大小size，最后一块大小为剩余的不超过size元素数
     class NumArray {

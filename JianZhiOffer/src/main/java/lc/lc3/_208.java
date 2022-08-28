@@ -40,7 +40,7 @@ Trie，又称前缀树，是一棵有根树，其每个节点包含以下字段�
 重复以上步骤，直到返回空指针或搜索完前缀的最后一个字符。
 若搜索到了前缀的末尾，就说明字典树中存在该前缀。此外，若前缀末尾对应节点的 isEnd 为真，则说明字典树中存在该字符串。
 * */
-//实现Trie类：Trie()初始化前缀树。void insert(String word)向树插入word。boolean search(String word)如果word在树中返回true
+//树 实现Trie类：Trie()初始化前缀树。void insert(String word)向树插入word。boolean search(String word)如果word在树中返回true
 //boolean startsWith(String prefix) 如果已经插入的word前缀之一为prefix返回true
 public class _208 {
     //Trie节点包含：指向子节点指针数组children。本题数组长26即英文字母数。

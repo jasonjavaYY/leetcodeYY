@@ -18,7 +18,7 @@ package lc.lc1;
 当 i>0 且 j>0 时，dp[i][j]=min(dp[i−1][j],dp[i][j−1])+grid[i][j]。
 最后得到 dp[m−1][n−1] 的值即为从网格左上角到网格右下角的最小路径和。
 * */
-//包含非负整数的m x n网格，找出从左上到右下路径使路径上数字总和最小。每次只能向下或右移一步
+//包动态规划 含非负整数的mxn网格，找出从左上到右下路径使路径上数字总和最小。每次只能向下或右移一步
 public class _64 {
     public int minPathSum(int[][] grid) {
         if (grid == null || grid.length == 0 || grid[0].length == 0) {

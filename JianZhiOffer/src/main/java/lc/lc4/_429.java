@@ -23,7 +23,7 @@ import java.util.Queue;
 * 在这之后，我们从队列中依次取出节点，直到取出了上一层的全部 cnt 个节点为止。当取出节点 cur 时，我们将 cur 的值放入一个临时列表，
 * 再将 cur 的所有子节点全部放入队列中。当这一轮遍历完成后，临时列表中就存放了当前层所有节点值。整个广度优先搜索完后，就可以得到层序遍历结果。
 * */
-//定一个N叉树，返回层序遍历
+//树 定一个N叉树，返回层序遍历
 public class _429 {
     public List<List<Integer>> levelOrder(Node root) {
         if (root == null) {//如果树为空，返回空数组

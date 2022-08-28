@@ -22,7 +22,7 @@ package lc.lc4;
 *                               = ​(real1×real2−imag1×imag2)+(real1×imag2+imag1×real2)×i
 得到两个复数的乘积之后，将乘积转换成复数格式的字符串并返回。
 * */
-//复数用字符串表示，"实部+虚部i"，实部是一整数，虚部也是一整数，给两个复数num1和num2，返回表示乘积的字符串
+//数学 复数用字符串表示，"实部+虚部i"，实部是一整数，虚部也是一整数，给两个复数num1和num2，返回表示乘积的字符串
 public class _537 {
     public String complexNumberMultiply(String num1, String num2) {
         //将字符串按+或i切割得到 实部 虚部数组

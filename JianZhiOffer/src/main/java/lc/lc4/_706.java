@@ -30,7 +30,7 @@ myHashMap.get(2);    // 返回 -1（未找到），myHashMap 现在为 [[1,1]]
 *
 * 「设计哈希映射」与「设计哈希集合」解法接近，唯一的区别在于我们存储的不是 key 本身，而是 (key,value) 对。除此之外，代码基本是类似的。
 * */
-//设计HashMap：MyHashMap()初始化对象。void put(int key, int value)插入(key, value)。如果key已经存在则更新其value。
+//数学 设计HashMap：MyHashMap()初始化对象。void put(int key, int value)插入(key, value)。如果key已经存在则更新其value。
 //int get(int key)返回key映射的value；如果不含key映射，返回-1。void remove(key)如果映射中存在key，则移除key和value
 public class _706 {
     class MyHashMap {

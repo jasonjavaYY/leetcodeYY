@@ -4,7 +4,7 @@ package jzoffer;
 *
 * 输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
 * */
-//输入两棵二叉树A，B，判断B是不是A的子结构，空树不是任意一个树的子结构
+//树 输入两棵二叉树A，B，判断B是不是A的子结构，空树不是任意一个树的子结构
 public class _27 {
     public class TreeNode {
         int val = 0;
@@ -21,12 +21,8 @@ public class _27 {
         return isSubtree(root1, root2) || HasSubtree(root1.left, root2) || HasSubtree(root1.right, root2);
     }
     public boolean isSubtree(TreeNode root1, TreeNode root2) {
-        if (root2 == null) { //如果root2是空，返回true
-            return true;
-        }
-        if (root1 == null) { //如果root1是空，返回false
-            return false;
-        }
+        if (root2 == null) return true; //如果root2是空，返回true
+        if (root1 == null) return false; //如果root1是空，返回false
         if (root1.val == root2.val) { //如果节点值相等，继续判断root1的left和root2的left，以及right
             return isSubtree(root1.left, root2.left) && isSubtree(root1.right, root2.right);
         } else { //如果值不相等，返回false

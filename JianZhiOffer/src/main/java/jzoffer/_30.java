@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，
  * */
-//输入一个矩阵，从外向里顺时针依次打印每个数字
+//数组 输入一个矩阵，从外向里顺时针依次打印每个数字
 public class _30 {
     public ArrayList<Integer> printMatrix(int[][] matrix) {
         ArrayList<Integer> ret = new ArrayList<>();

@@ -14,7 +14,7 @@ package lc.lc4;
 * 方法一：使用额外空间
 开辟一个新字符串。从头到尾遍历原字符串，直到找到空格，此时找到一个单词，并得到单词起止位置。根据单词的起止位置，将单词逆序放到新字符串中。
 * */
-//一个字符串s，反转每个单词字符顺序，保留空格和单词初始顺序
+//字符串 一个字符串s，反转每个单词字符顺序，保留空格和单词初始顺序
 public class _557 {
     public String reverseWords(String s) {
         StringBuffer ret = new StringBuffer();//构造stringbuffer(sb)

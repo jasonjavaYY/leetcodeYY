@@ -20,7 +20,7 @@ import java.util.Set;
 * 因此我们在外层循环的时候碰到这种情况跳过即可。怎么判断是否跳过呢？由于我们要枚举的数 x 一定是在数组中不存在前驱数 x−1 的，
 * 不然按照上面的分析我们会从 x−1 开始尝试匹配，因此我们每次在哈希表中检查是否存在 x−1 即能判断是否需要跳过了。
 * */
-//一个未排序整数数组nums，找出连续最长序列（不要求序列元素在原数组中连续）长度
+//数组 一个未排序整数数组nums，找出连续最长序列（不要求序列元素在原数组中连续）长度
 public class _128 {
     public int longestConsecutive(int[] nums) {
         Set<Integer> num_set = new HashSet<Integer>();

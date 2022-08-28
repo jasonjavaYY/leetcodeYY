@@ -24,7 +24,7 @@ import java.util.Map;
 输出：[6,9,12]
 *
 * 滑动窗口。
-记 words 的长度为 m，words 中每个单词的长度为 n，s 的长度为 ls。首先需要将 s 划分为单词组，每个单词的大小均为 n （首尾除外）。
+记 words的长度为 m，words 中每个单词的长度为 n，s 的长度为 ls。首先需要将 s 划分为单词组，每个单词的大小均为 n （首尾除外）。
 * 这样的划分方法有 n 种，即先删去前 i （i=0∼n−1）个字母后，将剩下的字母进行划分，如果末尾有不到 n个字母也删去。
 * 对这 n种划分得到的单词数组分别使用滑动窗口对 words 进行类似于「字母异位词」的搜寻。
 * 划分成单词组后，一个窗口包含 s 中前 m 个单词，用一个哈希表 differ 表示窗口中单词频次和 words 中单词频次之差。
@@ -33,45 +33,55 @@ import java.util.Map;
 * 则表示这个窗口中的单词频次和 words 中单词频次相同，窗口的左端点是一个待求的起始位置。划分的方法有n 种，做n 次滑动窗口后，
 * 即可找到所有的起始位置。
 * */
-//字符串s和一些长度相同的单词words 。找出s恰好可由words中所有单词串联形成的子串起始位置。子串要与words中单词完全匹配但不考虑单词顺序
+//滑动窗口 字符串s和一些长度相同单词words。找出s恰好由words中所有单词串联形成的子串起始位置。不考虑单词顺序
 public class _30 {
     public List<Integer> findSubstring(String s, String[] words) {
         List<Integer> res = new ArrayList<Integer>(); //存放结果数组
         //m是单词个数，n是每个单词长度，ls是字符串长度
         int m = words.length, n = words[0].length(), ls = s.length();
-        for (int i = 0; i < n; i++) {
-            if (i + m * n > ls) {
+        //将s分为单词组，每个单词大小均n。划分方法有n种，即先删去前i（i=0∼n−1）个字母，将剩下字母划分
+        //因为删去前n和字母和删0个字母对后面的单词来说效果一样，相当于少得到一个单词
+        for (int i = 0; i < n; i++) {  //所以i从0到n-1   对于n种划分得到的所有窗口列表遍历
+            if (i + m * n > ls) {  //如果i+mn超过ls退出
                 break;
-            }
+            } //differ表示窗口中单词频次和words中单词频次之差
             Map<String, Integer> differ = new HashMap<String, Integer>();
-            for (int j = 0; j < m; j++) {
+            for (int j = 0; j < m; j++) {  //一个窗口包含s中前m个单词，因此j从0到m
+                //依次取出m个长n的字符串(单词)
                 String word = s.substring(i + j * n, i + (j + 1) * n);
+                //将单词放入differ，记录各个单词在当前窗口出现的次数
                 differ.put(word, differ.getOrDefault(word, 0) + 1);
-            }
+            }  //遍历words中的单词，将其加入differ
             for (String word : words) {
+                //differ中某个单词的value为正，代表当前子串多了这个单词，
+                //为负代表子串还缺少words中这个单词，为0代表正好匹配了words中这个单词个数
+                //如果differ所有key的value都为0，代表找到了一条子串由words单词构成
                 differ.put(word, differ.getOrDefault(word, 0) - 1);
                 if (differ.get(word) == 0) {
                     differ.remove(word);
                 }
-            }
+            }//移动窗口，start代表窗口起始点，每次start+n(即右移一个单词)
             for (int start = i; start < ls - m * n + 1; start += n) {
-                if (start != i) {
+                if (start != i) { //start!=i代表移动过窗口，右侧加个单词，左侧出个单词，要更新differ
+                    //进来的单词是 start+(m-1)*n 到 start+m*n
                     String word = s.substring(start + (m - 1) * n, start + m * n);
+                    //进来一个单词，要给word的value+1
                     differ.put(word, differ.getOrDefault(word, 0) + 1);
-                    if (differ.get(word) == 0) {
+                    if (differ.get(word) == 0) { //如果该单词次数为0，将其移除
                         differ.remove(word);
-                    }
+                    } //出去的单词是start-n 到 start
                     word = s.substring(start - n, start);
+                    //出去的单词，要给word的value-1
                     differ.put(word, differ.getOrDefault(word, 0) - 1);
-                    if (differ.get(word) == 0) {
+                    if (differ.get(word) == 0) { //如果该单词次数为0，将其移除
                         differ.remove(word);
                     }
-                }
+                } //每移动一次窗口判断differ是否为空，如果空就把start加入res，因为从该位置开始的子串符合要求
                 if (differ.isEmpty()) {
                     res.add(start);
                 }
             }
         }
-        return res;
+        return res;//最后返回结果
     }
 }

@@ -24,7 +24,7 @@ res[1] =	num[0]	  1	        ...	    num[n-2]	num[n-1]
 res[n-2] =	num[0]	  num[1]	...	    1	        num[n-1]
 res[n-1] =	num[0]	  num[1]	...	    num[n-2]	1
 * */
-//给一个整数数组nums，返回数组answer，answer[i]等于nums中除nums[i]外其余元素乘积
+//数组 整数数组nums，返回数组answer，answer[i]等于nums中除nums[i]外其余元素乘积
 public class _238 {
     public int[] productExceptSelf(int[] nums) {
         int[] res = new int[nums.length]; //构造res结果数组

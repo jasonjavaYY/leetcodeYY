@@ -29,7 +29,7 @@ import java.util.Arrays;
 *  A^{k-1} R A^j R，长度为 k−1+j+2，剩余的距离为 x-(2^{k-1}-2^j) < x；我们首先用 A^k到达位置 2^k - 1，随后仅使用折返指令，
 * 此时我们已经超过了终点并且速度方向朝向终点，使用的指令为 A^k R，长度为 k+1，剩余的距离为 x-(2^k)-1 < x。
 * */
-//车从位置0开始速度为+1，车也可负向行驶。按加速'A'和倒车'R'组的序列行驶。'A'时position+=speed speed*=2
+//动态规划 车从位置0开始速度为+1，车也可负向行驶。按加速'A'和倒车'R'组的序列行驶。'A'时position+=speed speed*=2
 //'R'时：如果速度为正，那么speed = -1 否则 speed = 1 位置不变，给目标target，返回到达目标的最短指令序列长度
 public class _818 {
     public int racecar(int target) {

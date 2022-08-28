@@ -5,7 +5,7 @@ package jzoffer;
 * 把只包含因子 2、3 和 5 的数称作丑数（Ugly Number）。例如 6、8 都是丑数，
 * 但 14 不是，因为它包含因子 7。习惯上我们把 1 当做第一个丑数。求从小到大的顺序第N个丑数。
 * */
-//只包含因子 2、3 和 5 的数称作丑数。把 1 当做第一个丑数。求从小到大第N个丑数
+//动态规划 只包含因子 2、3 和 5 的数称作丑数。把 1 当做第一个丑数。求从小到大第N个丑数
 public class _52 {
     public static void main(String[] args) {
         System.out.println(GetUglyNumber_Solution(9));

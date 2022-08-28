@@ -32,7 +32,7 @@ package lc.lc1;
 * 如果一个数组为空，说明该数组中的所有元素都被排除，我们可以直接返回另一个数组中第 k 小的元素。
 * 如果 k=1，只要返回两个数组首元素的最小值即可。
 * */
-//两个m 和 n的正序数组nums1 和 nums2。返回这两个正序数组的中位数
+//数组 两个m和n的正序数组nums1和nums2。返回这两个正序数组的中位数
 public class _4 {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int length1 = nums1.length, length2 = nums2.length; //计算两个数组的长度之和

@@ -22,7 +22,7 @@ package lc.lc4;
 * 与 rootSum(pr,targetSum−val) 之和，同时还要判断当前节点 p 的值是否刚好等于 targetSum。
 采用递归遍历二叉树的每个节点 p，对节点 p 求 rootSum(p,val)，然后将每个节点所有求的值进行相加求和返回。
 * */
-//给二叉树和整数targetSum，求二叉树里节点值和等于targetSum的路径数。不需从根开始也不需在叶结束，路径必须向下
+//树 给二叉树和整数targetSum，求二叉树里节点值和等于targetSum的路径数。不需根开始也不需叶结束，路径必须向下
 public class _437 {
     public int pathSum(TreeNode root, int targetSum) {
         if (root == null) {//如果树为空，返回0

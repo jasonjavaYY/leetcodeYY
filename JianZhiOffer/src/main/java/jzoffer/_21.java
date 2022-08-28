@@ -12,13 +12,12 @@ package jzoffer;
 \\. ： 转义后的 .
 \\d ： 数字
 * */
-//示数值的字符串
+//字符串 表示数值的字符串
 public class _21 {
     public boolean isNumeric(char[] str) {
         if (str == null || str.length == 0)
             return false;
-        //开头可以有0或者1个+/-
-        //接下来必须是任意多个数字
+        //开头可以有0或者1个+/-，接下来必须是任意多个数字
         //接下来必须是0或1个.加任意多数组
         //接下来必须是e/E加0或1和+/-再跟1到多个数字的组合，并且该组合只能出现0或1次
         return new String(str).matches("[+-]?\\d*(\\.\\d+)?([eE][+-]?\\d+)?");

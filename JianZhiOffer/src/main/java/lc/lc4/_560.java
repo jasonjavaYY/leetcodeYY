@@ -16,7 +16,7 @@ package lc.lc4;
 * 复杂度就将达到 O(n^3)。但如果我们知道 [j,i] 子数组和，就能 O(1) 推出 [j−1,i] 的和，因此这部分的遍历求和是不需要的，
 * 我们在枚举下标 j 的时候已经能 O(1) 求出 [j,i] 的子数组之和。
 * */
-//一个整数数组nums和整数k，统计数组中和为k的连续子数组个数
+//数组 一个整数数组nums和整数k，统计数组中和为k的连续子数组个数
 public class _560 {
     public int subarraySum(int[] nums, int k) {
         int count = 0;//记录个数

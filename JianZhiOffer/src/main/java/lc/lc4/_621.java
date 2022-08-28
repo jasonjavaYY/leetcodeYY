@@ -49,7 +49,7 @@ import java.util.Set;
 * 但如果列数超过 n+1，就算没有这些待命状态，任意两个相邻任务执行间隔也会至少为 n。此时，总执行时间就是任务的总数 ∣task∣。
 * 因此，在任意的情况下，需要的最少时间就是 (maxExec−1)(n+1)+maxCount 和 ∣task∣ 中的较大值。
 * */
-//字符数组tasks表示任务列表。字母表示不同任务。任务需1时间。任1时间CPU可完成一任务或待命。同任务间须有n冷却，计算完成任务所需最短时间
+//数学 字符数组tasks表示任务列表。字母表示不同任务。任务需1时间。任1时间可完成一任务或待命。同任务间有n冷却，计算完成任务最短时间
 public class _621 {
     public int leastInterval(char[] tasks, int n) {
         Map<Character, Integer> freq = new HashMap<Character, Integer>();

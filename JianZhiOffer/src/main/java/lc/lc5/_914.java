@@ -23,7 +23,7 @@ import java.util.List;
 count_i%X==0,所以对于每一个枚举到的 X，我们只要先判断 X 是否为 N 的约数，然后遍历所有牌中存在的数字 i，看它们对应牌的数量 count_i
 是否满足上述要求。如果都满足等式，则 X 为符合条件的解，否则需要继续令 X 增大，枚举下一个数字。
 * */
-//一副牌每张牌一个整数。选数字X，将牌分1或多组：每组有X张相同数字牌。当可选X >= 2时返回true
+//数组 一副牌每张牌一个数。选数字X，将牌分1或多组：每组有X张相同数字牌。当可选X >= 2时返回true
 public class _914 {
     public boolean hasGroupsSizeX(int[] deck) {
         int N = deck.length;//计算牌的总数N

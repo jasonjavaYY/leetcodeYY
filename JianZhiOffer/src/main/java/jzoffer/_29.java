@@ -5,7 +5,7 @@ package jzoffer;
  *
  * 判断一颗二叉树是不是对称的
  * */
-//判断一颗二叉树是不是对称
+//树 判断一颗二叉树是不是对称
 public class _29 {
     public class TreeNode {
         int val = 0;

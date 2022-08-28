@@ -8,7 +8,7 @@ package jzoffer;
 * 由于 n 可能会非常大，因此不能直接用 int 表示数字，而是用 char 数组进行存储。
 * 使用回溯法得到所有的数。
 * */
-//输入数字n，按顺序打印从1到最大n位数。如输入3，则打印1到最大3位数即999
+//回溯 输入数字n，按顺序打印从1到最大n位数。如输入3，则打印1到最大3位数即999
 public class _17 {
     public static void main(String[] args) {
         print1ToMaxOfNDigits(2);

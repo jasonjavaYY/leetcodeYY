@@ -27,7 +27,7 @@ n 表示范围为 1...n，balance 表示剩余空间，start 表示开始位置�
 判断 balance == 0，如果为 0 则代表 list 中已经存入 k 个数，拷贝 list 存入结果 ans 中如果不为 0，从 start 位置开始递归调用，
 * 现将当前位置数据加入 list 中，并进入下一层，等待返回后将本层加入的数据移除，本质就是树的构造过程,其中循环结束条件默认为最大值到 n
 * */
-//两个整数n 和 k，返回[1, n]中所有可能的 k 个数组合
+//回溯法 两个整数n 和 k，返回[1, n]中所有可能的 k 个数组合
 public class _77 {
     private List<List<Integer>> ans = new ArrayList<>(); //存放答案
 

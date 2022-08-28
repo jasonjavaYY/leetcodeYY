@@ -26,24 +26,25 @@ countAndSay(n) 是对 countAndSay(n-1) 的描述，然后转换成另一个数�
 我们定义字符串Si表示countAndSay(i)，我们如果要求得 Sn，则我们需先求出 Sn−1，然后按照上述描述的方法生成，即从左到右依次扫描字符串Sn−1中连续
 * 相同的字符的最大数目，然后将字符的统计数目转化为数字字符串再连接对应的字符。我们已知S1为 "1"，按照上述方法依次生成 S_{2},S_{3},S_{n-1},S_{n}即可。
 * */
-//正整数n，输出外观数列第n项。从1开始，序列中的每项都是前项的描述。cAS前4项如下：1  11  21  1211
+//字符串 输出外观数列第n项。从1开始，序列中每项都是前项描述。前4项如下：1  11  21  1211
 public class _38 {
     public String countAndSay(int n) {
         String str = "1"; //构造结果字符串，因为数字从1开始，n=1时返回字符串1
         for (int i = 2; i <= n; ++i) { //n从2开始遍历
             StringBuilder sb = new StringBuilder(); //构造拼接字符串
-            int start = 0;
+            int start = 0; //从start到pos是相同数字
             int pos = 0;
-
-            while (pos < str.length()) { //pos记录当前已经判断到哪个位置
+            while (pos < str.length()) { //pos记录当前已经判断到哪个位置，遍历str
+                //如果pos和start字符相同，右移pos
                 while (pos < str.length() && str.charAt(pos) == str.charAt(start)) {
                     pos++;
-                }
+                }  //直到下一个和start不相同的字符
+                //先拼接pos-start，代表个数，然后拼接start处字符，代表字符，如1111对应41
                 sb.append(Integer.toString(pos - start)).append(str.charAt(start));
-                start = pos;
-            }
+                start = pos;//让start指向当前pos
+            } //退出循环代表完成了前一个字符串的描述串，更新str，继续描述当前更新的str
             str = sb.toString();
         }
-        return str;
+        return str; //返回最终的str
     }
 }

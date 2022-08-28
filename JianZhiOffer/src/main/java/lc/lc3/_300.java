@@ -24,7 +24,7 @@ dp[i]=max(dp[j])+1,其中0≤j<i且num[j]<num[i]
 * 所以如果能从 dp[j] 这个状态转移过来，那么 nums[i] 必然要大于 nums[j]，才能将 nums[i] 放在 nums[j] 后面以形成更长的上升子序列。
 最后，整个数组的最长上升子序列即所有 dp[i] 中的最大值。
 * */
-//一个整数数组nums，找到其最长严格递增子序列长度，子序列不需要连续
+//动态规划 一个整数数组nums，找到其最长严格递增子序列长度，子序列不需要连续
 public class _300 {
     public int lengthOfLIS(int[] nums) {
         if (nums.length == 0) {//如果数组为空，返回长度0

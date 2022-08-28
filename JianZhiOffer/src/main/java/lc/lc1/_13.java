@@ -31,16 +31,11 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 * 对于这种情况，我们也可以将每个字符视作一个单独的值，若一个数字右侧的数字比它大，则将该数字的符号取反。
 * 例如XIV 可视作 X−I+V=10−1+5=14。
 * */
-//罗马数字转整数
+//数学 罗马数字转整数
 public class _13 {
     Map<Character, Integer> symbolValues = new HashMap<Character, Integer>() {{
-        put('I', 1);
-        put('V', 5);
-        put('X', 10);
-        put('L', 50);
-        put('C', 100);
-        put('D', 500);
-        put('M', 1000);
+        put('I', 1);put('V', 5);put('X', 10);put('L', 50);
+        put('C', 100);put('D', 500);put('M', 1000);
     }}; //映射表只需要记录1-5，因为4=IV也是由1和5组成的，只不过是5的符号-1的符号
 
     public int romanToInt(String s) {

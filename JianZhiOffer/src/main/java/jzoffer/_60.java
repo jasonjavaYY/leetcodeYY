@@ -14,7 +14,7 @@ import java.util.Arrays;
 * 如果 sum > target，移动较大的元素，使 sum 变小一些；
 * 如果 sum < target，移动较小的元素，使 sum 变大一些。
 * */
-//输入一个递增排序数组和数字 S，在数组中找两个数，使和是S。如果有多对输出乘积最小的
+//数组 输入一个递增数组和数字S，在数组中找两个数和是S。如果有多对输出乘积最小的
 public class _60 {
     public ArrayList<Integer> FindNumbersWithSum(int[] array, int sum) {
         int i = 0, j = array.length - 1;

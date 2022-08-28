@@ -34,7 +34,7 @@ import java.util.List;
 * 已经填了[8,9] 两个数，那么这个数组目前为 [8,9 ∣ 2,5,10] 状态，分隔符区分了左右两个部分。假设这个位置我们要填 10 这个数，
 * 为了维护数组，我们将 2 和 10 交换，即能使得数组继续保持分隔符左边的数已经填过，右边的待填 [8,9,10 ∣ 2,5] 。
 * */
-//给一个不含重复数字数组nums返回所有可能的全排列
+//回溯法 给一个不含重复数字数组nums返回所有可能的全排列
 public class _46 {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>(); //存放结果数组，是一个双层数组

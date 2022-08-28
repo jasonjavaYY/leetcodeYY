@@ -42,7 +42,7 @@ f[i][i] = f[i−1][i−1] + c[i][i]
 f[0][0]=c[0][0]
 即在三角形的顶部时，最小路径和就等于对应位置的元素值。这样一来，我们从 1 开始递增地枚举 i，并在[0,i] 的范围内递增地枚举 j，就可以完成所有状态的计算。
 * */
-//一个三角形triangle，找出自顶向下最小路径和。如果位于当前行下标i，下一步可移到下一行的i 或 i+1
+//动态规划 一个三角形triangle，找出自顶向下最小路径和。如果位于当前行下标i，下一步可移到下一行的i 或 i+1
 public class _120 {
     public int minimumTotal(List<List<Integer>> triangle) {
         int n = triangle.size(); //计算有多少层

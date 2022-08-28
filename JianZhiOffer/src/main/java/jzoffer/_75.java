@@ -1,6 +1,6 @@
 package jzoffer;
 
-//一个整数，输出该数二进制中0的个数。
+//数学 一个整数，输出该数二进制中0的个数。
 public class _75 {
     public static int findZero(int n) {
         int count = 0;

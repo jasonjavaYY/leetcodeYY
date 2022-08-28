@@ -29,7 +29,7 @@ import java.util.List;
 我们可以使用数组来存储字符串 p 和滑动窗口中每种字母的数量。当字符串 s 长度小于字 p 长度时，s 中一定不存在p 的异位词。
 * 但字符串 s 中无法构造长度与字符串 p 的长度相同的窗口，所以这种情况需要单独处理。
 * */
-//两个字符串s和p，找到s中所有p的异位词子串，返回子串起始索引列表
+//滑动窗口 两个字符串s和p，找到s中所有p的异位词子串，返回子串起始索引列表
 public class _438 {
     public List<Integer> findAnagrams(String s, String p) {
         int sLen = s.length(), pLen = p.length();//获取s和p的长度

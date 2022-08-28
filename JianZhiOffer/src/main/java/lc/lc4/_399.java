@@ -42,10 +42,9 @@ import java.util.Map;
 * 合并」操作基于这样一个 很重要的前提：我们将要合并的两棵树的高度最多为 22，换句话说两棵树都必需是「路径压缩」以后的效果，
 * */
 //一个变量对数组equations和实数值数组values为已知条件，其中equations[i]=[Ai, Bi]和values[i]
-//表示Ai / Bi = values[i]。Ai 或 Bi 是表示单个变量的字符串。另有一些以数组 queries 表示的问题，
+//未完成 表示Ai / Bi = values[i]。Ai 或 Bi 是表示单个变量的字符串。另有一些以数组 queries 表示的问题，
 //queries[j] = [Cj, Dj]，根据已知条件找出 Cj / Dj结果作为答案。返回所有问题答案 。如果无法确定用-1.0
 public class _399 {
-
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
         int equationsSize = equations.size();//的到方程数
         UnionFind unionFind = new UnionFind(2 * equationsSize);
@@ -73,7 +72,6 @@ public class _399 {
         for (int i = 0; i < queriesSize; i++) {
             String var1 = queries.get(i).get(0);
             String var2 = queries.get(i).get(1);
-
             Integer id1 = hashMap.get(var1);
             Integer id2 = hashMap.get(var2);
 
@@ -108,7 +106,6 @@ public class _399 {
             if (rootX == rootY) {
                 return;
             }
-
             parent[rootX] = rootY;
             // 关系式的推导请见「参考代码」下方的示意图
             weight[rootX] = weight[y] * value / weight[x];

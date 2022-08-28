@@ -6,7 +6,7 @@ package jzoffer;
 * 一个数字有多种翻译可能，例如 12258 一共有 5 种，分别是 abbeh，lbeh，aveh，abyh，lyh。
 * 实现一个函数，用来计算一个数字有多少种不同的翻译方法。
 * */
-//给一个数字翻译成字符串：1译“a”，2译“b”..26译“z”。可能有多种如12258共5种:abbeh，lbeh，aveh，abyh，lyh，计算数字有多少种不同翻译法
+//动态规划 数字翻译字符串：1译“a”，2译“b”..26译“z”。可能有多种如12258共5种:abbeh，lbeh，aveh，abyh，lyh，计算有多少种译法
 public class _49 {
     public int numDecodings(String s) {
         //如果数字字符串为空，返回0种

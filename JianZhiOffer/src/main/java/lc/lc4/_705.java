@@ -33,7 +33,7 @@ myHashSet.contains(2); // 返回 False ，（已移除）
 开辟一个大小为 base 的数组，数组的每个位置是一个链表。当计算出哈希值后，就插入到对应位置的链表中。
 由于我们使用整数除法作为哈希函数，为了尽可能避免冲突，应当将 base 取为质数。在这里，我们取base=769。
 * */
-//设计HashSet。void add(key)插入key。bool contains(key)是否存在key。void remove(key)将key删除，如果集合没key不做
+//数学 设计HashSet。void add(key)插入key。bool contains(key)是否存在key。void remove(key)将key删除，如果集合没key不做
 public class _705 {
     class MyHashSet {
         private static final int BASE = 769;//取一个较大质数作为base用于哈希

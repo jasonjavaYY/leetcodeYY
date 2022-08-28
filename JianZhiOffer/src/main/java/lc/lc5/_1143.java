@@ -35,7 +35,7 @@ dp[i][j]={   dp[i−1][j−1]+1,                 text1[i−1]=text2[j−1]
              max(dp[i−1][j],dp[i][j−1]),     text1[i−1]=text2[j−1]
 最终计算得到 dp[m][n] 即为 text1和 text2的最长公共子序列的长度。
 * */
-//两个字符串text1和text2，返回两串最长公共子序列长度。不存在返回0。子序列由原串不变字符相对顺序下删某些字符也可不删除后组成
+//动态规划 两字符串text1和text2，返回最长公共子序列长。不存在返回0。子序列由原串不变字符相对顺序下删某些字符也可不删除后组成
 public class _1143 {
     public int longestCommonSubsequence(String text1, String text2) {
         int m = text1.length(), n = text2.length();//计算两个字符串长度m和n

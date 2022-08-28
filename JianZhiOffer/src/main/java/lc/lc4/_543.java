@@ -24,7 +24,7 @@ package lc.lc4;
 * 的深度 L 和 R ，则该节点为根的子树的深度即为max(L,R)+1,该节点的 d_node值为L+R+1,递归搜索每个节点并设一个全局变量 ans 记录d_node最大值，
 * 最后返回 ans-1 即为树的直径。
 * */
-//计算二叉树的直径。直径是任意两结点路径长度中的最大值。路径可能也可能不穿过根
+//树 计算二叉树的直径。直径是任意两结点路径长度中的最大值。路径可能也可能不穿过根
 public class _543 {
     int ans;//记录答案
     public int diameterOfBinaryTree(TreeNode root) {

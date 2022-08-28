@@ -5,7 +5,7 @@ package jzoffer;
  *
  * {6, -3, -2, 7, -15, 1, 2, 2}，连续子数组的最大和为 8（从第 0 个开始，到第 3 个为止）
  * */
-//求某数组的连续子数组最大和
+//数组 求某数组的连续子数组最大和
 public class _46 {
     public static void main(String[] args) {
         int[] nums = new int[]{-3, 6, -2, 7, -15, 1, 2};

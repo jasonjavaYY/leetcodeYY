@@ -32,7 +32,7 @@ import java.util.List;
 * 在确定前两个数之后，如果 \nums[i]+nums[j]+nums[n−2]+nums[n−1]<target，说明此时剩下的两个数无论取什么值，四数之和一定小于target，
 * 因此第二重循环直接进入下一轮，枚举 nums[j+1]。
 * */
-//n个整数的数组nums和目标值target，找出和位target的所有不重复的四元组
+//数组 n个整数数组nums和目标值target，找出和位target的所有不重复的四元组
 public class _18 {
     public List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> quadruplets = new ArrayList<List<Integer>>(); //存放结果数组

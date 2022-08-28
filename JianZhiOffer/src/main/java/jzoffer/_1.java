@@ -10,8 +10,7 @@ package jzoffer;
 要求时间复杂度 O(N)，空间复杂度 O(1)。因此不能使用排序的方法，也不能使用额外的标记数组。
 对于这种数组元素在 [0, n-1] 范围内的问题，可以将值为 i 的元素调整到第 i 个位置上进行求解
 * */
-
-//长n数组里所有数在0到n-1内，某些数重复，不知道有几个数重复，也不知道重复几次。找出任一个重复数
+//数组 长n数组里所有数在0到n-1内，某些数重复，不知道有几个数重复，也不知道重复几次。找出任一个重复数
 public class _1 {
     public boolean duplicate(int[] nums, int length, int[] duplication) {
         if (nums == null || length <= 0) //如果数组为空，返回false

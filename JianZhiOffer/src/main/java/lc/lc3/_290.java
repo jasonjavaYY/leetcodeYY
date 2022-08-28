@@ -24,7 +24,7 @@ import java.util.Map;
 * 不断更新哈希表，如果发生了冲突，则说明给定的输入不满足双射关系。在实际代码中，我们枚举 pattern 中的每一个字符，利用双指针来均摊线性地找
 * 到该字符在 str 中对应的字符串。每次确定一个字符与字符串的组合，我们就检查是否出现冲突，最后我们再检查两字符串是否比较完毕即可。
 * */
-//给一种规律pattern和一个字符串s ，判断 s 是否遵循相同规律
+//字符串 给一种规律pattern和一个字符串s ，判断 s 是否遵循相同规律
 public class _290 {
     public boolean wordPattern(String pattern, String str) {
         //建立两个映射表，字符串到字符，字符到字符串

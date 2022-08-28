@@ -17,7 +17,7 @@ package lc.lc4;
 对于特定下标 i，比较 nums[i] 和 target 大小：
 如果 nums[i]=target，下标 i 即为要寻找下标；如果 nums[i]>target，则 target 只能在下标 i 左侧；否则 target 只能在下标 i 右侧。
 * */
-//n个元素升序数组nums和目标值target，搜索nums中的target下标，不存在就返回-1
+//二分查找 n个元素升序数组nums和目标值target，搜索nums中的target下标，不存在就返回-1
 public class _704 {
     //标准二分查找
     public int search(int[] nums, int target) {

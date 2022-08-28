@@ -17,7 +17,7 @@ package lc.lc1;
 直观的解法的是：枚举原串 s 中的每个字符作为「发起点」，每次从原串的「发起点」和匹配串的「首位」开始尝试匹配：
 匹配成功：返回本次匹配的原串「发起点」。匹配失败：枚举原串的下一个「发起点」，重新尝试匹配。
 * */
-//字符串haystack和needle，在haystack中找出needle出现的第一个位置（下标从0开始）。如不存在返回-1
+//字符串 字符串haystack和needle，在haystack中找出needle出现的第一个位置（下标0开始）。不存在返回-1
 public class _28 {
     public int strStr(String ss, String pp) {
         int n = ss.length(), m = pp.length(); //计算ss和pp的字符串长度

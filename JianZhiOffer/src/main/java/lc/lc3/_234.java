@@ -22,7 +22,7 @@ package lc.lc3;
 步骤三比较两个部分的值，当后半部分到达末尾则比较完成，可以忽略计数情况中的中间节点。
 步骤四与步骤二使用的函数相同，再反转一次恢复链表本身。
 * */
-//一个单链表头节点head ，判断是否为回文链表
+//链表 一个单链表头节点head ，判断是否为回文链表
 public class _234 {
     public boolean isPalindrome(ListNode head) {
         if (head == null) {//如果链表为空，返回true

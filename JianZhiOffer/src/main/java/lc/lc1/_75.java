@@ -14,7 +14,7 @@ package lc.lc1;
 *
 * 本质就是三个指针，头指针和中指针负责0和1的交换，中指针和尾指针负责把2移到末尾
 * */
-//n个元素数组nums包含0，1，2，原地排序，使按照0、 1 和 2顺序排序
+//数组 n个元素数组nums包含0，1，2，原地排序，使按照0、1和2顺序排序
 public class _75 {
     public void sortColors(int[] nums) {
         int len = nums.length;

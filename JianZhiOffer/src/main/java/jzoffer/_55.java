@@ -9,7 +9,7 @@ K = 3
 Output:
 4
 * */
-//求某数字在排序数组中出现的次数
+//二分查找 求某数字在排序数组中出现的次数
 public class _55 {
     public int GetNumberOfK(int[] nums, int K) {
         //因为是有序的，所以用二分查找找到≤K的第一个下标

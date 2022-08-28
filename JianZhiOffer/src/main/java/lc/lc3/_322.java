@@ -24,7 +24,7 @@ import java.util.Arrays;
 F(i)= j=0…n−1 | min F(i−cj)+1 ，其中 c_j代表的是第 j 枚硬币的面值，即我们枚举最后一枚硬币面额是 c_j，那么需要从 i−cj这个金额
 * 的状态F(i−cj) 转移过来，再算上枚举的这枚硬币数量 1 的贡献，由于要硬币数量最少，所以 F(i) 为前面能转移过来的状态的最小值加上枚举的硬币数量 1 。
 * */
-//整数数组coins表示不同面额硬币；amount表示总金额。返回可凑成总金额最少硬币数。如不能返回-1，每种硬币数量无限
+//动态规划 整数数组coins表示不同面额硬币；amount表示总金额。返回可凑成总金额最少币数。如不能返回-1，硬币量无限
 public class _322 {
     public int coinChange(int[] coins, int amount) {
         int max = amount + 1;

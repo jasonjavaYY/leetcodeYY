@@ -21,7 +21,7 @@ import java.util.List;
 遍历 nums，每遇到一个数 x，就让 nums[x−1] 增加 n。增加以后，这些数必然大于 n。最后我们遍历 nums，若 nums[i] 未大于 n，说明没有遇到过数i+1。
 * 这样就找到了缺失的数字。注意，当我们遍历到某个位置时，其中的数可能已经被增加过，因此需要对 n 取模来还原出它本来的值。
 * */
-//含n个整数的数组nums，nums[i]在[1, n]内。找出所有[1, n]内但没出现在nums中的数字，数组返回
+//数组 含n个整数的数组nums，nums[i]在[1, n]内。找出所有[1, n]内但没出现在nums中的数字，数组返回
 public class _448 {
     public List<Integer> findDisappearedNumbers(int[] nums) {
         int n = nums.length;//计算数组长度n

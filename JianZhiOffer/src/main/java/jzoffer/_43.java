@@ -11,7 +11,7 @@ import java.util.PriorityQueue;
 * 且 a[j+1..h] 大于等于 a[j]，此时 a[j] 就是数组的第 j 大元素。
 * 可以利用这个特性找出数组的第 K 个元素，这种找第 K 个元素的算法称为快速选择算法。
 * */
-//返回数组中最小的 K 个数
+//堆 返回数组中最小的 K 个数
 public class _43 {
     public ArrayList<Integer> GetLeastNumbers_Solution(int[] nums, int k) {
         if (k > nums.length || k <= 0) //如果k大于数组长度或者k<=0，返回空数组

@@ -25,7 +25,7 @@ package lc.lc4;
 * 此时我们就分成两种情况：即删除左指针对应的字符，留下子串 s[low+1:high]，或者删除右指针对应的字符，留下子串 s[low:high−1]。
 * 当这两个子串中至少有一个是回文串时，就说明原始字符串删除一个字符之后就以成为回文串。
 * */
-//一个非空字符串s，最多删一个字符判断是否能成回文字符串
+//贪心 一个非空字符串s，最多删一个字符判断是否能成回文字符串
 public class _680 {
     public boolean validPalindrome(String s) {
         int low = 0, high = s.length() - 1;//初始化低位和高位指针

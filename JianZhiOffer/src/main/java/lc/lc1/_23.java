@@ -25,7 +25,7 @@ package lc.lc1;
 将 k 个链表配对并将同一对中的链表合并；第一轮合并以后， k 个链表被合并成了 k/2个链表，平均长度为2n/k，
 * 然后是k/4个链表，k/8个链表等等；重复这一过程，直到我们得到了最终的有序链表。
 * */
-//一个链表数组每个链表都升序。将所有链表合并到一个升序链表，返回合并后的链表
+//链表 一个链表数组每个链表都升序。将所有链表合并到一个升序链表，返回合并后的链表
 public class _23 {
     public ListNode mergeKLists(ListNode[] lists) {
         return merge(lists, 0, lists.length - 1);

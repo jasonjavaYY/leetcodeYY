@@ -8,7 +8,7 @@ package jzoffer;
 * diff &= -diff 得到出 diff 最右侧不为 0 的位，也就是不存在重复的两个元素
 * 在位级表示上最右侧不同的那一位，利用这一位就可以将两个元素区分开来。
 * */
-//一个整型数组里除两个数外，其他数都出现两次，找出这两个数
+//数组 一个整型数组里除两个数外，其他数都出现两次，找出这两个数
 public class _59 {
     public void FindNumsAppearOnce(int[] nums, int num1[], int num2[]) {
         int diff = 0; //初始diff是0

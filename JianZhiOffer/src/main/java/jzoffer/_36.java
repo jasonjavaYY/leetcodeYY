@@ -6,7 +6,7 @@ package jzoffer;
 * 假设输入的数组的任意两个数字都互不相同。
 * 例如，下图是后序遍历序列 1,3,2 所对应的二叉搜索树
 * */
-//输入一个整数数组，判断数组是不是某二叉搜索树后序遍历结果
+//树 输入一个整数数组，判断数组是不是某二叉搜索树后序遍历结果
 public class _36 {
     public boolean VerifySquenceOfBST(int[] sequence) {
         if (sequence == null || sequence.length == 0) //如果序列是空返回false

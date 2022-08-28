@@ -4,9 +4,8 @@ package jzoffer;
 * 平衡二叉树左右子树高度差不超过 1。
 *
 * */
-//输入一棵二叉树，判断该树是否是平衡二叉树，左右子树高度差不超1
+//树 输入一棵二叉树，判断该树是否是平衡二叉树，左右子树高度差不超1
 public class _58 {
-//    输入一棵二叉树，判断该二叉树是否是平衡二叉树。
      public class TreeNode {
          int val = 0;
          TreeNode left = null;

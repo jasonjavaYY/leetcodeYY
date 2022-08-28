@@ -45,7 +45,7 @@ stack=[6(76)]               ans=[1,1,4,2,1,1,0,0]
 当 i=7 时，由于 73 小于 76，因此将 7 进栈。
 stack=[6(76),7(73)]         ans=[1,1,4,2,1,1,0,0]
 * */
-//整数数组temperatures表示温度，返回数组answer，answer[i]指对第i天，下个更高温在几天后。如果在这之后都不升温则为0
+//数组 整数数组temperatures表示温度，返回数组answer，answer[i]指对第i天，下个更高温在几天后。如果在这之后都不升温则为0
 public class _739 {
     public int[] dailyTemperatures(int[] temperatures) {
         int length = temperatures.length;//计算温度列表天数

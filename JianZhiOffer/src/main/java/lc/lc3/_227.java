@@ -30,7 +30,7 @@ import java.util.Deque;
 代码实现中，若读到一个运算符，或者遍历到字符串末尾，即认为是遍历到了数字末尾。处理完该数字后，更新 preSign 为当前遍历的字符。
 遍历完字符串 s 后，将栈中元素累加，即为该字符串表达式的值。
 * */
-//字符串表达式s，实现计算器来计算它的值。除法仅保留整数，仅包含+-*/和数字
+//栈 字符串表达式s，实现计算器来计算它的值。除法仅保留整数，仅包含+-*/和数字
 public class _227 {
     public int calculate(String s) {
         Deque<Integer> stack = new ArrayDeque<Integer>();//构造栈

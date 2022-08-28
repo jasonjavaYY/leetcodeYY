@@ -22,7 +22,7 @@ import java.util.PriorityQueue;
 可以建立一个小顶堆，然后遍历「出现次数数组」：如果堆元素个数小于 k，直接插入堆。如果堆元素个数等于 k，则检查堆顶与当前出现次数的大小。如果堆顶更大，
 * 舍弃当前值；否则，就弹出堆顶，将当前值插入堆。遍历完成后，堆中的元素就代表了「出现次数数组」中前 kk 大的值。
 * */
-//一个整数数组nums和整数k，返回出现频率前k高元素
+//堆 一个整数数组nums和整数k，返回出现频率前k高元素
 public class _347 {
     public int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> occurrences = new HashMap<Integer, Integer>();//记录各数字出现次数

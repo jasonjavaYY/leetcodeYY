@@ -13,7 +13,7 @@ Output:
 * 并且只能使用该字符数组的空间。任何使用了额外空间的解法在面试时都会大打折扣，包括递归解法。
 * 正确的解法应该是和书上一样，先旋转每个单词，再旋转整个字符串。
 * */
-//翻转单词顺序列，如将"I am a student."变为"student. a am I"
+//字符串 翻转单词顺序列，如将"I am a student."变为"student. a am I"
 public class _62 {
     public static void main(String[] args) {
         System.out.println(ReverseSentence("I am a student."));

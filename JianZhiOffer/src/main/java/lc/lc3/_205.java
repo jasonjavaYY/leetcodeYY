@@ -26,7 +26,7 @@ import java.util.Map;
 * 或当前下标 index 对应的字符 t[index] 已经存在映射且不为 s[index]）说明两个字符串无法构成同构，返回false。
 如果遍历结束没有出现冲突，则表明两个字符串是同构的，返回 true 。
 * */
-//两个字符串s和t，判断是否同构。如果s中字符可按某种映射替换得到t，s和t就是是同构
+//字符串 两个字符串s和t，判断是否同构。如果s中字符可按某种映射替换得到t，s和t就是是同构
 public class _205 {
     public boolean isIsomorphic(String s, String t) {
         //两个map分别表示s到t的字符映射和t到s的字符映射

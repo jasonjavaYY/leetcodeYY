@@ -22,7 +22,7 @@ package lc.lc1;
 * 如果 lower 为 true，则查找第一个大于等于 target 的下标，否则查找第一个大于 target 的下标。最后，因为target 可能不存在数组中，
 * 因此我们需要重新校验我们得到的两个下标 leftIdx 和 rightIdx，看是否符合条件，如果符合条件就返回 [leftIdx,rightIdx]，不符合就返回 [-1,-1][−1,−1]。
 * */
-//非递减排列整数数组nums和目标值target。找出目标值在数组中的开始位置和结束位置
+//二分查找 非递减排列整数数组nums和目标值target。找目标值在数组中开始位置和结束位置
 public class _34 {
     public int[] searchRange(int[] nums, int target) {
         //找到第一个≥target下标

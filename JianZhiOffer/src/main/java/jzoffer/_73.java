@@ -6,7 +6,7 @@ package jzoffer;
 *
 * 普通二叉树，在左右子树中查找是否存在 p 或者 q，如果 p 和 q 分别在两个子树中，那么就说明根节点就是最低公共祖先。
 * */
-//求树中两个节点的最低公共祖先
+//树 求树中两个节点的最低公共祖先
 public class _73 {
     //针对二叉查找树
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
