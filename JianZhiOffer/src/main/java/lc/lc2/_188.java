@@ -39,8 +39,8 @@ sell[i][j]=max{sell[i−1][j],buy[i−1][j−1]+price[i]}
 * buy[i−1][j−1]，在 j=0 时其表示不合法的状态，因此在 j=0 时，我们无需对 sell[i][j] 进行转移，让其保持值为 0 即可。
 最后需要注意的是，本题中 k 的最大值可以达到 10^9，然而这是毫无意义的，因为 n 天最多只能进行 ⌊n/2⌋ 笔交易，⌊x⌋ 表示对 x 向下取整。
 * 因此我们可以将 k 对 ⌊n/2⌋取较小值之后再进行动态规划。
-
 * */
+//整数数组prices，prices[i]是股票第i天价。计算最大利润。最多可完成k笔交易。必须在再次买前出售掉之前的股票
 public class _188 {
     public int maxProfit(int k, int[] prices) {
         if (prices.length == 0) {//如果股票数组为空，返回0

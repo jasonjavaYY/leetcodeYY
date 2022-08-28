@@ -22,14 +22,18 @@ package lc.lc4;
 *                               = ​(real1×real2−imag1×imag2)+(real1×imag2+imag1×real2)×i
 得到两个复数的乘积之后，将乘积转换成复数格式的字符串并返回。
 * */
+//复数用字符串表示，"实部+虚部i"，实部是一整数，虚部也是一整数，给两个复数num1和num2，返回表示乘积的字符串
 public class _537 {
     public String complexNumberMultiply(String num1, String num2) {
+        //将字符串按+或i切割得到 实部 虚部数组
         String[] complex1 = num1.split("\\+|i");
         String[] complex2 = num2.split("\\+|i");
+        //解析得到整形的 实部1 虚部1 实部2 虚部2
         int real1 = Integer.parseInt(complex1[0]);
         int imag1 = Integer.parseInt(complex1[1]);
         int real2 = Integer.parseInt(complex2[0]);
         int imag2 = Integer.parseInt(complex2[1]);
+        //最后结果是​(real1×real2−imag1×imag2)+(real1×imag2+imag1×real2)×i
         return String.format("%d+%di", real1 * real2 - imag1 * imag2, real1 * imag2 + imag1 * real2);
     }
 }

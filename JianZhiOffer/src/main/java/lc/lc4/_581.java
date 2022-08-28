@@ -22,27 +22,29 @@ package lc.lc4;
 * 我们要求的end就是遍历中最后一个小于max元素的位置；同理，从右到左维护一个最小值min，在进入左段之前，那么遍历到的nums[i]也都大于min，
 * 要求的begin也就是最后一个大于min元素的位置。
 * */
+//一整数数组nums，找一个连续子数组 ，如果对这个子数组升序那么整个数组都变为升序，找出最短子数组输出长度
 public class _581 {
     public int findUnsortedSubarray(int[] nums) {
-        //初始化
-        int len = nums.length;
-        int min = nums[len - 1];
-        int max = nums[0];
-        int begin = 0, end = -1;
-        //遍历
-        for (int i = 0; i < len; i++) {
-            if (nums[i] < max) {      //从左到右维持最大值，寻找右边界end
+        //把数组分三段，左和右段升序，中段虽无序但最小值大于左段最大值，最大值小于右段最小值。
+        //找中段左右边界begin和end;从左到右维护max,进入右段前，遍历到的nums[i]都小于max，
+        //end就是最后一个小于max元素的位置；从右到左维护min，进入左段前nums[i]都大于min，
+        //begin是最后一个大于min元素的位置
+        int len = nums.length;//计算初始数组长度
+        int min = nums[len - 1]; //从右到左找min
+        int max = nums[0];//从左到右找max
+        int begin = 0, end = -1;//初始化中段左右边界
+        for (int i = 0; i < len; i++) { //遍历
+            if (nums[i] < max) {//从左到右，如果nums[i]小于max，更新end为i
                 end = i;
-            } else {
+            } else {//否则更新最大值
                 max = nums[i];
             }
-
-            if (nums[len - i - 1] > min) {    //从右到左维持最小值，寻找左边界begin
+            if (nums[len - i - 1] > min) {//从右到左，如果nums[i]大于min，更新begin为i
                 begin = len - i - 1;
-            } else {
+            } else {//否则更新min值
                 min = nums[len - i - 1];
             }
         }
-        return end - begin + 1;
+        return end - begin + 1;//返回end-begin+1就是数组长度
     }
 }

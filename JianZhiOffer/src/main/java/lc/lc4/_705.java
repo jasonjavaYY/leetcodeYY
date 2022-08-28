@@ -33,37 +33,36 @@ myHashSet.contains(2); // 返回 False ，（已移除）
 开辟一个大小为 base 的数组，数组的每个位置是一个链表。当计算出哈希值后，就插入到对应位置的链表中。
 由于我们使用整数除法作为哈希函数，为了尽可能避免冲突，应当将 base 取为质数。在这里，我们取base=769。
 * */
+//设计HashSet。void add(key)插入key。bool contains(key)是否存在key。void remove(key)将key删除，如果集合没key不做
 public class _705 {
     class MyHashSet {
-        private static final int BASE = 769;
+        private static final int BASE = 769;//取一个较大质数作为base用于哈希
         private LinkedList[] data;
-
-        /**
-         * Initialize your data structure here.
-         */
+        //构造方法
         public MyHashSet() {
-            data = new LinkedList[BASE];
+            data = new LinkedList[BASE];//初始化指定大小数组
             for (int i = 0; i < BASE; ++i) {
+                //数组的每个节点都是个链表
                 data[i] = new LinkedList<Integer>();
             }
         }
-
+        //添加
         public void add(int key) {
-            int h = hash(key);
-            Iterator<Integer> iterator = data[h].iterator();
-            while (iterator.hasNext()) {
+            int h = hash(key);//对key进行哈希
+            Iterator<Integer> iterator = data[h].iterator();//获取data指定下标处的链表
+            while (iterator.hasNext()) {//遍历链表，如果已经存在key直接返回
                 Integer element = iterator.next();
                 if (element == key) {
                     return;
                 }
-            }
+            }//否则将key加入链表最后一个节点
             data[h].offerLast(key);
         }
-
+        //删除
         public void remove(int key) {
-            int h = hash(key);
-            Iterator<Integer> iterator = data[h].iterator();
-            while (iterator.hasNext()) {
+            int h = hash(key);//计算key的哈希
+            Iterator<Integer> iterator = data[h].iterator();//获取data指定下标处的链表
+            while (iterator.hasNext()) {//遍历链表，如果元素值为key，就删除链表该节点
                 Integer element = iterator.next();
                 if (element == key) {
                     data[h].remove(element);
@@ -71,22 +70,19 @@ public class _705 {
                 }
             }
         }
-
-        /**
-         * Returns true if this set contains the specified element
-         */
+        //判断存在
         public boolean contains(int key) {
-            int h = hash(key);
-            Iterator<Integer> iterator = data[h].iterator();
-            while (iterator.hasNext()) {
+            int h = hash(key);//计算key的哈希值
+            Iterator<Integer> iterator = data[h].iterator();//获取data指定下标处的链表
+            while (iterator.hasNext()) {//遍历链表每个元素，如果存在值为key的元素，返回true
                 Integer element = iterator.next();
                 if (element == key) {
                     return true;
                 }
             }
-            return false;
+            return false;//遍历结束找不到就返回false
         }
-
+        //hash方法，让key对BASE取余
         private int hash(int key) {
             return key % BASE;
         }

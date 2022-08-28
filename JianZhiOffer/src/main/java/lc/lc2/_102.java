@@ -17,6 +17,7 @@ import java.util.List;
 * 我们把每层遍历到的节点都放入到一个结果集中，最后返回这个结果集就可以了。
 时间复杂度： O(n)     空间复杂度：O(n)
 * */
+//给二叉树根节点，返回层序遍历
 public class _102 {
     public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) { //如果树为空，返回空数组
@@ -41,8 +42,7 @@ public class _102 {
                     queue.add(t.right);
                 }
             }
-            //将临时list(每层)加入结果
-            res.add(tmp);
+            res.add(tmp);//将临时list(每层)加入结果
         }
         return res; //返回结果
     }

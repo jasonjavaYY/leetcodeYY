@@ -19,6 +19,7 @@ dp[i][1]=max{dp[i−1][1],dp[i−1][0]−prices[i]}
 因此，我们只要从前往后依次计算状态即可。由于全部交易结束后，持有股票的收益一定低于不持有股票的收益，
 * 因此这时候 dp[n−1][0]的收益必然大于dp[n−1][1]的，最后的答案即为 dp[n−1][0]。
 * */
+//整数数组prices，prices[i]表示股票第i天价。每天可以购买或出售股票。最多只持有一股。返回最大利润
 public class _122 {
     public int maxProfit(int[] prices) {
         int n = prices.length; //计算股票天数

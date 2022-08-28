@@ -59,6 +59,7 @@ package lc.lc2;
 
   ......
 * */
+//二叉树按先序遍历顺序展为单链表：单链表同样用TreeNode，right指向链表下一结点，左子指针为null。
 public class _114 {
     //左子树插入到右子树的地方，将原来的右子树接到左子树最右边节点
     public void flatten(TreeNode root) {

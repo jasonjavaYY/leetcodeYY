@@ -45,19 +45,25 @@ stack=[6(76)]               ans=[1,1,4,2,1,1,0,0]
 当 i=7 时，由于 73 小于 76，因此将 7 进栈。
 stack=[6(76),7(73)]         ans=[1,1,4,2,1,1,0,0]
 * */
+//整数数组temperatures表示温度，返回数组answer，answer[i]指对第i天，下个更高温在几天后。如果在这之后都不升温则为0
 public class _739 {
     public int[] dailyTemperatures(int[] temperatures) {
-        int length = temperatures.length;
-        int[] ans = new int[length];
-        Deque<Integer> stack = new LinkedList<Integer>();
+        int length = temperatures.length;//计算温度列表天数
+        int[] ans = new int[length];//构造结果数组
+        //存储下标的单调栈，栈底到栈顶温度递减。如果一下标在栈里表示尚未找到下一温度更高下标
+        Deque<Integer> stack = new LinkedList<Integer>();//构造栈
         for (int i = 0; i < length; i++) {
+            //遍历每天的温度
             int temperature = temperatures[i];
+
+            //如果栈不为空，比较栈顶下标的温度和当前温度，如果当前温度高于栈顶下标温度，将栈顶元素移除
+            //ans[prevIndex] = i - prevIndex，直到栈空或栈顶元素温度大于等于当前温度，将i进栈
             while (!stack.isEmpty() && temperature > temperatures[stack.peek()]) {
                 int prevIndex = stack.pop();
                 ans[prevIndex] = i - prevIndex;
             }
-            stack.push(i);
+            stack.push(i);//如果栈为空，则直接将 i 进栈
         }
-        return ans;
+        return ans;//返回ans
     }
 }

@@ -32,6 +32,7 @@ dp[i]=dp[j] && check(s[j..i−1])
 其中 check(s[j..i−1]) 表示子串 s[j..i−1] 是否出现在字典中。
 对于检查一个字符串是否出现在给定的字符串列表里一般可以考虑哈希表来快速判断，
 * */
+//字符串s和wordDict作字典。判断是否可以用字典中单词拼出s 。不要求字典单词全使用，字典单词可重复使用
 public class _139 {
     public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> wordDictSet = new HashSet(wordDict); //单词列表去重

@@ -33,8 +33,9 @@ sk == endWord
 这三个虚拟节点之一。对于每一个单词，我们枚举它连接到的虚拟节点，把该单词对应的 id 与这些虚拟节点对应的 id 相连即可。
 最后我们将起点加入队列开始广度优先搜索，当搜索到终点时，我们就找到了最短路径的长度。注意因为添加了虚拟节点，
 所以我们得到的距离为实际最短路径长度的两倍。同时我们并未计算起点对答案的贡献，所以我们应当返回距离的一半再加一的结果。
-
 * */
+//单词begin和end转换序列是begin -> s1 -> s2.. -> sk：相邻单词只差一个字母。si在wordList中。begin不需要在wordList中。
+//给两个单词begin和 end和字典wordList，返回从begin到end的最短转换序列单词数。如不存在转换序列返回0
 public class _127 {
     //给每个单词标号id。创建由 word 到 id 的映射 wordId
     Map<String, Integer> wordId = new HashMap<String, Integer>();

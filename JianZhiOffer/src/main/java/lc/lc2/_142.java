@@ -16,6 +16,7 @@ a+(n+1)b+nc=2(a+b)⟹a=c+(n−1)(b+c)
 有了 a=c+(n−1)(b+c) 的等量关系，我们会发现：从相遇点到入环点的距离加上 n−1 圈的环长，恰好等于从链表头部到入环点的距离。
 因此，当发现 slow 与 fast 相遇时，我们再额外使用一个指针 ptr。起始，它指向链表头部；随后，它和 slow 每次向后移动一个位置。最终，它们在入环点相遇。
 * */
+//给一个链表头节点，返回链表入环第一个节点。如果无环返回 null
 public class _142 {
     public ListNode detectCycle(ListNode head) {
         if (head == null) { //如果链表为空返回空

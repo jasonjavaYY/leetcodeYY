@@ -2,7 +2,6 @@ package lc.lc2;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /*
 * 给你二叉树的根节点 root ，返回它节点值的前序遍历。
 *
@@ -11,6 +10,7 @@ import java.util.List;
 定义 preorder(root) 表示当前遍历到 root 节点的答案。按照定义，我们只要首先将 root 节点的值加入答案，然后递归调用 preorder(root.left)
 * 来遍历 root 节点的左子树，最后递归调用 preorder(root.right) 来遍历 root 节点的右子树即可，递归终止的条件为碰到空节点。
 * */
+//返回二叉树前序遍历
 public class _144 {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>(); //存放结果

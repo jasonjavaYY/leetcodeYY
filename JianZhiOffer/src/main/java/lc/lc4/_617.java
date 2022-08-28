@@ -19,18 +19,20 @@ package lc.lc4;
 如果两个树节点都为空，则合并后对应节点也为空；如果只有一个为空，合并后对应节点为非空节点；如果节点都不为空，合并后对应节点值为对应节点值之和
 对一个节点进行合并之后，还要对该节点的左右子树分别进行合并。这是一个递归的过程。
 * */
+//给两棵二叉树root1和root2。一棵覆盖到另一棵，如果两节点重叠，将节点值相加作新值；否则不为null的节点作新节点
 public class _617 {
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
-        if (t1 == null) {
+        if (t1 == null) {//如果树1为空，返回树2
             return t2;
         }
-        if (t2 == null) {
+        if (t2 == null) {//如果树2为空，返回树1
             return t1;
-        }
+        }//构造合并后的根节点，值是原两树根节点和
         TreeNode merged = new TreeNode(t1.val + t2.val);
+        //递归合并left和right
         merged.left = mergeTrees(t1.left, t2.left);
         merged.right = mergeTrees(t1.right, t2.right);
-        return merged;
+        return merged;//返回合并后的树
     }
 
     class TreeNode {

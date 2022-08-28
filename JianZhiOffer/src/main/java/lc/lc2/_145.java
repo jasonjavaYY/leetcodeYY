@@ -7,6 +7,7 @@ import java.util.List;
  * 二叉树的后序遍历
  * 给你一棵二叉树的根节点 root ，返回其节点值的 后序遍历 。
  * */
+//二叉树的后序遍历
 public class _145 {
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>(); //存放结果

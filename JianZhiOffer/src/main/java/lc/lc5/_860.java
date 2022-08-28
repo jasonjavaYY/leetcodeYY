@@ -32,29 +32,30 @@ package lc.lc5;
 * 当可以找零时，两种方式我们更倾向第一种，即如果存在 5 和 10 美元，我们就按第一种方式找零，否则按第二种方式找零，我们需尽可能保留 5 美元钞票。
 基于此，维护两个变量 five 和 ten 表示当前手中拥有的 5 美元和 10 美元钞票的张数，从前往后遍历数组分类讨论即可。
 * */
+//每杯水5。顾客一次买一杯付5、10或20。数组bills，bills[i]是第i顾客付的账，判断能否给每个顾客正确找零，开始没有零钱
 public class _860 {
     public boolean lemonadeChange(int[] bills) {
-        int five = 0, ten = 0;
-        for (int bill : bills) {
-            if (bill == 5) {
+        int five = 0, ten = 0;//变量five和ten表示手中的5元和10元钞票数
+        for (int bill : bills) {//遍历每次付款
+            if (bill == 5) {//如果付5，不找零，且five++
                 five++;
-            } else if (bill == 10) {
-                if (five == 0) {
+            } else if (bill == 10) {//如果付10
+                if (five == 0) {//如果当前没有5原，返回false
                     return false;
-                }
+                }//否则five--，ten++
                 five--;
                 ten++;
-            } else {
-                if (five > 0 && ten > 0) {
+            } else {//如果付20
+                if (five > 0 && ten > 0) {//如果同时有5和10，就找零5和10
                     five--;
                     ten--;
-                } else if (five >= 3) {
+                } else if (five >= 3) {//否则如果有不少于3张5，找零3个5
                     five -= 3;
-                } else {
+                } else {//否则返回false
                     return false;
                 }
             }
         }
-        return true;
+        return true;//遍历结束返回true
     }
 }

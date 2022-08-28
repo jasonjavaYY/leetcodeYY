@@ -28,20 +28,23 @@ package lc.lc4;
 4	           2	            2
 5	           2	            3
 6	           3	            3
-可以看出长度为 n 的字符串会生成 2n−1 组回文中心 [li,ri]，其中 li=⌊ i/2 ⌋，ri=li+(imod2)。这样只要从 0 到 2n−2 遍历 i，
+可以看出长度为 n 的字符串会生成 2n−1 组回文中心 [li,ri]，其中 li=⌊ i/2 ⌋，ri=li+(i%2)。这样只要从 0 到 2n−2 遍历 i，
 * 就可以得到所有可能的回文中心，这样就把奇数长度和偶数长度两种情况统一起来了。
 * */
+//一个字符串s，统计字符串中回文子串数(注意子串要连续)。有不同开始结束位置的内容相同子串被视作不同子串
 public class _647 {
     public int countSubstrings(String s) {
-        int n = s.length(), ans = 0;
-        for (int i = 0; i < 2 * n - 1; ++i) {
-            int l = i / 2, r = i / 2 + i % 2;
+        int n = s.length(), ans = 0;//计算原字符串长度n，初始化ans=0
+        for (int i = 0; i < 2 * n - 1; ++i) {//长n字符串有2n-1个回文中心[li,ri]
+            int l = i / 2, r = i / 2 + i % 2;//li=⌊i/2⌋，ri=li+(i%2)
+            //以[li,ri]为中心向外扩展，依次判断是否有回文子串，l和r不越界，不断判断l和r处字符是否相等，相等就扩展l和r，ans++
+            //直到越界或者l和r处字符不相等退出循环，继续找下一个回文中心进行扩展
             while (l >= 0 && r < n && s.charAt(l) == s.charAt(r)) {
                 --l;
                 ++r;
                 ++ans;
             }
         }
-        return ans;
+        return ans;//返回ans
     }
 }

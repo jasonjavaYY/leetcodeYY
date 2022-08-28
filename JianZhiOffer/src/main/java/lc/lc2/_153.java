@@ -30,6 +30,7 @@ package lc.lc2;
 由于数组不包含重复元素，并且只要当前的区间长度不为 1，pivot 就不会与 high 重合；而如果当前的区间长度为1，这说明我们已经可以结束
 * 二分查找了。因此不会存在 nums[pivot]=nums[high] 的情况。当二分查找结束时，我们就得到了最小值所在的位置。
 * */
+//长度n的元素值互不相同数组预先升序，经1到n次旋转后得到输入数组nums。找出数组中最小元素
 public class _153 {
     public int findMin(int[] nums) {
         int low = 0; //标准二分查找，直到low和high相遇

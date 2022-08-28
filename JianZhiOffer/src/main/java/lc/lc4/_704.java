@@ -17,20 +17,22 @@ package lc.lc4;
 对于特定下标 i，比较 nums[i] 和 target 大小：
 如果 nums[i]=target，下标 i 即为要寻找下标；如果 nums[i]>target，则 target 只能在下标 i 左侧；否则 target 只能在下标 i 右侧。
 * */
+//n个元素升序数组nums和目标值target，搜索nums中的target下标，不存在就返回-1
 public class _704 {
+    //标准二分查找
     public int search(int[] nums, int target) {
-        int left = 0, right = nums.length - 1;
-        while (left <= right) {
-            int mid = (right - left) / 2 + left;
-            int num = nums[mid];
-            if (num == target) {
+        int left = 0, right = nums.length - 1;//得到l和r
+        while (left <= right) {//循环判断
+            int mid = (right - left) / 2 + left;//计算mid
+            int num = nums[mid];//获取mid处数值
+            if (num == target) {//如果等于target，返回下标
                 return mid;
-            } else if (num > target) {
+            } else if (num > target) {//如果mid处值大于target，更新r=mid-1
                 right = mid - 1;
-            } else {
+            } else {//否则l=mid+1
                 left = mid + 1;
             }
         }
-        return -1;
+        return -1;//循环结束没找到就返回-1
     }
 }

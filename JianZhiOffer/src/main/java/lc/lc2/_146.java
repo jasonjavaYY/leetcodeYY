@@ -45,6 +45,9 @@ LRU 缓存机制可以通过哈希表辅以双向链表实现，我们用一个�
 * 而将一个节点移到双向链表的头部，可以分成「删除该节点」和「在双向链表的头部添加节点」两步操作，都可以在 O(1) 时间内完成。
 在双向链表的实现中，使用一个伪头部（dummy head）和伪尾部（dummy tail）标记界限，这样在添加节点和删除节点的时候就不需要检查相邻节点是否存在。
 * */
+//实现一个LRU(最近最少使用)。
+//LRUCache(int capacity) 以capacity为容量初始化LRU。int get(int key) 如果key在缓存返回关键字值否则返回-1。
+//void put(int key, int value)如果key已存在则变更value，不存在则插入k-v。如果插入导致超过容量应逐出最久未使用key
 public class _146 {
     class LRUCache {
         class DLinkedNode { //双向链表

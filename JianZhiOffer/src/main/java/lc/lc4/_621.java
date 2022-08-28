@@ -49,27 +49,24 @@ import java.util.Set;
 * 但如果列数超过 n+1，就算没有这些待命状态，任意两个相邻任务执行间隔也会至少为 n。此时，总执行时间就是任务的总数 ∣task∣。
 * 因此，在任意的情况下，需要的最少时间就是 (maxExec−1)(n+1)+maxCount 和 ∣task∣ 中的较大值。
 * */
+//字符数组tasks表示任务列表。字母表示不同任务。任务需1时间。任1时间CPU可完成一任务或待命。同任务间须有n冷却，计算完成任务所需最短时间
 public class _621 {
     public int leastInterval(char[] tasks, int n) {
         Map<Character, Integer> freq = new HashMap<Character, Integer>();
-        // 最多的执行次数
-        int maxExec = 0;
-        for (char ch : tasks) {
+        int maxExec = 0; //最多的执行次数
+        for (char ch : tasks) {//遍历任务列表，计算各类任务执行次数
             int exec = freq.getOrDefault(ch, 0) + 1;
             freq.put(ch, exec);
-            maxExec = Math.max(maxExec, exec);
+            maxExec = Math.max(maxExec, exec);//得到最后执行次数
         }
-
-        // 具有最多执行次数的任务数量
-        int maxCount = 0;
+        int maxCount = 0; //具有最多执行次数的任务数量
         Set<Map.Entry<Character, Integer>> entrySet = freq.entrySet();
-        for (Map.Entry<Character, Integer> entry : entrySet) {
+        for (Map.Entry<Character, Integer> entry : entrySet) {//遍历任务执行次数map
             int value = entry.getValue();
-            if (value == maxExec) {
+            if (value == maxExec) {//计算出最多执行次数的任务数count
                 ++maxCount;
             }
-        }
-
+        }//计算(maxExec−1)(n+1)+maxCount，和任务长度比较，返回较大值
         return Math.max((maxExec - 1) * (n + 1) + maxCount, tasks.length);
     }
 }

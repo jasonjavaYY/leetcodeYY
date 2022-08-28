@@ -26,18 +26,23 @@ import java.util.LinkedList;
 一个朴素的思想是，我们可以把这个循环数组「拉直」，即复制该序列的前 n−1 个元素拼接在原序列的后面。这样我们就可以将这个新序列当作普通序列，
 * 用上文的方法来处理。而在本题中，我们不需要显性地将该循环数组「拉直」，而只需要在处理时对下标取模即可。
 * */
+//一个循环数组nums，返回每个元素下一个更大元素。应该循环搜索下一个更大数。如不存在输出-1
 public class _503 {
     public int[] nextGreaterElements(int[] nums) {
-        int n = nums.length;
-        int[] ret = new int[n];
-        Arrays.fill(ret, -1);
-        Deque<Integer> stack = new LinkedList<Integer>();
+        int n = nums.length;//计算数组长度n
+        int[] ret = new int[n]; //构造结果数组
+        Arrays.fill(ret, -1);//先把结果数组都填成-1
+        Deque<Integer> stack = new LinkedList<Integer>();//构造栈
+        //把循环数组「拉直」，即复制前 n−1 个元素拼在原序列后面，相当于循环2轮，如果还没找到最大数那就是没有
         for (int i = 0; i < n * 2 - 1; i++) {
+            //到位置i，就将单调栈中所有小于nums[i]下标弹出栈，下一个更大元素即为nums[i]。随后将位置i入栈
+            //循环判断，如果栈不为空，且栈顶元素(下标)对应数小于num[i%n]，则弹出栈顶元素
+            //直到栈顶元素(下标)对应数大于等于num[i%n]，将nums[i % n]赋值给ret的弹出下标
             while (!stack.isEmpty() && nums[stack.peek()] < nums[i % n]) {
                 ret[stack.pop()] = nums[i % n];
             }
-            stack.push(i % n);
+            stack.push(i % n);//最后将下标i入栈
         }
-        return ret;
+        return ret;//返回结果
     }
 }

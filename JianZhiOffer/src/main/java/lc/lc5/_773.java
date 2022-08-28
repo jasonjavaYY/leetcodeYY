@@ -49,60 +49,60 @@ import java.util.*;
 * 因此，我们在 status 中找出 0 所在的位置 x，对于每一个与 x 相邻的位置 y，我们将 status[x] 与 status[y] 进行交换，即等同于进行一次操作。
 * 注意：status 是已经拼接完成的字符串。最后还需注意：如果 board 是[[1,2,3],[4,5,0]]，直接返回答案 0。
 * */
+//2x3板上有5块砖数字1~5,空缺用0。一次移动为选择0与相邻数交换.最终board是[[1,2,3],[4,5,0]]谜被解。给初始board，求解谜最少移动次数，不能解返回-1
 public class _773 {
+    //位置编号为[0 1 2][3 4 5]，则各个位置相邻位置数组如下：0挨着1 3，1挨着0 2 4...
     int[][] neighbors = {{1, 3}, {0, 2, 4}, {1, 5}, {0, 4}, {1, 3, 5}, {2, 4}};
 
     public int slidingPuzzle(int[][] board) {
-        StringBuffer sb = new StringBuffer();
+        StringBuffer sb = new StringBuffer();//构造序列字符串
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 3; ++j) {
-                sb.append(board[i][j]);
+                sb.append(board[i][j]);//遍历初始board获取初始字符串
             }
         }
         String initial = sb.toString();
         if ("123450".equals(initial)) {
-            return 0;
+            return 0; //如果初始字符串就是123450直接返回0不需要移动
         }
-
-        int step = 0;
-        Queue<String> queue = new LinkedList<String>();
-        queue.offer(initial);
-        Set<String> seen = new HashSet<String>();
-        seen.add(initial);
-
-        while (!queue.isEmpty()) {
-            ++step;
+        int step = 0; //存储步数
+        Queue<String> queue = new LinkedList<String>();//构造队列
+        queue.offer(initial);//将初始状态加入队列
+        Set<String> seen = new HashSet<String>();//构造该状态是否经历过
+        seen.add(initial);//将初始值加入经历Set
+        while (!queue.isEmpty()) {//当队列不为空时遍历
+            ++step;//步数+1
             int size = queue.size();
-            for (int i = 0; i < size; ++i) {
+            for (int i = 0; i < size; ++i) {//依次弹出队列元素
                 String status = queue.poll();
+                //遍历当前状态能达到的下一个状态
                 for (String nextStatus : get(status)) {
-                    if (!seen.contains(nextStatus)) {
-                        if ("123450".equals(nextStatus)) {
+                    if (!seen.contains(nextStatus)) {//如果该状态没见过
+                        if ("123450".equals(nextStatus)) {//如果是123450，直接返回步数
                             return step;
-                        }
+                        }//否则将状态放入队列和seen
                         queue.offer(nextStatus);
                         seen.add(nextStatus);
                     }
                 }
             }
         }
-
-        return -1;
+        return -1;//没法转换返回-1
     }
-
-    // 枚举 status 通过一次交换操作得到的状态
+    //在status中找出0所在位置x，每个与x相邻位置y，交换status[x]与status[y]，等于一次操作
     public List<String> get(String status) {
         List<String> ret = new ArrayList<String>();
-        char[] array = status.toCharArray();
-        int x = status.indexOf('0');
+        char[] array = status.toCharArray();//将当前状态转换为字符数组
+        int x = status.indexOf('0');//找到0的位置
+        //从邻居矩阵中获取该位置能交换的位置y，遍历y
         for (int y : neighbors[x]) {
-            swap(array, x, y);
-            ret.add(new String(array));
-            swap(array, x, y);
+            swap(array, x, y);//交换字符串x和y处字符
+            ret.add(new String(array));//将结果放入ret
+            swap(array, x, y);//再换回来进行下次交换
         }
-        return ret;
+        return ret;//返回status一次操作能得到的所有新状态
     }
-
+    //交换array的x和y处字符
     public void swap(char[] array, int x, int y) {
         char temp = array[x];
         array[x] = array[y];

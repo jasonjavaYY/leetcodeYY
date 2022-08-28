@@ -25,28 +25,30 @@ package lc.lc4;
 * 此时我们就分成两种情况：即删除左指针对应的字符，留下子串 s[low+1:high]，或者删除右指针对应的字符，留下子串 s[low:high−1]。
 * 当这两个子串中至少有一个是回文串时，就说明原始字符串删除一个字符之后就以成为回文串。
 * */
+//一个非空字符串s，最多删一个字符判断是否能成回文字符串
 public class _680 {
     public boolean validPalindrome(String s) {
-        int low = 0, high = s.length() - 1;
-        while (low < high) {
-            char c1 = s.charAt(low), c2 = s.charAt(high);
+        int low = 0, high = s.length() - 1;//初始化低位和高位指针
+        while (low < high) {//循环
+            char c1 = s.charAt(low), c2 = s.charAt(high);//判断l和h处字符如果相等，就靠近l和h继续判断
             if (c1 == c2) {
                 ++low;
                 --high;
-            } else {
+            } else {//字符如果不相等，可以删除左或右字符，判断l到h-1或者l+1到h是否有一个是回文串
                 return validPalindrome(s, low, high - 1) || validPalindrome(s, low + 1, high);
             }
         }
         return true;
     }
-
+    //判断s从low到high的内容是否是回文串
     public boolean validPalindrome(String s, int low, int high) {
+        //不断移动l和h，只要两个位置字符串不相等，就返回false，相等就靠近
         for (int i = low, j = high; i < j; ++i, --j) {
             char c1 = s.charAt(i), c2 = s.charAt(j);
             if (c1 != c2) {
                 return false;
             }
         }
-        return true;
+        return true;//便利完毕都能匹配，返回true
     }
 }

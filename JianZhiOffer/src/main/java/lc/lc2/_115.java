@@ -35,6 +35,7 @@ dp[i][j]={  dp[i+1][j+1]+dp[i+1][j],   s[i]=t[j]
             dp[i+1][j],                s[i]！=t[j]
 最终计算得到 dp[0][0] 即为在 s 的子序列中 t 出现的个数。
 * */
+//字符串s和t，计算s子序列中t出现的个数。子序列指通过删除也可不删字符且不干扰剩余字符相对位置组成的新串
 public class _115 {
     public int numDistinct(String s, String t) {
         int m = s.length(), n = t.length(); //计算s和t的长度m和n

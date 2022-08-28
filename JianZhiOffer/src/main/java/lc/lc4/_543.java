@@ -24,23 +24,23 @@ package lc.lc4;
 * 的深度 L 和 R ，则该节点为根的子树的深度即为max(L,R)+1,该节点的 d_node值为L+R+1,递归搜索每个节点并设一个全局变量 ans 记录d_node最大值，
 * 最后返回 ans-1 即为树的直径。
 * */
+//计算二叉树的直径。直径是任意两结点路径长度中的最大值。路径可能也可能不穿过根
 public class _543 {
-    int ans;
-
+    int ans;//记录答案
     public int diameterOfBinaryTree(TreeNode root) {
-        ans = 1;
-        depth(root);
-        return ans - 1;
+        ans = 1;//初始化为1
+        depth(root);//求二叉树深度
+        return ans - 1;//返回ans-1
     }
 
     public int depth(TreeNode node) {
         if (node == null) {
             return 0; // 访问到空节点了，返回0
         }
-        int L = depth(node.left); // 左儿子为根的子树的深度
-        int R = depth(node.right); // 右儿子为根的子树的深度
-        ans = Math.max(ans, L + R + 1); // 计算d_node即L+R+1 并更新ans
-        return Math.max(L, R) + 1; // 返回该节点为根的子树的深度
+        int L = depth(node.left); // 递归求左子树深度L
+        int R = depth(node.right); // 递归求右子树深度R
+        ans = Math.max(ans, L + R + 1); // L+R再+1和ans比较谁更大，更新ans
+        return Math.max(L, R) + 1; // 返回L和R较大值再+1
     }
 
     class TreeNode {
