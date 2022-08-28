@@ -39,9 +39,7 @@ public class _12 {
                 num -= value;
                 roman.append(symbol);
             }
-            if (num == 0) {//num为0是退出条件
-                break;
-            }
+            if (num == 0) break;//num为0是退出条件
         }
         return roman.toString();
     }

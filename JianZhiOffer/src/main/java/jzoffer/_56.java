@@ -15,8 +15,7 @@ public class _56 {
     }
 
     private void inOrder(TreeNode root, int k) {
-        if (root == null || cnt >= k) //如果根为空或者cnt到了k就返回
-            return;
+        if (root == null || cnt >= k) return; //如果根为空或者cnt到了k就返回
         //左根右顺序遍历，每遍历一个节点，就cnt++
         inOrder(root.left, k);
         cnt++;

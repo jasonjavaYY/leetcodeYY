@@ -35,9 +35,7 @@ public class _917 {
             if (left >= right) {
                 break;
             }//否则交换左右字符，左右靠近一位
-            swap(arr, left, right);
-            left++;
-            right--;
+            swap(arr, left, right); left++; right--;
         }
         return new String(arr);
     }

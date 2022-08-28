@@ -47,10 +47,8 @@ public class _20 {
     public boolean isValid(String s) {
         //如果字符串不为空但第0个元素不是左括号，直接返回false
         if (s.length() > 0 && !map.containsKey(s.charAt(0))) return false;
-        //构建一个栈，放入一个?
-        LinkedList<Character> stack = new LinkedList<Character>() {{
-            add('?');
-        }};
+        //构建一个栈，放入一个"?"
+        LinkedList<Character> stack = new LinkedList<Character>() {{ add('?'); }};
         for (Character c : s.toCharArray()) { //遍历字符串每个字符
             //如果是左括号，就入栈
             if (map.containsKey(c)) stack.addLast(c);

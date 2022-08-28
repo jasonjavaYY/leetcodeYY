@@ -14,23 +14,21 @@ import java.util.Queue;
 public class _34 {
     ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<>(); //存放结果数组
-        Queue<TreeNode> queue = new LinkedList<>(); //辅助队列
+        Queue<TreeNode> queue = new LinkedList<>(); //存放每层节点
         queue.add(pRoot); //根节点加入队列
         while (!queue.isEmpty()) { //循环判断队列是否不为空
             ArrayList<Integer> list = new ArrayList<>(); //构造内部数组存放每层元素，为了区分何时换行
             int cnt = queue.size(); //获取队列大小，即当前层元素数
             while (cnt-- > 0) { //依次弹出每个元素
                 TreeNode node = queue.poll();
-                if (node == null)
-                    continue;
+                if (node == null) continue;
                 //如果不为空，将元素值加入内部数组，左右节点入队
                 list.add(node.val);
                 queue.add(node.left);
                 queue.add(node.right);
             }
             //当前层被添加完，将非空内部数组加入ret中
-            if (list.size() != 0)
-                ret.add(list);
+            if (list.size() != 0) ret.add(list);
         }
         return ret;
     }

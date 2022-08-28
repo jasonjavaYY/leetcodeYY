@@ -10,8 +10,7 @@ package jzoffer;
 public class _49 {
     public int numDecodings(String s) {
         //如果数字字符串为空，返回0种
-        if (s == null || s.length() == 0)
-            return 0;
+        if (s == null || s.length() == 0) return 0;
         int n = s.length(); //获取字符串长度
         int[] dp = new int[n + 1];  //构造dp数组，dp[i]代表前i个字符有多少种
         dp[0] = 1;

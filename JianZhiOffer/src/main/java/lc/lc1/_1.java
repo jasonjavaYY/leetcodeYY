@@ -25,8 +25,7 @@ public class _1 {
             if (hashtable.containsKey(target - nums[i])) {
                 return new int[]{hashtable.get(target - nums[i]), i};
             }
-            //没找到就把数字和下标放入map
-            hashtable.put(nums[i], i);
+            hashtable.put(nums[i], i); //没找到就把数字和下标放入map
         }
         return new int[0];
     }

@@ -43,12 +43,10 @@ public class _860 {
                 if (five == 0) {//如果当前没有5原，返回false
                     return false;
                 }//否则five--，ten++
-                five--;
-                ten++;
+                five--; ten++;
             } else {//如果付20
                 if (five > 0 && ten > 0) {//如果同时有5和10，就找零5和10
-                    five--;
-                    ten--;
+                    five--; ten--;
                 } else if (five >= 3) {//否则如果有不少于3张5，找零3个5
                     five -= 3;
                 } else {//否则返回false

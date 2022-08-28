@@ -15,14 +15,12 @@ public class _41 {
     private ArrayList<String> ret = new ArrayList<>(); //用来存放最终结果字符串
 
     public ArrayList<String> Permutation(String str) {
-        if (str.length() == 0) //如果字符串长度为0，直接返回空数组
-            return ret;
+        if (str.length() == 0) return ret; //如果字符串长度为0，直接返回空数组
         char[] chars = str.toCharArray(); //字符串转换为字符数组
         Arrays.sort(chars); //字符数组排序
         backtracking(chars, new boolean[chars.length], new StringBuilder()); //回溯排序后的字符数组
         return ret;
     }
-
     //回溯法
     private void backtracking(char[] chars, boolean[] hasUsed, StringBuilder s) {
         //如果拼接字符串s长度和chars长度相等，说明拼好了一个结果字符串，放入ret
@@ -32,16 +30,13 @@ public class _41 {
         }
         for (int i = 0; i < chars.length; i++) {
             //判断第i个位置字符串是否用过
-            if (hasUsed[i])
-                continue;
+            if (hasUsed[i]) continue;
             //当原始字符串内有重复字符时，这里去重
-            if (i != 0 && chars[i] == chars[i - 1] && !hasUsed[i - 1]) /* 保证不重复 */
-                continue;
-                //将第i个字符设置为已使用，将字符拼接到s
+            if (i != 0 && chars[i] == chars[i - 1] && !hasUsed[i - 1]) continue;
+            //将第i个字符设置为已使用，将字符拼接到s
             hasUsed[i] = true;
             s.append(chars[i]);
-            //继续向下一个字符回溯
-            backtracking(chars, hasUsed, s);
+            backtracking(chars, hasUsed, s);  //继续向下一个字符回溯
             //某一条路径走不通了，将s的最后一个字符剔除并将第i位置设置为没用过
             s.deleteCharAt(s.length() - 1);
             hasUsed[i] = false;

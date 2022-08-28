@@ -16,8 +16,7 @@ import java.util.Arrays;
 public class _48 {
     public String PrintMinNumber(int[] numbers) {
         //如果数组为空，返回空
-        if (numbers == null || numbers.length == 0)
-            return "";
+        if (numbers == null || numbers.length == 0) return "";
         int n = numbers.length; //数组长度
         String[] nums = new String[n]; //构造字符数组
         //遍历数组，将数组转变成字符串

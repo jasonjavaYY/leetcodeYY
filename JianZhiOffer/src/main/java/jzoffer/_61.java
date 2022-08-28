@@ -32,10 +32,7 @@ public class _61 {
                     list.add(i);
                 ret.add(list);
                 //将数组整体右移一个数
-                curSum -= start;
-                start++;
-                end++;
-                curSum += end;
+                curSum -= start; start++; end++; curSum += end;
             }
         }
         return ret;

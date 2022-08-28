@@ -17,8 +17,7 @@ public class _53 {
     }
 
     private void mergeSort(int[] nums, int l, int h) {
-        if (h - l < 1) //如果高低位相同，直接返回
-            return;
+        if (h - l < 1) return; //如果高低位相同，直接返回
         int m = l + (h - l) / 2; //计算l和h的中间位置
         mergeSort(nums, l, m);  //排序l到m
         mergeSort(nums, m + 1, h);  //排序m+1到h

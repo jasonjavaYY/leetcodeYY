@@ -15,8 +15,7 @@ public class _64 {
     public ArrayList<Integer> maxInWindows(int[] num, int size) {
         ArrayList<Integer> ret = new ArrayList<>();  //存放结果数组
         //如果滑动窗口超出数组长度或者小于等于1，直接返回原数组
-        if (size > num.length || size < 1)
-            return ret;
+        if (size > num.length || size < 1) return ret;
         //构建一个大顶堆 o2-o1是大顶堆
         PriorityQueue<Integer> heap = new PriorityQueue<>((o1, o2) -> o2 - o1);
         //将最开始的size个数放入堆，取出堆顶元素放入结果集

@@ -33,7 +33,7 @@ public class _24 {
         while (temp.next != null && temp.next.next != null) { //每次更换temp后面2个节点
             ListNode node1 = temp.next;  //取出temp后面依次两个节点node1和node2
             ListNode node2 = temp.next.next;
-            //核心，temp.next = node2，为了断开指向node1的连接，实现node2放到node1前
+            //核心4步，temp.next = node2，为了断开指向node1的连接，实现node2放到node1前
             //node1.next = node2.next，让node1指向node2后面的元素
             //node2.next = node1，此时再让node1成为node2后面的元素就完成了node1和nide2交换
             //temp = node1，最后更新temp为交换后的第二个节点也就是node1

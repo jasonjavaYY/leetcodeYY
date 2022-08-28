@@ -21,8 +21,7 @@ public class _50 {
     }
     public static int getMost(int[][] values) {
         //如果数组为空，返回0
-        if (values == null || values.length == 0 || values[0].length == 0)
-            return 0;
+        if (values == null || values.length == 0 || values[0].length == 0) return 0;
         int n = values[0].length;  //获取列数
         int[] dp = new int[n];
         for (int[] value : values) {

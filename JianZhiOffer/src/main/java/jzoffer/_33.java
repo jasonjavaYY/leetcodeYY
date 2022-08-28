@@ -16,7 +16,7 @@ import java.util.Queue;
 //树 从上往下打印二叉树每个节点，同层从左至右
 public class _33 {
     public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>(); //辅助队列
+        Queue<TreeNode> queue = new LinkedList<>(); //存放每层节点
         ArrayList<Integer> ret = new ArrayList<>(); //存放结果的数组
         queue.add(root); //先把根节点加入队列
         while (!queue.isEmpty()) { //循环，当队列不为空时

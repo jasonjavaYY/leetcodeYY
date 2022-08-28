@@ -32,13 +32,9 @@ public class _7 {
         while (x != 0) {
             int tmp = x % 10; //每次取末尾数字
             //判断是否大于最大32位整数
-            if (res > 214748364 || (res == 214748364 && tmp > 7)) {
-                return 0;
-            }
+            if (res > 214748364 || (res == 214748364 && tmp > 7)) return 0;
             //判断是否小于最小32位整数
-            if (res < -214748364 || (res == -214748364 && tmp < -8)) {
-                return 0;
-            }
+            if (res < -214748364 || (res == -214748364 && tmp < -8)) return 0;
             res = res * 10 + tmp; //更新res和x
             x /= 10;
         }

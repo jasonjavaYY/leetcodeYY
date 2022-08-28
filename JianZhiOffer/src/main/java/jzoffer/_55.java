@@ -21,14 +21,11 @@ public class _55 {
     }
 
     private int binarySearch(int[] nums, int K) {
-        //初始化l和h
-        int l = 0, h = nums.length;
+        int l = 0, h = nums.length; //初始化l和h
         while (l < h) { //退出循环条件
             int m = l + (h - l) / 2; //计算l和h中点
-            if (nums[m] >= K) //如果该位置数字大于等于k，都更新h
-                h = m;
-            else //小于k的时候更新l，所以最后得到的是小于k的最大元素下标或者第一个K的下标
-                l = m + 1;
+            if (nums[m] >= K) h = m; //如果该位置数字大于等于k，更新h
+            else l = m + 1; //小于k时更新l，所以最后得到小于k的最大元素下标或第一个K下标
         }
         return l;
     }

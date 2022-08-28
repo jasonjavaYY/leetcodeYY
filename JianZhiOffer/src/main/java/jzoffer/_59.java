@@ -18,10 +18,8 @@ public class _59 {
         //找到不同的两个元素不一致的那位
         diff &= -diff;
         for (int num : nums) {
-            if ((num & diff) == 0)
-                num1[0] ^= num;
-            else
-                num2[0] ^= num;
+            if ((num & diff) == 0) num1[0] ^= num;
+            else num2[0] ^= num;
         }
     }
 }

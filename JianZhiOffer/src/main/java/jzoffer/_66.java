@@ -19,8 +19,7 @@ public class _66 {
         // 使用癞子补全不连续的顺子
         for (int i = cnt; i < nums.length - 1; i++) {
             //遍历除了癞子后面的数字，只要有重复的直接返回false
-            if (nums[i + 1] == nums[i])
-                return false;
+            if (nums[i + 1] == nums[i]) return false;
             //否则就用癞子填充两个数字之间的间隔
             cnt -= nums[i + 1] - nums[i] - 1;
         }

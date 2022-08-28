@@ -31,9 +31,8 @@ public class _22 {
             return cache[n];
         }
         ArrayList<String> ans = new ArrayList<String>(); //存放结果数组
-        if (n == 0) { //如果n=0，返回空字符串
-            ans.add("");
-        } else {
+        if (n == 0) ans.add(""); //如果n=0，返回空字符串
+        else {
             for (int c = 0; c < n; ++c) { //c从0开始
                 for (String left : generate(c)) { //左半部分是generate(c)
                     //右半部分是generate(n-1-c)

@@ -46,8 +46,7 @@ public class _39 {
             ans.add(new ArrayList<Integer>(combine));
             return;
         }
-        // 继续找id+1
-        dfs(candidates, target, ans, combine, idx + 1);
+        dfs(candidates, target, ans, combine, idx + 1); // 继续找id+1
         // 如果当前数字总和还不到target
         if (target - candidates[idx] >= 0) { //将当前数字加入combine
             combine.add(candidates[idx]); //更新target继续找

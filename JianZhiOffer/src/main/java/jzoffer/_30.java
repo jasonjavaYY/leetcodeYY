@@ -30,10 +30,7 @@ public class _30 {
                 for (int i = r2 - 1; i > r1; i--)
                     ret.add(matrix[i][c1]);
                 //上边界++，下边界--，左边界++，右边界--，打印里面一圈
-            r1++;
-            r2--;
-            c1++;
-            c2--;
+            r1++;  r2--;  c1++;  c2--;
         }
         return ret;
     }

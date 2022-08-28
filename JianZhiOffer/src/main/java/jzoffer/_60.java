@@ -23,10 +23,8 @@ public class _60 {
             //找到了直接返回，因为两个数字和固定时，两个数字差越大，乘积越小
             if (cur == sum)
                 return new ArrayList<>(Arrays.asList(array[i], array[j]));
-            if (cur < sum) //如果当前和小于sum，要移动左指针
-                i++;
-            else  //否则移动右指针
-                j--;
+            if (cur < sum) i++; //如果当前和小于sum，要移动左指针
+            else  j--; //否则移动右指针
         } //最后都没找到就返回空数组
         return new ArrayList<>();
     }

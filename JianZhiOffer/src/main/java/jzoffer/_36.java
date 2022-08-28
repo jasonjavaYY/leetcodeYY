@@ -9,15 +9,13 @@ package jzoffer;
 //树 输入一个整数数组，判断数组是不是某二叉搜索树后序遍历结果
 public class _36 {
     public boolean VerifySquenceOfBST(int[] sequence) {
-        if (sequence == null || sequence.length == 0) //如果序列是空返回false
-            return false;
+        if (sequence == null || sequence.length == 0) return false; //如果序列是空返回false
         return verify(sequence, 0, sequence.length - 1);
     }
 
     private boolean verify(int[] sequence, int first, int last) {
         //如果只有一个节点，一定是真
-        if (last - first <= 1)
-            return true;
+        if (last - first <= 1) return true;
         //后序遍历最后一个节点一定是根
         int rootVal = sequence[last];
         //cutIndex是左右子树分界点，二叉搜索树左子树一定比根值小，右子树一定比根的值大

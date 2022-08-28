@@ -21,24 +21,21 @@ public class _44 {
     public void Insert(Integer val) {
         /* 插入要保证两个堆存于平衡状态 */
         if (N % 2 == 0) {
-            /* N 为偶数的情况下插入到右半边。
-             * 因为右半边元素都要大于左半边，但是新插入的元素不一定比左半边元素来的大，
-             * 因此需要先将元素插入左半边，然后利用左半边为大顶堆的特点，取出堆顶元素即为最大元素，此时插入右半边 */
+            /* N为偶数插到右半边。右半边要大于左半边，但新插入元素不一定比左半边元素大
+             * 因此先将元素插入左半边，然后取出堆顶元素即为最大元素，插入右半边 */
             left.add(val);
             right.add(left.poll());
         } else {
-            //N为奇数就把数字插入左半边，但要先插入右半边然后把小顶堆顶元素弹出移到左边，保证左边数都小于右边
+            //N为奇数把数字插入左半边，要先插入右半边然后把堆顶元素弹出移到左边，保证左边数都小于右边
             right.add(val);
             left.add(right.poll());
         }
-        N++;
+        N++; //增大N
     }
-
-    public Double GetMedian() { //如果N是偶数，就返回两个堆顶元素的平均值
-        if (N % 2 == 0)
-            return (left.peek() + right.peek()) / 2.0;
+    public Double GetMedian() {
+        //如果N是偶数，就返回两个堆顶元素的平均值
+        if (N % 2 == 0) return (left.peek() + right.peek()) / 2.0;
         //如果是奇数，返回右半边的堆顶元素，因为第一个数插入右半边，所以右边比左边多一个数
-        else
-            return (double) right.peek();
+        else return (double) right.peek();
     }
 }

@@ -25,9 +25,7 @@ public class _37 {
         System.out.println(FindPath(root, 22));
 
     }
-
     private static ArrayList<ArrayList<Integer>> ret = new ArrayList<>(); //存放结果数组
-
     public static ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
         backtracking(root, target, new ArrayList<Integer>());
         return ret;
@@ -35,21 +33,19 @@ public class _37 {
 
     private static void backtracking(TreeNode node, int target, ArrayList<Integer> path) {
         //如果二叉树为空，直接返回空
-        if (node == null)
-            return;
+        if (node == null) return;
         //将根节点值加入路径，目标值减掉根节点值
         path.add(node.val);
         target -= node.val;
         //如果目标值为0并且当前节点是叶子节点，说明找到了一条路径，将path加入ret中
         if (target == 0 && node.left == null && node.right == null) {
             ret.add(new ArrayList<>(path));
-        } else {
-            //否则
+        } else {  //否则回溯left和right
             backtracking(node.left, target, path);
             backtracking(node.right, target, path);
         }
-        //只有当上面的else分支两个防范执行都失败才能到这里，
-        // 说明当时的node的左右子树都已经没法找到所需的路径，
+        //只有当上面的else分支两个方法都失败才能到这里，
+        //说明当时的node的左右子树都已经没法找到所需的路径，需要回退
         //因此需要把node的值从path中移除，向node的上一层另一条分支找
         path.remove(path.size() - 1);
     }

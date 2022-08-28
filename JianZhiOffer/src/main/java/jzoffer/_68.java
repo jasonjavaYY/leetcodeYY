@@ -10,8 +10,7 @@ package jzoffer;
 public class _68 {
     public int maxProfit(int[] prices) {
         //如果数组为空，返回0
-        if (prices == null || prices.length == 0)
-            return 0;
+        if (prices == null || prices.length == 0) return 0;
         int soFarMin = prices[0]; //至此为止的最小值
         int maxProfit = 0;  //最大价值
         for (int i = 1; i < prices.length; i++) {

@@ -30,8 +30,7 @@ public class _62 {
             }
             j++;
         }
-        //此时变为："I ma a .tneduts"
-        //最后再整体翻转，变为："student. a am I"
+        //此时变为："I ma a .tneduts"，最后再整体翻转变为："student. a am I"
         reverse(chars, 0, n - 1);
         return new String(chars);
     }
@@ -43,8 +42,6 @@ public class _62 {
     }
 
     private static void swap(char[] c, int i, int j) {
-        char t = c[i];
-        c[i] = c[j];
-        c[j] = t;
+        char t = c[i]; c[i] = c[j]; c[j] = t;
     }
 }

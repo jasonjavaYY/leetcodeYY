@@ -14,21 +14,19 @@ public class _58 {
              this.val = val;
          }
      }
-    boolean isBalance = true;
+    boolean isBalance = true; //标记是否是平衡树
     public boolean IsBalanced_Solution(TreeNode root) {
         lengthOfTree(root);
         return isBalance;
     }
     private int lengthOfTree(TreeNode root) {
         //如果树为空，返回高度0
-        if (root == null)
-            return 0;
+        if (root == null) return 0;
         //求左子树和右子树高度
         int left = lengthOfTree(root.left);
         int right = lengthOfTree(root.right);
         //如果高度差超过1，设置false
-        if (Math.abs(left - right) > 1)
-            isBalance = false;
+        if (Math.abs(left - right) > 1) isBalance = false;
         //最后返回左右子树的高度最大值+1
         return Math.max(left, right) + 1;
     }

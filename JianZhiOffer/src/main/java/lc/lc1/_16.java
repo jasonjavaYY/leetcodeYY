@@ -35,14 +35,10 @@ public class _16 {
             while (start < end) { //循环退出条件
                 int sum = nums[start] + nums[end] + nums[i]; //求三个数和
                 //如果sum更接近target就更新
-                if (Math.abs(target - sum) < Math.abs(target - ans))
-                    ans = sum;
-                if (sum > target) //如果sum太大就更新end
-                    end--;
-                else if (sum < target)//如果sum太小就更新start
-                    start++;
-                else
-                    return ans; //否则sum=target，直接返回
+                if (Math.abs(target - sum) < Math.abs(target - ans)) ans = sum;
+                if (sum > target) end--; //如果sum太大就更新end
+                else if (sum < target) start++; //如果sum太小就更新start
+                else return ans; //否则sum=target，直接返回
             }
         }
         return ans; //最后返回ans

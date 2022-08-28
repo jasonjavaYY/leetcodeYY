@@ -21,8 +21,7 @@ public class _38 {
         }
     }
     public RandomListNode Clone(RandomListNode pHead) {
-        if (pHead == null) //如果原链表为空，返回空
-            return null;
+        if (pHead == null) return null; //如果原链表为空，返回空
         // 在原链表每个节点后面插入相同新节点
         RandomListNode cur = pHead;
         while (cur != null) {
@@ -31,7 +30,7 @@ public class _38 {
             cur.next = clone;
             cur = clone.next;
         }
-        // 建立 random 链接
+        //建立random 链接
         cur = pHead;
         while (cur != null) {
             RandomListNode clone = cur.next;
@@ -41,12 +40,10 @@ public class _38 {
                 clone.random = cur.random.next;
             cur = clone.next;
         }
-        // 拆分
-        cur = pHead;
+        cur = pHead;  //拆分
         RandomListNode pCloneHead = pHead.next;
         while (cur.next != null) {
-            //让原链表的1指向原链表的2，clone链表的1指向clone链表的2
-            //以此向后遍历节点拆分
+            //让原链表的1指向原链表的2，clone链表的1指向clone链表的2，以此向后遍历节点拆分
             RandomListNode next = cur.next;
             cur.next = next.next;
             cur = next;

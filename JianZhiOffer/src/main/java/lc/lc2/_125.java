@@ -35,8 +35,7 @@ public class _125 {
                 if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
                     return false; //如果两个字符不相同，返回false
                 } //否则同时更新左右指针
-                ++left;
-                --right;
+                ++left; --right;
             }
         }
         return true; //如果遍历退出，说明是回文串，返回true

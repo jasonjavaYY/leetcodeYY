@@ -16,8 +16,7 @@ public class _39 {
     }
 
     private void inOrder(TreeNode node) {
-        if (node == null) //如树为空，直接返回
-            return;
+        if (node == null) return; //如树为空，直接返回
         inOrder(node.left); //否则递归左节点
         node.left = pre; //节点的左节点比它小，放在pre
         if (pre != null) //将node设置为pre的右节点

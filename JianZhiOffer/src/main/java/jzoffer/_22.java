@@ -16,10 +16,8 @@ public class _22 {
         int i = 0, j = oddCnt;
         //遍历原数组，如果是奇数，就放前面，偶数就从j++位置开始放，放后面，因为奇数个数是j
         for (int num : copy) {
-            if (num % 2 == 1)
-                nums[i++] = num;
-            else
-                nums[j++] = num;
+            if (num % 2 == 1)  nums[i++] = num;
+            else  nums[j++] = num;
         }
     }
     //如果数值对2取余为0就返回true，即是偶数

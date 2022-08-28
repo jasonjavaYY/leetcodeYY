@@ -12,10 +12,8 @@ package jzoffer;
 //数学 n人围圈。指定m，编号0开始报数到m-1人出去且不回圈中，从下一人继续，直到剩下最后一人求其位置
 public class _67 {
     public int LastRemaining_Solution(int n, int m) {
-        if (n == 0)     //如果0个数，返回-1
-            return -1;
-        if (n == 1)     //如果1个数，返回下标位0
-            return 0;
+        if (n == 0)  return -1;  //如果0个数，返回-1
+        if (n == 1)  return 0;   //如果1个数，返回下标位0
         //否则递归n-1和m，结果再+m再对n取余
         return (LastRemaining_Solution(n - 1, m) + m) % n;
     }

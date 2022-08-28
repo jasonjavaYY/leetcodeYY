@@ -16,8 +16,7 @@ Output:
 public class _63 {
     public String LeftRotateString(String str, int n) {
         //如果n超出了字符串长度，直接返回原字符串
-        if (n >= str.length())
-            return str;
+        if (n >= str.length()) return str;
         char[] chars = str.toCharArray(); //字符串转换为字符数组
         reverse(chars, 0, n - 1);  //翻转前K个字符的单词
         reverse(chars, n, chars.length - 1); //翻转后面字符的单词
@@ -31,8 +30,6 @@ public class _63 {
     }
 
     private void swap(char[] chars, int i, int j) {
-        char t = chars[i];
-        chars[i] = chars[j];
-        chars[j] = t;
+        char t = chars[i]; chars[i] = chars[j]; chars[j] = t;
     }
 }

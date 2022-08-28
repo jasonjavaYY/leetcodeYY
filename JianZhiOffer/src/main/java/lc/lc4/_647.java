@@ -40,9 +40,7 @@ public class _647 {
             //以[li,ri]为中心向外扩展，依次判断是否有回文子串，l和r不越界，不断判断l和r处字符是否相等，相等就扩展l和r，ans++
             //直到越界或者l和r处字符不相等退出循环，继续找下一个回文中心进行扩展
             while (l >= 0 && r < n && s.charAt(l) == s.charAt(r)) {
-                --l;
-                ++r;
-                ++ans;
+                --l; ++r; ++ans;
             }
         }
         return ans;//返回ans

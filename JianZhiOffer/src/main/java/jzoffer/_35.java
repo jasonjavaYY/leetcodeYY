@@ -17,7 +17,7 @@ import java.util.Queue;
 public class _35 {
     public ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<>(); //存放结果数组
-        Queue<TreeNode> queue = new LinkedList<>(); //创建队列
+        Queue<TreeNode> queue = new LinkedList<>(); //存放每层节点
         queue.add(pRoot); //将根节点加入队列
         boolean reverse = false;  //标记是否需要翻转该层
         while (!queue.isEmpty()) {

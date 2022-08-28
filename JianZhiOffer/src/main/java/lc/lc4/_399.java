@@ -41,8 +41,8 @@ import java.util.Map;
 * 有向边权值乘积，a 的父亲结点要修改成根结点，它的权值依然是从当前结点到根结点经过的所有有向边的权值的乘积.
 * 合并」操作基于这样一个 很重要的前提：我们将要合并的两棵树的高度最多为 22，换句话说两棵树都必需是「路径压缩」以后的效果，
 * */
-//一个变量对数组equations和实数值数组values为已知条件，其中equations[i]=[Ai, Bi]和values[i]
-//未完成 表示Ai / Bi = values[i]。Ai 或 Bi 是表示单个变量的字符串。另有一些以数组 queries 表示的问题，
+//未完成 一个变量对数组equations和实数值数组values为已知条件，其中equations[i]=[Ai, Bi]和values[i]
+//表示Ai / Bi = values[i]。Ai 或 Bi 是表示单个变量的字符串。另有一些以数组 queries 表示的问题，
 //queries[j] = [Cj, Dj]，根据已知条件找出 Cj / Dj结果作为答案。返回所有问题答案 。如果无法确定用-1.0
 public class _399 {
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {

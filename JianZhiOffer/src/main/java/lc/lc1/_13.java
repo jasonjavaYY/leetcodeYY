@@ -44,12 +44,9 @@ public class _13 {
         for (int i = 0; i < n; ++i) { //逐步取出字符串中每位字符，一定是映射表中的一个
             int value = symbolValues.get(s.charAt(i)); //计算字符对应的值
             //如果第i位的值小于i+1(它后面一位)，说明要把i位的值减去，否则要加上
-            if (i < n - 1 && value < symbolValues.get(s.charAt(i + 1))) {
-                ans -= value;
-            } else {
-                ans += value;
-            }
+            if (i < n - 1 && value < symbolValues.get(s.charAt(i + 1))) ans -= value;
+            else ans += value;
         }
-        return ans; //最后返回结果
+        return ans; //返回结果
     }
 }

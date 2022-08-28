@@ -54,10 +54,7 @@ public class _59 {
                     num++;
                 }
             } //左++，右边界--，上++，下--，向内一层
-            left++;
-            right--;
-            top++;
-            bottom--;
+            left++; right--; top++; bottom--;
         }
         return matrix; //返回最终的矩阵
     }

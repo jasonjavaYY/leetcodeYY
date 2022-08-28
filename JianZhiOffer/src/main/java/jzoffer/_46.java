@@ -14,8 +14,7 @@ public class _46 {
 
     public static int FindGreatestSumOfSubArray(int[] nums) {
         //如果数组为空，返回0
-        if (nums == null || nums.length == 0)
-            return 0;
+        if (nums == null || nums.length == 0) return 0;
         //将最大和初始值设置为最小值
         int greatestSum = Integer.MIN_VALUE;
         int sum = 0;

@@ -25,7 +25,7 @@ public class _72 {
             if (i == 0 && (c == '+' || c == '-'))  continue;
                 //如果字符小宇0或者大于9，就是非法字符，直接返回0
             if (c < '0' || c > '9')  return 0;
-            ret = ret * 10 + (c - '0'); //否则就不停更新结果
+            ret = ret * 10 + (c - '0'); //否则不停更新结果
         }
         return isNegative ? -ret : ret;  //返回带符号的结果
     }

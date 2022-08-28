@@ -45,7 +45,7 @@ public class _17 {
 
     public void backtrack(List<String> combinations, Map<Character, String> phoneMap,
                           String digits, int index, StringBuffer combination) {
-        if (index == digits.length()) {//如果index等于传入字符串长度，表明找到了一个可能结果字符串，放入结果集
+        if (index == digits.length()) {//如果index等于传入字符串长度，表明找到一个可能结果，放入结果集
             combinations.add(combination.toString());
         } else { //否则获取index位置数字
             char digit = digits.charAt(index);
@@ -53,7 +53,7 @@ public class _17 {
             int lettersCount = letters.length(); //计算对应的字母个数
             for (int i = 0; i < lettersCount; i++) {
                 combination.append(letters.charAt(i));//针对每个字母，将该字母追加到结果字符串
-                backtrack(combinations, phoneMap, digits, index + 1, combination); //递归下一位
+                backtrack(combinations, phoneMap, digits, index + 1, combination); //递归index+1
                 combination.deleteCharAt(index); //回溯的时候要删除结果的index位置字符
             }
         }

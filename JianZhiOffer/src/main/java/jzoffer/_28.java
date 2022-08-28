@@ -7,7 +7,6 @@ package jzoffer;
  * */
 //树 操作给定二叉树，变换为源二叉树的镜像
 public class _28 {
-    //
     public class TreeNode {
         int val = 0;
         TreeNode left = null;
