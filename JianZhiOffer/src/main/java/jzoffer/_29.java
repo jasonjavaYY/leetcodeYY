@@ -17,11 +17,11 @@ public class _29 {
         }
     }
 
-    boolean isSymmetrical(TreeNode pRoot) {
+    boolean isSymmetrical(TreeNode root) {
         //如果树为空，返回true
-        if (pRoot == null) return true;
+        if (root == null) return true;
         //否则判断树左右节点是否对称
-        return isSymmetrical(pRoot.left, pRoot.right);
+        return isSymmetrical(root.left, root.right);
     }
 
     boolean isSymmetrical(TreeNode t1, TreeNode t2) {

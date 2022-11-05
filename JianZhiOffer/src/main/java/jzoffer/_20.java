@@ -10,7 +10,9 @@ package jzoffer;
 //动态规划 匹配包括 '.' 和 '*' 正则表达式，'.' 表示任一个字符，'*' 表示它前面字符可出现任意次（含0次）
 public class _20 {
     //str是目标字符串，pattern是正则字符串
-    public boolean match(char[] str, char[] pattern) {
+    public boolean match(String s, String p) {
+        char[] str = s.toCharArray();
+        char[] pattern = p.toCharArray();
         //获取目标字符串长度m和正则字符串长度n
         int m = str.length, n = pattern.length;
         //构造动态规划数组，长度分别是m+1和n+1，默认都是false
@@ -41,5 +43,32 @@ public class _20 {
                     } else //如果模式串j-1字符和目标串i字符不相同，只能把a*看做空
                         dp[i][j] = dp[i][j - 2];   // a* only counts as empty
         return dp[m][n]; //返回结果
+    }
+
+    public boolean isMatch(String s, String p) {
+        //获取目标字符串长度m和正则字符串长度n
+        int m = s.length();
+        int n = p.length();
+        //构造动态规划数组，长度分别是m+1和n+1，默认都是false
+        //dp[i][j]代表长度i的字符串和长度j的模式串是否匹配
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        dp[0][0] = true;
+        for (int i = 1; i <= n; ++i) {
+            if (p.charAt(i - 1) == '*') {
+                dp[0][i] = true;
+            } else {
+                break;
+            }
+        }
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (p.charAt(j - 1) == '*') {
+                    dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
+                } else if (p.charAt(j - 1) == '?' || s.charAt(i - 1) == p.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+            }
+        }
+        return dp[m][n];
     }
 }

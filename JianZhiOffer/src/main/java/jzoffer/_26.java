@@ -14,7 +14,7 @@ public class _26 {
         }
     }
 
-    public ListNode Merge(ListNode list1, ListNode list2) {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode list = null; //构造结果链表
         //如果list1和list2都是空，返回空
         if (list1 == null && list2 == null) return null;
@@ -25,11 +25,11 @@ public class _26 {
         //如果list1的节点值比list2的值小，list的这个节点就是list1的节点，并将list1节点向后延一个继续merge
         if (list1.val < list2.val) {
             list = list1;
-            list.next = Merge(list1.next, list2);
+            list.next = mergeTwoLists(list1.next, list2);
         } else {
             //否则，list的这个节点就是list2的节点，并将list2节点向后延一个继续merge
             list = list2;
-            list.next = Merge(list1, list2.next);
+            list.next = mergeTwoLists(list1, list2.next);
         }
         return list;
     }

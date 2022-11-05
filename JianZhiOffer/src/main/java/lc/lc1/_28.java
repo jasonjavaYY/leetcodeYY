@@ -19,9 +19,9 @@ package lc.lc1;
 * */
 //字符串 字符串haystack和needle，在haystack中找出needle出现的第一个位置（下标0开始）。不存在返回-1
 public class _28 {
-    public int strStr(String ss, String pp) {
-        int n = ss.length(), m = pp.length(); //计算ss和pp的字符串长度
-        char[] s = ss.toCharArray(), p = pp.toCharArray(); //将字符串转换为字符数组
+    public int strStr(String haystack, String needle) {
+        int n = haystack.length(), m = needle.length(); //计算ss和pp的字符串长度
+        char[] s = haystack.toCharArray(), p = needle.toCharArray(); //将字符串转换为字符数组
         // 枚举原串的「发起点」
         for (int i = 0; i <= n - m; i++) {//<=n-m。因为p有m个字符，如果s剩余字符少于m个肯定无法匹配
             // 从原串「发起点」和匹配串「首位」开始尝试匹配

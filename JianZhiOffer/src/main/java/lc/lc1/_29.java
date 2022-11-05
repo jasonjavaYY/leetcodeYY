@@ -22,7 +22,7 @@ package lc.lc1;
 * */
 //数学 被除数dividend和除数 divisor。将两数相除，不用乘法、除法和mod
 public class _29 {
-    public long divide(int dividend, int divisor) {
+    public int divide(int dividend, int divisor) {
         if (dividend == 0) return 0; //如果被除数是0，返回0
         if (divisor == 1) return dividend; //如果除数是1，返回被除数
         if (divisor == -1) { //如果除数是-1，返回被除数相反数
@@ -37,15 +37,15 @@ public class _29 {
         }
         a = a > 0 ? a : -a; //将被除数和除数都转换成正数
         b = b > 0 ? b : -b;
-        long res = div(a, b); //执行a除以b得到结果
+        int res = div(a, b); //执行a除以b得到结果
         //如果符号位是正，就返回res，否则返回-res，记得进行最大值判断
-        if (sign > 0) return res > Integer.MAX_VALUE ? Integer.MAX_VALUE : res;
+        if (sign > 0) return Math.min(res, Integer.MAX_VALUE);
         return -res;
     }
 
-    long div(long a, long b) {
+    int div(long a, long b) {
         if (a < b) return 0; //如果a小于b返回0，递归退出条件
-        long count = 1;
+        int count = 1;
         long tb = b; // 在后面的代码中不更新b
         while ((tb + tb) <= a) { //循环判断如果a大于等于b的两倍
             count = count + count; // 最小解翻倍

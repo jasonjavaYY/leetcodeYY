@@ -63,5 +63,30 @@ dp[0][j] 需要分情况讨论：因为星号才能匹配空字符串，所以�
 * 需要注意的是，由于大部分语言中字符串的下标从 00 开始，因此 s_i和 p_j分别对应着 s[i−1] 和 p[j−1]。
 * */
 public class _44 {
-    //同jzoffer的_20
+    public boolean isMatch(String s, String p) {
+        //获取目标字符串长度m和正则字符串长度n
+        int m = s.length();
+        int n = p.length();
+        //构造动态规划数组，长度分别是m+1和n+1，默认都是false
+        //dp[i][j]代表长度i的字符串和长度j的模式串是否匹配
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        dp[0][0] = true;
+        for (int i = 1; i <= n; ++i) {
+            if (p.charAt(i - 1) == '*') {
+                dp[0][i] = true;
+            } else {
+                break;
+            }
+        }
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (p.charAt(j - 1) == '*') {
+                    dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
+                } else if (p.charAt(j - 1) == '?' || s.charAt(i - 1) == p.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+            }
+        }
+        return dp[m][n];
+    }
 }
