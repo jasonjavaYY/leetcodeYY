@@ -35,9 +35,12 @@ if (i > 0 && nums[i] == nums[i - 1] && !vis[i - 1]) {
 * */
 //回溯法 给一个包含重复数字的序列nums返回所有不重复的全排列
 public class _47 {
-    boolean[] vis;
+    public static void main(String[] args) {
+        System.out.println(permuteUnique(new int[]{2,3,3}));
+    }
+    static boolean[] vis;
 
-    public List<List<Integer>> permuteUnique(int[] nums) {
+    public static List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> ans = new ArrayList<List<Integer>>(); //保存结果，是双层数组
         List<Integer> perm = new ArrayList<Integer>(); //存放一个结果
         vis = new boolean[nums.length]; //用于标记某个数字是否用过
@@ -46,7 +49,7 @@ public class _47 {
         return ans;
     }
 
-    public void backtrack(int[] nums, List<List<Integer>> ans, int idx, List<Integer> perm) {
+    public static void backtrack(int[] nums, List<List<Integer>> ans, int idx, List<Integer> perm) {
         if (idx == nums.length) { //如果idx达到了数组长度，说明找到了一个组合，加入ans返回
             ans.add(new ArrayList<Integer>(perm));
             return;

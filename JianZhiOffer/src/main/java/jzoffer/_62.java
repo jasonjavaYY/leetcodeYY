@@ -16,12 +16,12 @@ Output:
 //字符串 翻转单词顺序列，如将"I am a student."变为"student. a am I"
 public class _62 {
     public static void main(String[] args) {
-        System.out.println(ReverseSentence("I am a student."));
+        System.out.println(reverseWords("I am a student."));
     }
-    public static String ReverseSentence(String str) {
+    public static String reverseWords(String s) {
         //"I am a student."
-        int n = str.length();  //获取字符串总长度
-        char[] chars = str.toCharArray(); //字符串转换为字符数组
+        int n = s.length();  //获取字符串总长度
+        char[] chars = s.toCharArray(); //字符串转换为字符数组
         int i = 0, j = 0;
         while (j <= n) { //遍历整个字符串，翻转每个单词
             if (j == n || chars[j] == ' ') {

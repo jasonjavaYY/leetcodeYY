@@ -17,11 +17,11 @@ public class _5 {
     // 缓存中序遍历数组每个值对应的索引
     private Map<Integer, Integer> indexForInOrders = new HashMap<>();
 
-    public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
         //将中序遍历的值和下标放入map
-        for (int i = 0; i < in.length; i++)
-            indexForInOrders.put(in[i], i);
-        return reConstructBinaryTree(pre, 0, pre.length - 1, 0);
+        for (int i = 0; i < inorder.length; i++)
+            indexForInOrders.put(inorder[i], i);
+        return reConstructBinaryTree(preorder, 0, preorder.length - 1, 0);
     }
 
     private TreeNode reConstructBinaryTree(int[] pre, int preL, int preR, int inL) {

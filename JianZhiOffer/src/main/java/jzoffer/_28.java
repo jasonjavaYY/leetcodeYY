@@ -17,13 +17,13 @@ public class _28 {
         }
     }
 
-    public void Mirror(TreeNode root) {
+    public void invertTree(TreeNode root) {
         //如果要镜像的节点为空，直接退出
         if (root == null) return;
         //交换根节点的左右子节点，然后继续镜像根的左右节点
         swap(root);
-        Mirror(root.left);
-        Mirror(root.right);
+        invertTree(root.left);
+        invertTree(root.right);
     }
     //交换某个根节点的左右节点
     private void swap(TreeNode root) {

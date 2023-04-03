@@ -14,7 +14,7 @@ package jzoffer;
 * */
 //数组 数组中出现次数超一半的数字，如{1,2,3,2,2,2,5,4,2}。2出现5次超过一半输出2。如不存在输出0
 public class _42 {
-    public int MoreThanHalfNum_Solution(int[] nums) {
+    public int majorityElement(int[] nums) {
         //majority代表数组中出现次数最多的元素值，首先设置第0个元素为majority
         int majority = nums[0];
         for (int i = 1, cnt = 1; i < nums.length; i++) {
